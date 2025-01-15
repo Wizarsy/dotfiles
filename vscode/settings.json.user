@@ -1,0 +1,216 @@
+{
+  "[python]": {
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "ms-python.autopep8"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockercompose]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[php]": {
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+  },
+  "[glsl]": {
+    "editor.defaultFormatter": "circledev.glsl-canvas"
+  },
+  "editor.wordWrap": "on",
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "git.enableSmartCommit": true,
+  "gitlens.defaultDateFormat": null,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "storage.type",
+          "variable.language",
+          "variable.parameter",
+          "keyword.other",
+          "keyword.control",
+          "keyword.function",
+          "keyword.operator.logical",
+          "entity.other.attribute-name",
+          "keyword.control.flow.python",
+          "punctuation.definition.parameters",
+          "constant.character"
+        ],
+        "settings": {
+          "fontStyle": "italic"
+        }
+      },
+      {
+        "scope":[
+          "entity.name.function",
+          "constant.language"
+        ],
+        "settings": {
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope":[
+          "variable.parameter.function.language.special"
+        ],
+        "settings": {
+          "foreground": "#F7768E",
+        }
+      }
+    ]
+  },
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "explorer.confirmDragAndDrop": false,
+  "livePreview.notifyOnOpenLooseFile": false,
+  "notebook.lineNumbers": "on",
+  "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.fontFamily": "CaskaydiaCove Nerd Font Mono",
+  "code-runner.runInTerminal": true,
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.executorMap": {
+    "javascript": "node",
+    "java": "cd $dir && mkdir -p ./bin &> /dev/null && javac $fileName -d ./biny && java -cp ./bin $fileNameWithoutExt",
+    // "java": "cd $dir && mkdir -p ./binary &> /dev/null && javac $fileName -d binary && cd binary && java $fileNameWithoutExt",
+    // "java": "cd $dir && mkdir -Force binary > $null && javac $fileName -d binary && cd binary && java $fileNameWithoutExt",
+    "c": "cd $dir && mkdir -p ./bin &> /dev/null && gcc -fdiagnostics-color=always -O -Wall -Wextra -pedantic -g ./$fileName -o ./bin/$fileNameWithoutExt && ./bin/$fileNameWithoutExt",
+    // "c": "cd $dir && mkdir -p ./binary &> /dev/null && cd binary && gcc -fdiagnostics-color=always -g ../$fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+    // "c": "cd $dir && mkdir -Force binary > $null && cd binary && gcc ../$fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "cpp": "cd $dir && mkdir -p ./bin &> /dev/null && g++ ./$fileName -o ./bin/$fileNameWithoutExt && ./bin/$fileNameWithoutExt",
+    // "cpp": "cd $dir && mkdir -p ./binary &> /dev/null && cd binary && g++ ../$fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+    // "cpp": "cd $dir && mkdir -Force binary > $null && cd binary && g++ ../$fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "objective-c": "cd $dir && mkdir -Force bin > $null && cd bin && gcc -framework Cocoa ../$fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "php": "php",
+    "python": "python -u",
+    "perl": "perl",
+    "perl6": "perl6",
+    "ruby": "ruby",
+    "go": "cd $dir && mkdir -p ./bin &> /dev/null && go build -o ./bin $fileName && ./bin/$fileNameWithoutExt",
+    // "go": "go run",
+    "lua": "lua",
+    "groovy": "groovy",
+    "powershell": "powershell -ExecutionPolicy ByPass -File",
+    "bat": "cmd /c",
+    "shellscript": "bash",
+    "fsharp": "fsi",
+    "csharp": "cd $dir && dotnet run $fileName",
+    "vbscript": "cscript //Nologo",
+    "typescript": "ts-node",
+    // "typescript": "cd $dir && tsc -p $dir && cd dist && node $fileNameWithoutExt.js",
+    "coffeescript": "coffee",
+    "scala": "scala",
+    "swift": "swift",
+    "julia": "julia",
+    "crystal": "crystal",
+    "ocaml": "ocaml",
+    "r": "Rscript",
+    "applescript": "osascript",
+    "clojure": "lein exec",
+    "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
+    "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+    "racket": "racket",
+    "scheme": "csi -script",
+    "ahk": "autohotkey",
+    "autoit": "autoit3",
+    "dart": "dart",
+    "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
+    "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
+    "haskell": "runhaskell",
+    "nim": "nim compile --verbosity:0 --hints:off --run",
+    "lisp": "sbcl --script",
+    "kit": "kitc --run",
+    "v": "v run",
+    "sass": "sass --style expanded",
+    "scss": "scss --style expanded",
+    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
+    "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "sml": "cd $dir && sml $fileName"
+  },
+  "editor.tabSize": 2,
+  "go.toolsManagement.autoUpdate": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "explorer.confirmDelete": false,
+  "redhat.telemetry.enabled": true,
+  
+  "cmake.configureOnOpen": true,
+  "git.openRepositoryInParentFolders": "always",
+  "editor.linkedEditing": true,
+  "discloud.token": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjI2OTY0NDIxNTg1NDU2MzMyOSIsImtleSI6IjdkNTBiNmQzY2VlZjAzZDNjMDk2NjRkZDg4MDYifQ.SfN2tJjNEn0ugDJRTH6e6magUJqSy50tU5qTD0tzjvw",
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.autoFormatStrings": true,
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.lineHeight": 1.2,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "window.titleBarStyle": "custom",
+  "glassit.alpha": 245,
+  "glassit.force_sway": true,
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "workspaceSidebar.depth": 2,
+  "workspaceSidebar.cleanLabels": false,
+  "workspaceSidebar.showFolderHierarchy": true,
+  "makefile.configureOnOpen": true,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js",
+    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
+    "*.jsx": "${capture}.js",
+    "*.tsx": "${capture}.ts",
+    "tsconfig.json": "tsconfig.*.json",
+    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
+    "*.sqlite": "${capture}.${extname}-*",
+    "*.db": "${capture}.${extname}-*",
+    "*.sqlite3": "${capture}.${extname}-*",
+    "*.db3": "${capture}.${extname}-*",
+    "*.sdb": "${capture}.${extname}-*",
+    "*.s3db": "${capture}.${extname}-*"
+  },
+  "manpages.binary.path": "wsl man",
+  "security.allowedUNCHosts": [
+    "wsl.localhost"
+  ],
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "dotnetAcquisitionExtension.sharedExistingDotnetPath": "/home/wizarsy/.asdf/shims/dotnet",
+  "workbench.iconTheme": "catppuccin-perfect-mocha",
+  "workbench.colorTheme": "Tokyo Night",
+  "editor.fontFamily": "Consolas, 'Courier New',  Symbols Nerd Font Mono, monospace",
+  "shell-syntax.defaultShell": "zsh",
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "python.terminal.shellIntegration.enabled": true,
+  "workspaceSidebar.rootFolders": [
+    { "path": ""}
+  ],
+}
