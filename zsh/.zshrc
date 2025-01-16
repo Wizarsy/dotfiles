@@ -6,20 +6,21 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git docker zsh-autosuggestions zsh-completions ohmyzsh-full-autoupdate fast-syntax-highlighting history-search-multi-word command-not-found colored-man-pages fzf fzf-tab zoxide) 
+plugins=(git docker zsh-autosuggestions zsh-completions ohmyzsh-full-autoupdate fast-syntax-highlighting command-not-found colored-man-pages fzf fzf-tab zoxide) 
 
 . "$ZSH/oh-my-zsh.sh"
 
-fpath+="$HOME/.zfunc"
-
 . "/opt/asdf-vm/asdf.sh"
+
+fpath+="$HOME/.zfunc"
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 fpath=(${ASDF_DIR}/completions $fpath)
 
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
 [[ ! -f "$HOME/.p10k.zsh" ]] || . "$HOME/.p10k.zsh"
 
-eval "$(ssh-agent -s)" &> /dev/null; ssh-add "$HOME"/.ssh/*.key &> /dev/null
+eval "$(ssh-agent -s)" &> /dev/null; (ssh-add "$HOME"/.ssh/*.key) &> /dev/null
 
 TRAPEXIT() {
   if [[ ! -o login ]]; then
@@ -39,7 +40,7 @@ y() {
 }
 
 # Aliases
-alias up="yay --noconfirm -Syyuu; yay -Yc --noconfirm"
+alias up="yay --noconfirm; yay -Yc --noconfirm"
 alias ls="eza --icons=always --color=always"
 alias cat="bat --style=auto"
 alias find="fd"

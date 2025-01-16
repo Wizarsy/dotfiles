@@ -1,5 +1,7 @@
 # asdf enviroments
-fd -t f -g "set*.zsh" "$HOME/.asdf/plugins" | while read -r script; do; . "$script"; done
+fd -t f -g "set*.zsh" "$HOME/.asdf/plugins" &> /dev/null | while read -r script; do; . "$script"; done
+
+[[ ! -f "$HOME/.localenv" ]] || . "$HOME/.localenv"
 
 export EDITOR=nvim
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
