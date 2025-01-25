@@ -40,6 +40,7 @@ y() {
 }
 
 # Aliases
+alias yay="ASDF_PYTHON_VERSION=system yay"
 alias up="yay --noconfirm; yay -Yc --noconfirm"
 alias ls="eza --icons=always --color=always"
 alias cat="bat --style=auto"
