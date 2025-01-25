@@ -1,0 +1,11 @@
+[Unit]
+Description=Reflector
+
+[Service]
+ExecStart=/usr/bin/reflector --save /etc/pacman.d/mirrorlist --protocol https --country BR,US --latest 15 --sort rate
+Restart=always
+User=wizarsy
+Group=wizarsy
+
+[Install]
+WantedBy=multi-user.target
