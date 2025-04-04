@@ -18,13 +18,13 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
 [[ ! -f "$HOME/.p10k.zsh" ]] || . "$HOME/.p10k.zsh"
 
-eval "$(ssh-agent -s)" &> /dev/null; (ssh-add "$HOME"/.ssh/*.key) &> /dev/null
+# ssh-agent
+{ pid="$(pgrep -u $USER ssh-agent)" && export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.sock && export SSH_AGENT_PID=$pid && unset pid } &> /dev/null || { eval "$(ssh-agent -s -a /run/user/1000/ssh-agent.sock)" && ssh-add "$HOME"/.ssh/*.key } &> /dev/null
 
 TRAPEXIT() {
   if [[ ! -o login ]]; then
     [[ ! -f "$HOME/.zlogout" ]] || . "$HOME/.zlogout"
   fi
-	kill $SSH_AGENT_PID
 }
 
 # Yazi
