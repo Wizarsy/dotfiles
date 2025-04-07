@@ -1,7 +1,3 @@
-[submodule ".config/nvim/nvchad"]
-	path = .config/nvim/nvchad
-	url = git@github.com:Wizarsy/nvchad.git
-	branch = master
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = git@github.com:Wizarsy/nvchad.git
