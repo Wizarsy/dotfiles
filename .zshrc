@@ -41,9 +41,9 @@ y() {
 yay() {
 	local asdf_env=(ASDF_GOLANG_VERSION ASDF_PYTHON_VERSION ASDF_RUST_VERSION)
 	for i in ${asdf_env[@]}; do
-		export $i=system;
+		export $i=system
 	done
-	command yay "$@"; 
+	command yay "$@"
 	unset "${asdf_env[@]}"
 }
 
