@@ -21,6 +21,9 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # ssh-agent
 { pid="$(pgrep -u $USER ssh-agent)" && export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.sock && export SSH_AGENT_PID=$pid && unset pid } &> /dev/null || { eval "$(ssh-agent -s -a /run/user/1000/ssh-agent.sock)" && ssh-add "$HOME"/.ssh/*.key } &> /dev/null
 
+# ASDF shims
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # Functions
 TRAPEXIT() {
   if [[ ! -o login ]]; then
@@ -38,16 +41,8 @@ y() {
 	rm -f -- "$tmp"
 }
 
-yay() {
-	local asdf_env=(ASDF_GOLANG_VERSION ASDF_PYTHON_VERSION ASDF_RUST_VERSION)
-	for i in ${asdf_env[@]}; do
-		export $i=system
-	done
-	command yay "$@"
-	unset "${asdf_env[@]}"
-}
-
 # Aliases
+alias yay="ASDF_GOLANG_VERSION=system ASDF_PYTHON_VERSION=system ASDF_RUST_VERSION=system yay"
 alias up="yay --noconfirm; yay -Yc --noconfirm"
 alias ls="eza --icons=always --color=always"
 alias cat="bat --style=auto"

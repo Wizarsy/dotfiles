@@ -4,7 +4,6 @@ command fd -t f -g "set*.zsh" "$HOME/.asdf/plugins" &> /dev/null | while read -r
 [[ ! -f "$HOME/local.env" ]] || export "$(command grep -vh "^#" "$HOME/local.env" | xargs)"
 # [ ! -f $HOME/tmp-*.env ] || export "$(command grep -vh "^#" $HOME/tmp-*.env | xargs)"
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export EDITOR=nvim
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=fg:-1,fg+:#cfc9c2,bg:-1,bg+:#515C7E
