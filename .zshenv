@@ -1,7 +1,8 @@
 # asdf enviroments
-fd -t f -g "set*.zsh" "$HOME/.asdf/plugins" &> /dev/null | while read -r script; do; . "$script"; done
+command fd -t f -g "set*.zsh" "$HOME/.asdf/plugins" &> /dev/null | while read -r script; do; . "$script"; done
 
-[[ ! -f "$HOME/.env.local" ]] || . "$HOME/.env.local"
+[[ ! -f "$HOME/local.env" ]] || export "$(command grep -vh "^#" "$HOME/local.env" | xargs)"
+# [ ! -f $HOME/tmp-*.env ] || export "$(command grep -vh "^#" $HOME/tmp-*.env | xargs)"
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 export EDITOR=nvim
