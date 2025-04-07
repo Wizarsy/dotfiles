@@ -1,0 +1,118 @@
+local wezterm = require "wezterm"
+local config = {}
+
+config.term = "wezterm"
+
+config.color_scheme_dirs = {wezterm.config_dir .. "/themes"}
+config.color_scheme = "tokyonight"
+config.use_fancy_tab_bar = false
+config.window_frame = {
+  font_size = 24.0,
+}
+
+config.default_cursor_style = "BlinkingUnderline"
+config.cursor_thickness = 2
+config.animation_fps = 1
+config.cursor_blink_rate = 500
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
+
+config.initial_cols = 120
+config.initial_rows = 24
+
+config.font = wezterm.font("CaskaydiaCove Nerd Font Mono")
+config.font_size = 12.0
+config.line_height = 1.2
+config.font_rules = {
+  {
+    intensity = "Normal",
+    italic = true,
+    font = wezterm.font(
+      "CaskaydiaCove Nerd Font Mono", {
+      style = "Oblique"
+      }
+    )
+  },
+  {
+    intensity = "Bold",
+    italic = true,
+    font = wezterm.font(
+      "CaskaydiaCove Nerd Font Mono", {
+      style = "Oblique"
+      }
+    )
+  },
+  {
+    intensity = "Half",
+    italic = true,
+    font = wezterm.font(
+      "CaskaydiaCove Nerd Font Mono", {
+      style = "Oblique",
+      foreground = "#414868"
+      }
+    )
+  },
+  -- {
+  --   intensity = "Normal",
+  --   italic = false,
+  --   font = wezterm.font(
+  --     "CaskaydiaCove Nerd Font Mono"
+  --   )
+  -- },
+  -- {
+  --   intensity = "Bold",
+  --   italic = false,
+  --   font = wezterm.font(
+  --     "CaskaydiaCove Nerd Font Mono"
+  --   )
+  -- },
+  {
+    intensity = "Half",
+    italic = false,
+    font = wezterm.font(
+      "CaskaydiaCove Nerd Font Mono", {
+        foreground = "#414868"
+      }
+    )
+  }
+}
+
+
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+  config.default_prog = {"pwsh.exe", "-NoProfileLoadTime", "-NoLogo"}
+  config.window_decorations = "RESIZE"
+  local winpath = os.getenv("PATH")
+  for disk_letter in winpath:gmatch("[A-Z]%:") do
+    winpath = winpath:gsub(disk_letter, "/mnt/".. disk_letter:gsub(":", ""):lower())
+  end
+  winpath = winpath:gsub("\\", "/"):gsub(";", ":")
+  config.ssh_domains = {
+    {
+      name = "arch.wsl",
+      username = "wizarsy",
+      remote_address = "127.0.0.1",
+      multiplexing = "WezTerm",
+      assume_shell = "Posix",
+      local_echo_threshold_ms = 10,
+      ssh_option = {
+        identityfile = os.getenv("USERPROFILE") .. "\\.ssh\\arch.key"
+      },
+      default_prog = {
+        "HOSTTYPE=x86_64",
+        "LANG=en_US.UTF-8",
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:" .. winpath,
+        "WAYLAND_DISPLAY=wayland-0",
+        "DISPLAY=:0",
+        "PULSE_SERVER=unix:/mnt/wslg/PulseServer",
+        "WSL2_GUI_APPS_ENABLED=1",
+        "WSL_DISTRO_NAME=Arch",
+        "/usr/bin/zsh"
+      }
+    },
+  }
+elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
+    config.default_prog = {"/usr/bin/zsh"}
+    config.window_decorations = "NONE"
+end
+
+return config
