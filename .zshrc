@@ -21,8 +21,9 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # ssh-agent
 { pid="$(pgrep -u $USER ssh-agent)" && export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.sock && export SSH_AGENT_PID=$pid && unset pid } &> /dev/null || { eval "$(ssh-agent -s -a /run/user/1000/ssh-agent.sock)" && ssh-add "$HOME"/.ssh/*.key } &> /dev/null
 
-# ASDF shims
+# ASDF
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+command fd -t f -g "set*.zsh" "$HOME/.asdf/plugins" &> /dev/null | while read -r script; do; . "$script"; done
 
 # Functions
 TRAPEXIT() {
