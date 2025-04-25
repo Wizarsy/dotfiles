@@ -3,13 +3,3 @@
 # [ ! -f $HOME/tmp-*.env ] || export "$(command grep -vh "^#" $HOME/tmp-*.env | xargs)"
 
 export QT_QPA_PLATFORMTHEME=qt6ct
-export EDITOR=nvim
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
-  --color=fg:-1,fg+:#cfc9c2,bg:-1,bg+:#515C7E
-  --color=hl:#9ece6a,hl+:#73DACA,info:#C0CAF5,marker:#7dcfff
-  --color=prompt:#BB9AF7,spinner:#ff9e64,pointer:#e0af68,header:#C0CAF5
-  --color=gutter:#515C7E,border:#414868,separator:#414868,label:#C0CAF5
-  --color=query:#cfc9c2
-  --border="sharp" --border-label="" --preview-window="border-sharp" --padding="1"
-  --prompt=" " --marker="" --pointer="" --separator="-"
-  --scrollbar="│" --info="right"'
