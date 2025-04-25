@@ -2,7 +2,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   . "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Envs
+# Env
 export ZSH="$HOME/.oh-my-zsh"
 export EDITOR=nvim
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
@@ -58,7 +58,7 @@ y() {
 alias yay="ASDF_GOLANG_VERSION=system ASDF_PYTHON_VERSION=system ASDF_RUST_VERSION=system yay"
 alias up="yay --noconfirm; yay -Yc --noconfirm"
 alias ls="eza --icons=always --color=always"
-alias cat="bat --style=auto"
+alias cat="bat --style=auto --paging=never"
 alias find="fd"
 alias grep="rg"
 alias cd="z"
