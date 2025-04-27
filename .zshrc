@@ -54,8 +54,11 @@ y() {
 	rm -f -- "$tmp"
 }
 
+yay() {
+  env -i zsh -l -c "yay $*"
+}
+
 # Aliases
-alias yay="ASDF_GOLANG_VERSION=system ASDF_PYTHON_VERSION=system ASDF_RUST_VERSION=system yay"
 alias up="yay --noconfirm; yay -Yc --noconfirm"
 alias ls="eza --icons=always --color=always"
 alias cat="bat --style=auto --paging=never"
