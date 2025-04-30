@@ -3,3 +3,7 @@
 # [ ! -f $HOME/tmp-*.env ] || export "$(command grep -vh "^#" $HOME/tmp-*.env | xargs)"
 
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+ln -sf /mnt/wslg/runtime-dir/wayland-0 /run/user/$GID/wayland-0 &> /dev/null 
+ln -sf /mnt/wslg/runtime-dir/wayland-0.lock /run/user/$GID/wayland-0.lock &> /dev/null
+ln -sf /mnt/wslg/.X11-unix/X0 /tmp/.X11-unix/X0 &> /dev/null
