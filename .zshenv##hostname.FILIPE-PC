@@ -2,8 +2,14 @@
 [[ ! -f "$HOME/.local.env" ]] || export "$(command grep -vh "^#" "$HOME/.local.env" | xargs)"
 # [ ! -f $HOME/tmp-*.env ] || export "$(command grep -vh "^#" $HOME/tmp-*.env | xargs)"
 
-export QT_QPA_PLATFORMTHEME=qt5ct
-
-ln -sf /mnt/wslg/runtime-dir/wayland-0 /run/user/$GID/wayland-0 &> /dev/null 
-ln -sf /mnt/wslg/runtime-dir/wayland-0.lock /run/user/$GID/wayland-0.lock &> /dev/null
-ln -sf /mnt/wslg/.X11-unix/X0 /tmp/.X11-unix/X0 &> /dev/null
+export QT_QPA_PLATFORMTHEME=qt5ct 
+export QT_QPA_PLATAFORM=wayland
+export QT_SCALE_FACTOR=1 
+export GDK_BACKEND=wayland
+export GDK_SCALE=1
+export ELM_SCALE=1
+export MOZ_ENABLE_WAYLAND=1
+export CLUTTER_BACKEND=wayland
+export XDG_CURRENT_DESKTOP=Weston
+export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=Weston
