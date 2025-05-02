@@ -32,7 +32,7 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 [[ ! -f "$HOME/.p10k.zsh" ]] || . "$HOME/.p10k.zsh"
 
 # ssh-agent
-{ pid="$(pgrep -u $USER ssh-agent)" && export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR:-/tmp}/ssh-agent.sock && export SSH_AGENT_PID=$pid && unset pid } &> /dev/null || { eval "$(ssh-agent -s -a ${XDG_RUNTIME_DIR:-/tmp}/ssh-agent.sock)" && ssh-add "$HOME"/.ssh/*.key } &> /dev/null
+{ pid="$(pgrep -u $USER ssh-agent)" && export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR:-/tmp}/ssh-agent.sock SSH_AGENT_PID=$pid && unset pid } &> /dev/null || { eval "$(ssh-agent -s -a ${XDG_RUNTIME_DIR:-/tmp}/ssh-agent.sock)" && ssh-add "$HOME"/.ssh/*.key } &> /dev/null
 
 # ASDF
 command fd -t f -g "set*.zsh" "$HOME/.asdf/plugins" &> /dev/null | while read -r script; do; . "$script"; done
