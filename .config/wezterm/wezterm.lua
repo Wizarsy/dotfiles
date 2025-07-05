@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 local config = {}
 
-local default_font = "CaskaydiaMono Nerd Font Mono"
+local default_font = "Monocraft"
 -- config.term = "wezterm"
 
 config.color_scheme_dirs = { wezterm.config_dir .. "/themes" }
@@ -21,7 +21,7 @@ config.cursor_blink_ease_out = "Constant"
 config.initial_cols = 120
 config.initial_rows = 24
 
-config.font = wezterm.font(default_font)
+config.font = wezterm.font_with_fallback{default_font, "Symbols Nerd Font Mono"}
 config.font_size = 12.0
 config.line_height = 1.2
 config.font_rules = {
@@ -50,7 +50,7 @@ config.font_rules = {
 	{
 		intensity = "Half",
 		italic = false,
-		font = wezterm.font("CaskaydiaCove Nerd Font Mono", {
+		font = wezterm.font(default_font, {
 			foreground = "#414868",
 		}),
 	},
