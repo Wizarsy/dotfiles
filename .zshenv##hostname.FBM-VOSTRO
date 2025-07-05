@@ -1,3 +1,5 @@
 # asdf enviroments
 [[ ! -f "$HOME/.local.env" ]] || export "$(command grep -vh "^#" "$HOME/.local.env" | xargs)"
 # [ ! -f $HOME/tmp-*.env ] || export "$(command grep -vh "^#" $HOME/tmp-*.env | xargs)"
+
+export EDITOR=nvim

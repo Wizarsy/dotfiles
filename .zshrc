@@ -4,7 +4,6 @@ fi
 
 # Env
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR=nvim
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=fg:-1,fg+:#cfc9c2,bg:-1,bg+:#515C7E
   --color=hl:#9ece6a,hl+:#73DACA,info:#C0CAF5,marker:#7dcfff
