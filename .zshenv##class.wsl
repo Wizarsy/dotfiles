@@ -1,6 +1,4 @@
-# asdf enviroments
-[[ ! -f "$HOME/.local.env" ]] || export "$(command grep -vh "^#" "$HOME/.local.env" | xargs)"
-# [ ! -f $HOME/tmp-*.env ] || export "$(command grep -vh "^#" $HOME/tmp-*.env | xargs)"
+{ pid="$(pgrep -u $USER ssh-agent)" && export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR:-/tmp/}ssh-agent.sock SSH_AGENT_PID=$pid && unset pid; } &> /dev/null || { eval "$(ssh-agent -s -a ${XDG_RUNTIME_DIR:-/tmp/}ssh-agent.sock)" && ssh-add "$HOME"/.ssh/*.key; } &> /dev/null
 
 export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct 
