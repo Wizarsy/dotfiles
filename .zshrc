@@ -3,6 +3,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Env
+export ZOXIDE_CMD_OVERRIDE=cd
 export ZSH="$HOME/.oh-my-zsh"
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=fg:-1,fg+:#cfc9c2,bg:-1,bg+:#515C7E
@@ -58,12 +59,11 @@ yay() {
 }
 
 # Aliases
-alias up="yay --noconfirm"
+alias up="yay --noconfirm; sudo pkgfile -u"
 alias ls="eza --icons=always --color=always"
 alias cat="bat --style=auto --paging=never"
 alias find="fd"
 alias grep="rg"
-alias cd="z"
 alias mkdir="mkdir -p"
 alias dotfiles="yadm"
 alias archconf="yadm --yadm-repo $HOME/.local/share/yadm/arch_config.git"
