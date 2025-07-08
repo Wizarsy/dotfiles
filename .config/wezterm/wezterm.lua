@@ -21,7 +21,7 @@ config.cursor_blink_ease_out = "Constant"
 config.initial_cols = 120
 config.initial_rows = 24
 
-config.font = wezterm.font_with_fallback{default_font, "Symbols Nerd Font Mono"}
+config.font = wezterm.font_with_fallback({ default_font, "Symbols Nerd Font Mono" })
 config.font_size = 12.0
 config.line_height = 1.2
 config.font_rules = {
@@ -55,11 +55,10 @@ config.font_rules = {
 		}),
 	},
 }
-
+config.mux_enable_ssh_agent = false
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_prog = { "pwsh.exe", "-NoProfileLoadTime", "-NoLogo" }
 	config.default_domain = "WSL:Arch"
-	config.mux_enable_ssh_agent = false
 	config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
 	config.default_prog = { "/usr/bin/zsh" }
@@ -67,4 +66,3 @@ elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
 end
 
 return config
-
