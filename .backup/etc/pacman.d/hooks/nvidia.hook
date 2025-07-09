@@ -3,8 +3,6 @@ Operation=Install
 Operation=Upgrade
 Operation=Remove
 Type=Package
-Target=nvidia
-Target=linux
 Target=nvidia-dkms
 Target=linux-zen
 
