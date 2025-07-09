@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
-
-yadm remote set-url origin "git@github.com:Wizarsy/dotfiles.git"
+echo 1
+# yadm remote set-url origin "git@github.com:Wizarsy/dotfiles.git"
