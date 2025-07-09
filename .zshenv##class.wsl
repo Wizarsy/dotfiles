@@ -1,3 +1,4 @@
+# export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 export EDITOR=nvim
 export QT_QPA_PLATFORMTHEME=qt5ct 
 export QT_QPA_PLATAFORM=wayland
