@@ -2,8 +2,8 @@
 
 echo "Running Pre Commit script..."
 
-yadm encrypt
+dotfiles encrypt
 
-if [[ "$(yadm config --get local.class)" == "wsl" ]]; then
+if [[ "$(dotfiles config --get local.class)" == "wsl" ]]; then
   cp -vru /mnt/c/Users/Filipe/.config/wezterm/* "$HOME"/.config/wezterm/
 fi

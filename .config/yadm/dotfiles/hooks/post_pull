@@ -2,8 +2,8 @@
 
 echo "Running Post Pull Script..."
 
-yadm decrypt
+dotfiles decrypt
 
-if [[ "$(yadm config --get local.class)" == "wsl" ]]; then
+if [[ "$(dotfiles config --get local.class)" == "wsl" ]]; then
   cp -vru "$HOME"/.config/wezterm/* /mnt/c/Users/Filipe/.config/wezterm/
 fi
