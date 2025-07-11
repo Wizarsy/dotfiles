@@ -23,3 +23,5 @@ if [[ "$(yadm --yadm-dir $HOME/.config/yadm/dotfiles --yadm-data $HOME/.local/sh
                   --create-empty-src-dirs $HOME/.config/wezterm /mnt/c/Users/Filipe/.config/wezterm
   fi
 fi
+
+yadm --yadm-dir $HOME/.config/yadm/dotfiles --yadm-data $HOME/.local/share/yadm/dotfiles status -s

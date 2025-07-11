@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-yadm --yadm-dir $HOME/.config/yadm/dotfiles --yadm-data $HOME/.local/share/yadm/dotfiles status -s
