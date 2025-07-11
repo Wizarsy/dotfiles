@@ -36,14 +36,19 @@ return {
       bg_color = "#272a3d",
       fg_color = "#414868"
     },
+    inactive_tab_hover = {
+      bg_color = "#272a3d",
+      fg_color = "#414868",
+      intensity = "Bold",
+    },
     new_tab = {
       bg_color = "transparent",
       fg_color = "#9ece6a"
     },
     new_tab_hover = {
-      bg_color = '#9ece6a',
-      fg_color = 'transparent',
-      intensity   = "Bold"
+      bg_color = "#9ece6a",
+      fg_color = "transparent",
+      intensity = "Bold"
     }
-  },
+  }
 }
