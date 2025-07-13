@@ -32,7 +32,7 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 [[ ! -f "$HOME/.p10k.zsh" ]] || . "$HOME/.p10k.zsh"
 
 # ASDF
-fd -t f "zsh$|^env$" "$HOME/.asdf/plugins" | while read -r script; do; . "$script"; done
+[[ ! -d $HOME/.asdf ]] || fd -t f "zsh$|^env$" "$HOME/.asdf/plugins" | while read -r script; do; . "$script"; done
 
 # Functions
 TRAPEXIT() {
