@@ -1,11 +1,11 @@
 [mgr]
-ratio          = [ 1, 4, 3 ]
+ratio          = [ 1, 4, 5 ]
 sort_by        = "alphabetical"
 sort_sensitive = false
 sort_reverse 	 = false
 sort_dir_first = true
 sort_translit  = false
-linemode       = "none"
+linemode       = "size_and_mtime"
 show_hidden    = true
 show_symlink   = true
 scrolloff      = 5
@@ -89,6 +89,8 @@ suppress_preload = false
 fetchers = [
 	# Mimetype
 	{ id = "mime", name = "*", run = "mime", prio = "high" },
+  { id = "git", name = "*", run = "git", prio = "high" },
+  { id = "git", name = "*/", run = "git", prio = "high" },
 ]
 spotters = [
 	{ name = "*/", run = "folder" },
@@ -150,7 +152,7 @@ previewers = [
 ]
 
 [input]
-cursor_blink = false
+cursor_blink = true
 
 # cd
 cd_title  = "Change directory:"
@@ -224,12 +226,4 @@ sort_translit  = false
 
 
 
-[[plugin.prepend_fetchers]]
-id   = "git"
-name = "*"
-run  = "git"
 
-[[plugin.prepend_fetchers]]
-id   = "git"
-name = "*/"
-run  = "git"
