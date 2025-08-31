@@ -14,6 +14,8 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --border="sharp" --border-label="" --preview-window="border-sharp" --padding="1"
   --prompt=" " --marker="" --pointer="" --separator="-"
   --scrollbar="│" --info="right"'
+[[ ! -d "$HOME/.bin" ]] || export PATH="$HOME/.bin:$PATH"
+[[ ! -d "$HOME/.local/.bin" ]] || export PATH="$HOME/.local/.bin:$PATH"
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
