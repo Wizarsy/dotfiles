@@ -3,23 +3,3 @@
 echo "Running Post Pull Script..."
 
 yadm --yadm-dir $HOME/.config/yadm/dotfiles --yadm-data $HOME/.local/share/yadm/dotfiles decrypt
-
-if [[ "$(yadm --yadm-dir $HOME/.config/yadm/dotfiles --yadm-data $HOME/.local/share/yadm/dotfiles config --get local.class)" == "wsl" ]]; then
-  if ! rclone bisync -v \
-                     --checkers 16 \
-                     --transfers 16 \
-                     --modify-window 1m \
-                     --max-lock 5m \
-                     --compare "size,modtime,checksum" \
-                     --conflict-resolve newer \
-                     --create-empty-src-dirs $HOME/.config/wezterm /mnt/c/Users/Filipe/.config/wezterm; then
-    rclone bisync -v \
-                  --checkers 16 \
-                  --transfers 16 \
-                  --modify-window 1m \
-                  --max-lock 5m \
-                  --compare "size,modtime,checksum" \
-                  --resync-mode newer \
-                  --create-empty-src-dirs $HOME/.config/wezterm /mnt/c/Users/Filipe/.config/wezterm
-  fi
-fi
