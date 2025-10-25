@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "Running Pre Push Script..."
+
+yadm --yadm-dir $HOME/.config/yadm/dotfiles --yadm-data $HOME/.local/share/yadm/dotfiles commit -am "backup: $(date +'%d-%m-%Y %H:%M:%S')"
