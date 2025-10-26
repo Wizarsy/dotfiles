@@ -2,6 +2,6 @@
 
 echo "Running Pre Commit script..."
 
-yadm --yadm-dir $HOME/.config/yadm/dotfiles --yadm-data $HOME/.local/share/yadm/dotfiles encrypt
+yadm encrypt
 
-yadm --yadm-dir $HOME/.config/yadm/dotfiles --yadm-data $HOME/.local/share/yadm/dotfiles status -s
+yadm status -s
