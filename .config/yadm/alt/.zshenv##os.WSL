@@ -11,3 +11,7 @@ export CLUTTER_BACKEND=wayland
 export XDG_CURRENT_DESKTOP=Weston
 export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=Weston
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
