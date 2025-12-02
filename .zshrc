@@ -60,7 +60,7 @@ yay() {
 # Aliases
 alias up="yay --noconfirm; sudo pkgfile -u"
 alias ls="eza --icons=always --color=always"
-alias cat="bat --style=auto --paging=never --theme=TokyoNight"
+alias cat="bat"
 alias find="fd"
 alias grep="rg"
 alias du="dust"
