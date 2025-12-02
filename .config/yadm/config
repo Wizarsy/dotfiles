@@ -1,2 +1,4 @@
 [yadm]
 	gpg-recipient = Wizarsy
+[pull]
+	rebase = false
