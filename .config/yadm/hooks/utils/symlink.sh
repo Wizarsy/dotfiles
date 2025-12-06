@@ -18,8 +18,8 @@ hooks_symlink() {
       if [[ ! -d "$SYMLINK_D/$symlink" ]]; then
         mkdir -p "$SYMLINK_D/$symlink"
       fi
-    cp -v -r --update=older --strip-trailing-slashes "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
-    cp -v -r --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
+    cp -v -r --preserve=all --update=older --strip-trailing-slashes "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
+    cp -v -r --preserve=all --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
     touch -c -d "$(date +'%F %T')" "$HOME/$symlink"/* "$SYMLINK_D/$symlink"/*
     #   for file in "$HOME/$symlink"/*; do
     #     stats=$((stat --printf="%Y\n" "$HOME/$symlink/$file" "$SYMLINK_D/$symlink/$file"))
