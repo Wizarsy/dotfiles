@@ -12,6 +12,8 @@ hooks_symlink() {
     echo "Error: symlink directory '$SYMLINK_D' not found" >&2
     return 1
   fi
+      echo "ola"
+
 
   while IFS= read -r symlink; do
     if [[ -d "$HOME/$symlink" && ! -d "$SYMLINK_D/$symlink" ]]; then
