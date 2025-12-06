@@ -19,6 +19,7 @@ hooks_symlink() {
     echo "ola"
     if [[ -d "$HOME/$symlink" && ! -d "$SYMLINK_D/$symlink" ]]; then
       mkdir -p "$SYMLINK_D/$symlink"
+    fi
     cp -v -r --update=older --strip-trailing-slashes --remove-destination "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
     cp -v -r --update=older --strip-trailing-slashes --remove-destination "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
 
@@ -30,7 +31,6 @@ hooks_symlink() {
     #       cpto+=("$file")
     #     fi
     #   done
-    fi
   done < "$YADM_HOOK_DIR/symlink"
 }
 
