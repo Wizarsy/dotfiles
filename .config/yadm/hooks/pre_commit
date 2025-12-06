@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+set -eu
+
+source "$YADM_HOOK_DIR/hooks/utils/symlink.sh"
+
 echo "Running Pre Commit script..."
 
-echo $YADM_HOOK_DATA
-echo $YADM_HOOK_DIR
-echo $YADM_DIR
-echo $YADM_DATA
-
+symlink
+# echo $YADM_HOOK_DATA
+# echo $YADM_HOOK_DIR
 yadm status -s
