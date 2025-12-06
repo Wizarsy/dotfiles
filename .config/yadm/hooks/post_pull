@@ -2,4 +2,4 @@
 
 echo "Running Post Pull Script..."
 
-yadm decrypt
+# yadm decrypt

@@ -2,6 +2,9 @@
 
 echo "Running Pre Commit script..."
 
-yadm encrypt
+echo $YADM_HOOK_DATA
+echo $YADM_HOOK_DIR
+echo $YADM_DIR
+echo $YADM_DATA
 
 yadm status -s
