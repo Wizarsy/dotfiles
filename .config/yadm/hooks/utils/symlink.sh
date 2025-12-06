@@ -30,6 +30,3 @@ hooks_symlink() {
     #   done
   done < "$YADM_HOOK_DIR/symlink"
 }
-
-# cp -v -r --update=older .config/wezterm/* .local/share/yadm/symlink.d/.config/wezterm
-# cp -v -r --update=older .local/share/yadm/symlink.d/.config/wezterm/* .config/wezterm
