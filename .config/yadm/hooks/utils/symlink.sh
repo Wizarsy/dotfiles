@@ -17,6 +17,7 @@ hooks_symlink() {
     if [[ -d "$HOME/$symlink" && ! -d "$SYMLINK_D/$symlink" ]]; then
       mkdir -p "$SYMLINK_D/$symlink"
     cp -v -r --update=older --strip-trailing-slashes --remove-destination "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
+    echo "ola"
     cp -v -r --update=older --strip-trailing-slashes --remove-destination "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
 
     #   for file in "$HOME/$symlink"/*; do
