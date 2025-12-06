@@ -20,7 +20,9 @@ hooks_symlink() {
       fi
     cp -v -r --preserve=all --update=older --strip-trailing-slashes "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
     cp -v -r --preserve=all --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
-    touch -c -d "$(date +'%F %T %z')" "$HOME/$symlink"/* "$SYMLINK_D/$symlink"/*
+    if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
+      touch -c -d "$(date +'%F %T %z')" "$HOME/$symlink"/* "$SYMLINK_D/$symlink"/*
+    fi
     #   for file in "$HOME/$symlink"/*; do
     #     stats=$((stat --printf="%Y\n" "$HOME/$symlink/$file" "$SYMLINK_D/$symlink/$file"))
     #     if [[ "${stats[0]}" -gt "${stats[1]}" ]]; then
