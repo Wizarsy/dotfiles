@@ -8,6 +8,4 @@ echo "Running Pre Commit script..."
 
 hooks_symlink
 
-# echo $YADM_HOOK_DATA
-# echo $YADM_HOOK_DIR
 yadm status -s

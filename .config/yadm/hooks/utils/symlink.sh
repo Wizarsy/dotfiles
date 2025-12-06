@@ -16,8 +16,8 @@ hooks_symlink() {
   while IFS= read -r symlink; do
     if [[ -d "$HOME/$symlink" && ! -d "$SYMLINK_D/$symlink" ]]; then
       mkdir -p "$SYMLINK_D/$symlink"
-    cp -v -r --update=older "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
-    cp -v -r --update=older "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
+    cp -v -r --update=older --strip-trailing-slashes "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
+    cp -v -r --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
 
     #   for file in "$HOME/$symlink"/*; do
     #     if [[ -e "$SYMLINK_D/$file" && $(stat --print="%Y" "$SYMLINK_D/$file") -gt $(stat --print="%Y" "$HOME/$symlink/$file") ]]; then
@@ -31,5 +31,5 @@ hooks_symlink() {
   done < "$YADM_HOOK_DIR/symlink"
 }
 
-# cp -v -r --update=older .config/wezterm/* .local/share/yadm/symlink.d/wezterm/
-# cp -v -r --update=older .local/share/yadm/symlink.d/wezterm/* .config/wezterm
+# cp -v -r --update=older .config/wezterm/* .local/share/yadm/symlink.d/.config/wezterm
+# cp -v -r --update=older .local/share/yadm/symlink.d/.config/wezterm/* .config/wezterm
