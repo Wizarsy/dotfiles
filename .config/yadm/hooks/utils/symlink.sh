@@ -14,11 +14,13 @@ hooks_symlink() {
   fi
 
   while IFS= read -r symlink; do
-    if [[ -d "$HOME/$symlink" && ! -d "$SYMLINK_D/$symlink" ]]; then
-      mkdir -p "$SYMLINK_D/$symlink"
+    if [[ -d "$HOME/$symlink" ]]; then
+      if [[ ! -d "$SYMLINK_D/$symlink" ]]; then
+        mkdir -p "$SYMLINK_D/$symlink"
+      fi
+      cp -v -r --preserve=all --update=older --strip-trailing-slashes "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
+      cp -v -r --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
     fi
-    cp -v -r --update=older --strip-trailing-slashes "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
-    cp -v -r --preserve=all --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
 
     #   for file in "$HOME/$symlink"/*; do
     #     if [[ -e "$SYMLINK_D/$file" && $(stat --print="%Y" "$SYMLINK_D/$file") -gt $(stat --print="%Y" "$HOME/$symlink/$file") ]]; then
