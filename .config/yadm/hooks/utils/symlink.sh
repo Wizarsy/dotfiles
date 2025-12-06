@@ -20,7 +20,7 @@ hooks_symlink() {
       fi
     cp -v -r --update=older --strip-trailing-slashes "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
     cp -v -r --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
-    touch -c -d "now" "$HOME/$symlink"/* "$SYMLINK_D/$symlink"/*
+    touch -c -m -d "now" "$HOME/$symlink"/* "$SYMLINK_D/$symlink"/*
     #   for file in "$HOME/$symlink"/*; do
     #     stats=$((stat --printf="%Y\n" "$HOME/$symlink/$file" "$SYMLINK_D/$symlink/$file"))
     #     if [[ "${stats[0]}" -gt "${stats[1]}" ]]; then
