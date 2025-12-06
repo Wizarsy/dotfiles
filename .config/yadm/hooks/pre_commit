@@ -6,7 +6,8 @@ source "$YADM_HOOK_DIR/hooks/utils/symlink.sh"
 
 echo "Running Pre Commit script..."
 
-symlink
+hooks_symlink
+
 # echo $YADM_HOOK_DATA
 # echo $YADM_HOOK_DIR
 yadm status -s
