@@ -19,7 +19,7 @@ hooks_symlink() {
         mkdir -p "$SYMLINK_D/$symlink"
       fi
       cp -v -r --preserve=all --update=older --strip-trailing-slashes "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
-      cp -v -r -p --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
+      cp -v -r --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
     fi
 
     #   for file in "$HOME/$symlink"/*; do
