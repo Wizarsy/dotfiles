@@ -21,6 +21,7 @@ hooks_symlink() {
     cp -v -r --preserve=all --update=older --strip-trailing-slashes "$HOME/$symlink"/* "$SYMLINK_D/$symlink"
     cp -v -r --preserve=all --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink"/* "$HOME/$symlink"
     if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
+      echo "wsl"
       touch -c -m -d "$(date +'%F %T %z')" "$HOME/$symlink"/* "$SYMLINK_D/$symlink"/*
     fi
     #   for file in "$HOME/$symlink"/*; do
