@@ -3,7 +3,7 @@
 hooks_symlink() {
   shopt -s nullglob
   local SYMLINK_D="$YADM_HOOK_DATA/symlink.d"
-  local -a home_d sym_d
+  local -a home_array symlink_array entries_array
   
   if [[ ! -e "$YADM_HOOK_DIR/symlink" ]]; then
     return 0
@@ -15,24 +15,27 @@ hooks_symlink() {
   fi
 
   while IFS= read -r symlink; do
+    entries_array+=($symlink)
     if [[ -d "$HOME/$symlink" ]]; then
       if [[ ! -d "$SYMLINK_D/$symlink" ]]; then
         mkdir -p "$SYMLINK_D/$symlink"
       fi
-      home_d=("$HOME/$symlink"/*)
-      sym_d=("$SYMLINK_D/$symlink"/*)
+      home_array=("$HOME/$symlink"/*)
+      symlink_array=("$SYMLINK_D/$symlink"/*)
     else
-      home_d=("$HOME/$symlink")
-      sym_d=("$SYMLINK_D/$symlink")
+      home_array=("$HOME/$symlink")
+      symlink_array=("$SYMLINK_D/$symlink")
     fi
-    echo "${home_d[@]}" "${sym_d[@]}"
-    cp -v -r --preserve=all --update=older --strip-trailing-slashes "${home_d[@]}" "$SYMLINK_D/$symlink"
-    cp -v -r --preserve=all --update=older --strip-trailing-slashes "${sym_d[@]}" "$HOME/$symlink"
+    echo "${home_array[@]}" "${symlink_array[@]}"
+    cp -v -r --preserve=all --update=older --strip-trailing-slashes "${home_array[@]}" "$SYMLINK_D/$symlink"
+    cp -v -r --preserve=all --update=older --strip-trailing-slashes "${symlink_array[@]}" "$HOME/$symlink"
     if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
-      touch -c -m -d "$(date +'%F %T %z')" "${home_d[@]}" "${sym_d[@]}"
+      touch -c -m -d "$(date +'%F %T %z')" "${home_array[@]}" "${symlink_array[@]}"
     fi
   done < "$YADM_HOOK_DIR/symlink"
   shopt -u nullglob
+
+  find $SYMLINK_D
 }
 
     # fi
