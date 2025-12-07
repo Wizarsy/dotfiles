@@ -35,7 +35,7 @@ hooks_symlink() {
   done < "$YADM_HOOK_DIR/symlink"
   shopt -u nullglob
 
-  find $SYMLINK_D
+  find "$SYMLINK_D" -wholename "${entries_array[0]}"
 }
 
     # fi
