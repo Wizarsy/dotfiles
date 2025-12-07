@@ -16,7 +16,7 @@ hooks_symlink() {
 
   while IFS= read -r symlink; do
     home_d=("$HOME/$symlink"/*)
-    sym_d=("$SYMLINK_D/$symlink"/*)
+    sym_d=("$SYMLINK_D/$symlink"/*) || sym_d=("$SYMLINK_D/$symlink")
     if [[ -d "$HOME/$symlink" ]]; then
       if [[ ! -d "$SYMLINK_D/$symlink" ]]; then
         mkdir -p "$SYMLINK_D/$symlink"
