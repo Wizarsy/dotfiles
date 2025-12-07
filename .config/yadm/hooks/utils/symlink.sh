@@ -26,10 +26,15 @@ hooks_symlink() {
       sym_d=("$SYMLINK_D/$symlink")
     fi
     echo "${home_d[@]}" "${sym_d[@]}"
-    # cp -v -r --preserve=all --update=older --strip-trailing-slashes "${home_d[@]}" "$SYMLINK_D/$symlink"
-    # cp -v -r --preserve=all --update=older --strip-trailing-slashes "${sym_d[@]}" "$HOME/$symlink"
-    # if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
-    #   touch -c -m -d "$(date +'%F %T %z')" "${home_d[@]}" "${sym_d[@]}"
+    cp -v -r --preserve=all --update=older --strip-trailing-slashes "${home_d[@]}" "$SYMLINK_D/$symlink"
+    cp -v -r --preserve=all --update=older --strip-trailing-slashes "${sym_d[@]}" "$HOME/$symlink"
+    if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
+      touch -c -m -d "$(date +'%F %T %z')" "${home_d[@]}" "${sym_d[@]}"
+    fi
+  done < "$YADM_HOOK_DIR/symlink"
+  shopt -u nullglob
+}
+
     # fi
     #   for file in "$HOME/$symlink"/*; do
     #     stats=$((stat --printf="%Y\n" "$HOME/$symlink/$file" "$SYMLINK_D/$symlink/$file"))
@@ -39,11 +44,3 @@ hooks_symlink() {
     #       cpto+=("$file")
     #     fi
     #   done
-    # cp -v -r --preserve=all --update=older --strip-trailing-slashes "$HOME/$symlink" "$SYMLINK_D/$symlink"
-    # cp -v -r --preserve=all --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink" "$HOME/$symlink"
-    # if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
-    #   touch -c -m -d "$(date +'%F %T %z')" "$HOME/$symlink" "$SYMLINK_D/$symlink"
-    # fi
-  done < "$YADM_HOOK_DIR/symlink"
-  shopt -u nullglob
-}
