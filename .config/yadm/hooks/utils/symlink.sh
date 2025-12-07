@@ -34,7 +34,7 @@ hooks_symlink() {
     fi
   done < "$YADM_HOOK_DIR/symlink"
   shopt -u nullglob
-  # echo "${entries_array[1]}" "$SYMLINK_D"
+  echo "${entries_array[1]}" "$SYMLINK_D"
   find "$SYMLINK_D" ! -wholename "$SYMLINK_D" $(printf "! -regex '.*/%s/?.*'" "${entries_array[@]}")
 }
 
