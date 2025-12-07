@@ -4,7 +4,6 @@ hooks_symlink() {
   shopt -s nullglob
   local SYMLINK_D="$YADM_HOOK_DATA/symlink.d"
   local -a home_array symlink_array entries_array
-  entries_array=("${SYMLINK_D##*/}")
   if [[ ! -e "$YADM_HOOK_DIR/symlink" ]]; then
     return 0
   fi
