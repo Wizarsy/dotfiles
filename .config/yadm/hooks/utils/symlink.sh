@@ -19,10 +19,9 @@ hooks_symlink() {
       if [[ ! -d "$SYMLINK_D/$symlink" ]]; then
         mkdir -p "$SYMLINK_D/$symlink"
       fi
-
       home_d=("$HOME/$symlink"/*)
       sym_d=("$SYMLINK_D/$symlink"/*)
-
+      echo "${home_d[@]}" "${sym_d[@]}"
       cp -v -r --preserve=all --update=older --strip-trailing-slashes "${home_d[@]}" "$SYMLINK_D/$symlink"
       cp -v -r --preserve=all --update=older --strip-trailing-slashes "${sym_d[@]}" "$HOME/$symlink"
       if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
