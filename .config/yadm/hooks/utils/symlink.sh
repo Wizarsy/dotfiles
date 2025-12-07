@@ -26,7 +26,7 @@ hooks_symlink() {
       home_array=("$HOME/$symlink")
       symlink_array=("$SYMLINK_D/$symlink")
     fi
-    echo "${home_array[@]}" "${symlink_array[@]}"
+    # echo "${home_array[@]}" "${symlink_array[@]}"
     cp -v -r --preserve=all --update=older --strip-trailing-slashes "${home_array[@]}" "$SYMLINK_D/$symlink"
     cp -v -r --preserve=all --update=older --strip-trailing-slashes "${symlink_array[@]}" "$HOME/$symlink"
     if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
