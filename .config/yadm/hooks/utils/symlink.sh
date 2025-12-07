@@ -15,18 +15,19 @@ hooks_symlink() {
   fi
 
   while IFS= read -r symlink; do
+    home_d=("$HOME/$symlink"/*)
+    sym_d=("$SYMLINK_D/$symlink"/*)
     if [[ -d "$HOME/$symlink" ]]; then
       if [[ ! -d "$SYMLINK_D/$symlink" ]]; then
         mkdir -p "$SYMLINK_D/$symlink"
       fi
-      home_d=("$HOME/$symlink"/*)
-      sym_d=("$SYMLINK_D/$symlink"/*)
-      echo "${home_d[@]}" "${sym_d[@]}"
-      cp -v -r --preserve=all --update=older --strip-trailing-slashes "${home_d[@]}" "$SYMLINK_D/$symlink"
-      cp -v -r --preserve=all --update=older --strip-trailing-slashes "${sym_d[@]}" "$HOME/$symlink"
-      if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
-        touch -c -m -d "$(date +'%F %T %z')" "${home_d[@]}" "${sym_d[@]}"
-      fi
+    fi
+    echo "${home_d[@]}" "${sym_d[@]}"
+    # cp -v -r --preserve=all --update=older --strip-trailing-slashes "${home_d[@]}" "$SYMLINK_D/$symlink"
+    # cp -v -r --preserve=all --update=older --strip-trailing-slashes "${sym_d[@]}" "$HOME/$symlink"
+    # if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
+    #   touch -c -m -d "$(date +'%F %T %z')" "${home_d[@]}" "${sym_d[@]}"
+    # fi
     #   for file in "$HOME/$symlink"/*; do
     #     stats=$((stat --printf="%Y\n" "$HOME/$symlink/$file" "$SYMLINK_D/$symlink/$file"))
     #     if [[ "${stats[0]}" -gt "${stats[1]}" ]]; then
@@ -35,7 +36,6 @@ hooks_symlink() {
     #       cpto+=("$file")
     #     fi
     #   done
-    fi
     # cp -v -r --preserve=all --update=older --strip-trailing-slashes "$HOME/$symlink" "$SYMLINK_D/$symlink"
     # cp -v -r --preserve=all --update=older --strip-trailing-slashes "$SYMLINK_D/$symlink" "$HOME/$symlink"
     # if [[ "$(</proc/version)" =~ [Mm]icrosoft ]]; then
