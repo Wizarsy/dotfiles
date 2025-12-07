@@ -34,8 +34,8 @@ hooks_symlink() {
     fi
   done < "$YADM_HOOK_DIR/symlink"
   shopt -u nullglob
-  echo "${entries_array[1]}" "$SYMLINK_D" 
-  find "$SYMLINK_D" -maxdepth 1 $(printf "! -name %s " "${entries_array[@]}")
+  # echo "${entries_array[1]}" "$SYMLINK_D"
+  find "$SYMLINK_D" -maxdepth 1 $(printf "-name %s " "${entries_array[@]}")
 }
 
     # fi
