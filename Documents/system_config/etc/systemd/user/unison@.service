@@ -1,0 +1,9 @@
+[Unit]
+Description= Unison Profile Watcher
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/unison %i
+
+[Install]
+WantedBy=default.target

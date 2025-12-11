@@ -5,13 +5,13 @@ BindsTo=user-runtime-dir@%i.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/chmod 1777 /tmp/.X11-unix
+# ExecStart=/usr/bin/chmod 1777 /tmp/.X11-unix
 ExecStart=/usr/bin/chmod 0777 /mnt/wslg/runtime-dir
 ExecStart=/usr/bin/chmod 0666 /mnt/wslg/runtime-dir/wayland-0.lock
 ExecStart=/usr/bin/ln -sf /mnt/wslg/runtime-dir/wayland-0 /run/user/%i/wayland-0
 ExecStart=/usr/bin/ln -sf /mnt/wslg/runtime-dir/wayland-0.lock /run/user/%i/wayland-0.lock
 ExecStart=/usr/bin/ln -sf /mnt/wslg/runtime-dir/pulse /run/user/%i/pulse
-ExecStart=/usr/bin/ln -sf /mnt/wslg/.X11-unix/X0 /tmp/.X11-unix/X0
+# ExecStart=/usr/bin/ln -sf /mnt/wslg/.X11-unix/X0 /tmp/.X11-unix/X0
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target

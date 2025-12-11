@@ -1,0 +1,6 @@
+
+root = /mnt/c/Users/Filipe/.config/wezterm/
+root = /home/wizarsy/.config/wezterm
+
+log = true
+repeat = watch+1800
