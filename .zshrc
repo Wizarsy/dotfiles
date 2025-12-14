@@ -2,9 +2,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   . "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+[[ ! -d "$HOME/.bin" ]] || export PATH="$HOME/.bin:$PATH"
+[[ ! -d "$HOME/.local/.bin" ]] || export PATH="$HOME/.local/.bin:$PATH"
+
 # Env
-export ZOXIDE_CMD_OVERRIDE=cd
 export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+plugins=(fzf eza zoxide fzf-tab asdf docker command-not-found colored-man-pages ohmyzsh-full-autoupdate zsh-autosuggestions fast-syntax-highlighting) 
+
+export ZOXIDE_CMD_OVERRIDE=cd
+
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=fg:-1,fg+:#cfc9c2,bg:-1,bg+:#515C7E
   --color=hl:#9ece6a,hl+:#73DACA,info:#C0CAF5,marker:#7dcfff
@@ -14,34 +21,34 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --border="sharp" --border-label="" --preview-window="border-sharp" --padding="1"
   --prompt=" " --marker="" --pointer="" --separator="-"
   --scrollbar="│" --info="right"'
-[[ ! -d "$HOME/.bin" ]] || export PATH="$HOME/.bin:$PATH"
-[[ ! -d "$HOME/.local/.bin" ]] || export PATH="$HOME/.local/.bin:$PATH"
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-plugins=(git docker zsh-autosuggestions zsh-completions ohmyzsh-full-autoupdate fast-syntax-highlighting command-not-found colored-man-pages fzf fzf-tab zoxide) 
-
-. "$ZSH/oh-my-zsh.sh"
-
-fpath+="$HOME/.zfunc"
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-
-# FZF
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
-[[ ! -f "$HOME/.p10k.zsh" ]] || . "$HOME/.p10k.zsh"
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
+zstyle ':omz:plugins:eza' 'git-status' yes
+zstyle ':omz:plugins:eza' 'header' yes
+zstyle ':omz:plugins:eza' 'icons' yes
+zstyle ':omz:plugins:eza' 'show-group' yes
+
+zstyle ':omz:update' mode auto
+zstyle ':omz:update' frequency 7
+zstyle ':omz:update' verbose default
+ENABLE_CORRECTION="true"
+
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+autoload -U compinit && compinit
+
+source "$ZSH/oh-my-zsh.sh"
+[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
+
+source "$HOME/.config/wezterm/shell-integration.sh"
 
 # ASDF
-[[ ! -d $HOME/.asdf ]] || fd -t f "zsh$|^env$" "$HOME/.asdf/plugins" | while read -r script; do; . "$script"; done
-
-# Functions
-TRAPEXIT() {
-  if [[ ! -o login ]]; then
-    [[ ! -f "$HOME/.zlogout" ]] || . "$HOME/.zlogout"
-  fi
-}
+[[ ! -d $HOME/.asdf ]] || fd -t f "zsh$|^env$" "$HOME/.asdf/plugins" | while read -r script; do; source "$script"; done
 
 ## Yazi
 y() {
@@ -53,17 +60,9 @@ y() {
 	rm -f -- "$tmp"
 }
 
-yay() {
-  env -i zsh -l -c "yay $*; yay -Yc --noconfirm"
-}
-
 # Aliases
 alias up="yay --noconfirm; sudo pkgfile -u"
-alias ls="eza --icons=always --color=always"
 alias cat="bat"
 alias find="fd"
 alias grep="rg"
 alias du="dust"
-alias mkdir="mkdir -p"
-alias dotfiles="yadm --yadm-dir $HOME/.config/yadm/dotfiles --yadm-data $HOME/.local/share/yadm/dotfiles"
-alias hyprdots="yadm --yadm-dir $HOME/.config/yadm/hyprdots --yadm-data $HOME/.local/share/yadm/hyprdots"

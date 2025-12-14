@@ -63,6 +63,10 @@ config.cell_width = 1.0
 config.mux_enable_ssh_agent = false
 config.window_close_confirmation = "NeverPrompt"
 
+-- config.keys = {
+--   { key = 'LeftArrow', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveLeft' },
+-- }
+
 bar.apply_to_config(config)
 
 return config
