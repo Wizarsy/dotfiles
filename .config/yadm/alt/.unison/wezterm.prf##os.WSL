@@ -4,3 +4,4 @@ root = /home/wizarsy/.config/wezterm
 
 log = true
 repeat = watch+1800
+prefer = newer

@@ -35,7 +35,6 @@ zstyle ':omz:plugins:eza' 'show-group' yes
 zstyle ':omz:update' mode auto
 zstyle ':omz:update' frequency 7
 zstyle ':omz:update' verbose default
-ENABLE_CORRECTION="true"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
@@ -44,8 +43,6 @@ autoload -U compinit && compinit
 
 source "$ZSH/oh-my-zsh.sh"
 [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
-
-source "$HOME/.config/wezterm/shell-integration.sh"
 
 # ASDF
 [[ ! -d $HOME/.asdf ]] || fd -t f "zsh$|^env$" "$HOME/.asdf/plugins" | while read -r script; do; source "$script"; done
