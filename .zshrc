@@ -60,7 +60,7 @@ y() {
 }
 
 # Aliases
-alias up="yay --noconfirm; sudo pkgfile -u"
+alias up="yay --noconfirm;yay -Yc --noconfirm; sudo pkgfile -u"
 alias cat="bat"
 alias find="fd"
 alias grep="rg"
