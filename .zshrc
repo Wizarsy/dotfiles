@@ -4,9 +4,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   . "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-[[ ! -d "$HOME/.bin" ]] || export PATH="$HOME/.bin:$PATH"
-[[ ! -d "$HOME/.local/.bin" ]] || export PATH="$HOME/.local/.bin:$PATH"
-
 # Env
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
