@@ -340,23 +340,22 @@ bindl = , XF86AudioPrev, exec, playerctl previous
 # ░█▄█░░█░░█░█░█░█░█░█░█▄█░░░█▀▄░█░█░█░░░█▀▀░▀▀█
 # ░▀░▀░▀▀▀░▀░▀░▀▀░░▀▀▀░▀░▀░░░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀
 
-windowrule = nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0
-windowrule = suppressevent maximize, class:.*
 
-windowrule = float, class:blueman-manager
-windowrule = float, class:nm-connection-editor
-windowrule = float, class:org.pulseaudio.pavucontrolr
-windowrule = float, class:kvantummanager
-windowrule = float, class:nwg-look
-windowrule = float, class:qt5ct
-windowrule = float, class:filechooser
+windowrule = match:class .*, suppress_event = maximize
 
-windowrule = tag +dynamic-float, class: firefox.*
-# windowrule = tile, class: firefox.*
+windowrule = match:class ^$, match:title ^$, match:xwayland true, match:float true, match:fullscreen false, match:pin false, no_focus on
 
-# windowrulev2 = float,class:^(org.wezfurlong.wezterm)$
-# windowrulev2 = float,class:^(Spotify)$
-# windowrulev2 = float,class:^(discord)$
+windowrule {
+  name = floating-apps
+  match:class = (kvantummanager|qt5ct|nwg-look|filechooser)
+  
+  float = true
+}
+
+# windowrule = float, class:kvantummanager
+# windowrule = float, class:nwg-look
+# windowrule = float, class:qt5ct
+# windowrule = float, class:filechooser
 
 # ░█▀▀░█▀▀░█▀▄░█░█░▀█▀░█▀▀░█▀▀░█▀▀
 # ░▀▀█░█▀▀░█▀▄░▀▄▀░░█░░█░░░█▀▀░▀▀█
