@@ -1,5 +1,4 @@
-# source = $HOME/.config/hypr/themes/TokyoNight.conf
-
+{% include "intel.conf" %}
 # ░█▀▀░█▀█░█░█
 # ░█▀▀░█░█░▀▄▀
 # ░▀▀▀░▀░▀░░▀░
@@ -366,6 +365,7 @@ exec-once = hypridle
 exec-once = wl-paste --type text --watch cliphist store
 exec-once = wl-paste --type image --watch cliphist store
 exec-once = $HYPRLAND_CONFIG_DIR/services/hypr-events.sh
+# exec-once = gnome-keyring-daemon --start --components=secrets
 
 # ░█▀█░█░█░▀█▀░█▀█░█▀▀░▀█▀░█▀█░█▀▄░▀█▀
 # ░█▀█░█░█░░█░░█░█░▀▀█░░█░░█▀█░█▀▄░░█░
