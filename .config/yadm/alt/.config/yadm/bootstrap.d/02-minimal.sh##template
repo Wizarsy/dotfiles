@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-{% include "include/{{ yadm.distro }}" %}
+{% include "include/{{ yadm.distro }}-minimal" %}
 
 essential() {
   "$INSTALLC" "${pkgs[@]}"
@@ -26,8 +26,12 @@ systemd() {
   systemctl --user enable ssh-agent.service
 }
 
+systemd-user() {
+
+}
+
 main() {
-  init
+  prepare
   essential
   systemd
   omz

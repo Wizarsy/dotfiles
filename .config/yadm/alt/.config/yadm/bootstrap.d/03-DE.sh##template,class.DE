@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+{% include "include/{{ yadm.distro }}-DE" %}
+{% include "include/{{ yadm.distro }}-DE" %}
+
+main() {
+
+}
+
+
+main

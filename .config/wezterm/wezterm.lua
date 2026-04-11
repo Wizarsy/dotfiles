@@ -6,7 +6,6 @@ local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm"
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.default_prog = { "pwsh.exe", "-NoProfileLoadTime", "-NoLogo" }
   config.window_decorations = "RESIZE" -- "RESIZE|INTEGRATED_BUTTONS"
-  config.default_domain = "WSL:Arch"
   for _, gpu in ipairs(gpus) do
     if gpu.backend == "Dx12" and gpu.device_type == "DiscreteGpu" then
       config.webgpu_preferred_adapter = gpu
@@ -15,7 +14,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     end
   end
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
-  config.detect_password_input = true
+  config.default_gui_startup_args = { 'connect', 'unix' }
   config.default_prog = { "/usr/bin/zsh", "-l"}
   config.window_decorations = "NONE"
   config.enable_wayland = true
@@ -28,14 +27,23 @@ elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
   end
 end
 
-config.check_for_updates = true
+config.unix_domains = {
+  {
+    name = "unix"
+  }
+}
+
+
 config.default_workspace = "master"
+
+config.detect_password_input = true
+config.check_for_updates = true
 config.window_close_confirmation = "NeverPrompt"
 
 config.colors = require("colors.TokyoNight")
 
 config.initial_cols = 120
-config.initial_rows = 25
+config.initial_rows = 30
 
 config.animation_fps = 1
 config.default_cursor_style = "BlinkingUnderline"
@@ -50,13 +58,6 @@ config.font_size = 14
 config.line_height = 1.2
 config.cell_width = 1.0
 config.freetype_load_flags = "FORCE_AUTOHINT"
-
-
-config.unix_domains = {
-  {
-    name = "unix",
-  },
-}
 
 -- config.keys = {
 -- {

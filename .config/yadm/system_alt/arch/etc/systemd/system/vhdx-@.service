@@ -1,0 +1,10 @@
+[Unit]
+Description= Mount VHDX
+ConditionPathIsMountPoint=!/mnt/wsl/%i
+
+[Service]
+Type=oneshot
+ExecStart=/mnt/c/WINDOWS/system32/wsl.exe --mount "E:\\Program Files\\VHDs\\%i.vhdx" --vhd --name %i
+
+[Install]
+WantedBy=multi-user.target

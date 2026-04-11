@@ -1,0 +1,10 @@
+[Match]
+Name=%i
+
+[Link]
+RequiredForOnline=routable
+
+[Network]
+Address=192.168.0.251/32
+Address=192.168.0.252/32
+DHCP=yes
