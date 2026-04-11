@@ -1,14 +1,1 @@
-[Trigger]
-Operation = Install
-Operation = Upgrade
-Type = Package
-Target = pacman-mirrorlist
-Target = artix-mirrorlist
-Target = archlinux-mirrorlist
-Target = cachyos-v4-mirrorlist
-
-[Action]
-When = PostTransaction
-Depends = pacman-contrib
-NeedsTargets
-Exec = /usr/bin/bash -c 'while read -r target; do case $target in artix*|pacman*) /usr/bin/sed '/.*https.*/!d;/Server/{s/^#//}' /etc/pacman.d/mirrorlist > /etc/pacman.d/mirrorlist.unranked && /usr/bin/rankmirrors -v -n 20 /etc/pacman.d/mirrorlist.unranked | /usr/bin/tee /etc/pacman.d/mirrorlist; archlinux*) /usr/bin/sed '/.*https.*/!d;/Server/{s/^#//}' /etc/pacman.d/mirrorlist-arch > /etc/pacman.d/mirrorlist-arch.unranked && /usr/bin/rankmirrors -v -n 20 /etc/pacman.d/mirrorlist-arch.unranked | /usr/bin/tee /etc/pacman.d/mirrorlist-arch; cachyos-v4*) /usr/bin/sed '/.*https.*/!d;/Server/{s/^#//}' /etc/pacman.d/cachyos-v4-mirrorlist > /etc/pacman.d/cachyos-v4-mirrorlist.unranked && /usr/bin/rankmirrors -v -n 20 /etc/pacman.d/cachyos-v4-mirrorlist.unranked | /usr/bin/tee /etc/pacman.d/cachyos-v4-mirrorlist; esac; done'
+../../../../artix/etc/pacman.d/hooks/mirrorlist.hook
