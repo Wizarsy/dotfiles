@@ -38,9 +38,9 @@ start() {
   while read -r fs mount _ _ _ ; do
     case $fs in
       /dev/nbd*)
-        eval "mount_pre=\$${fs##*/}_mount_pre"
         if ! mountinfo -q "$mount" &> /dev/null; then
           einfo "Mounting ${mount}"
+          eval "mount_pre=\$${fs##*/}_mount_pre"
 
           [ -n "$mount_pre" ] \
             && $mount_pre &> /dev/null
@@ -64,9 +64,9 @@ stop() {
   while read -r fs mount _ _ _ ; do
     case $fs in
       /dev/nbd*)
-        eval "mount_post=\$${fs##*/}_mount_post"
         if mountinfo -q "$mount" &> /dev/null; then
           einfo "Unmounting ${mount}"
+          eval "mount_post=\$${fs##*/}_mount_post"
 
           [ -n "$mount_post" ] \
             && $mount_post &> /dev/null
