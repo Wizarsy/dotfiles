@@ -42,8 +42,10 @@ start() {
           einfo "Mounting ${mount}"
           eval "mount_pre=\$${fs##*/}_mount_pre"
 
-          [ -n "$mount_pre" ] \
-            && $mount_pre &> /dev/null
+          if [ -n "$mount_pre" ]; then
+            eval "$mount_pre &> /dev/null"
+            sleep 0.5
+          fi
           
           mount --mkdir "$mount" &> /dev/null \
           || { eerror "Unable to mount ${mount}" \
@@ -68,9 +70,11 @@ stop() {
           einfo "Unmounting ${mount}"
           eval "mount_post=\$${fs##*/}_mount_post"
 
-          [ -n "$mount_post" ] \
-            && $mount_post &> /dev/null
-          
+          if [ -n "$mount_post" ]; then
+            eval "$mount_post &> /dev/null"
+            sleep 0.5
+          fi
+
           umount "$mount" &> /dev/null \
           || { eerror "Unable to unmount ${mount}" \
           && break ; }
