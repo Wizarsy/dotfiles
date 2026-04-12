@@ -1,0 +1,98 @@
+#!/sbin/openrc-run
+
+description="Manages nbd mounts according to /etc/fstab"
+
+depend() {
+  need localmount
+  after netmount
+}
+
+_timeout() {
+  local t=$(($1 * 10)) i=0 
+  shift
+  while [ "$i" -lt "$t" ]; do
+    "$@" 2> /dev/null && return 0
+    i=$((i + 1))
+    sleep 0.1
+  done
+  ewarn "Timeout reached, device or resource busy."
+  return 1
+}
+
+start_pre() {
+  ebegin "Starting nbdmount"
+  einfo "Checking the status of the nbd module"
+  if ! [ -d "/sys/module/nbd" ]; then
+    if modprobe --dry-run nbd &> /dev/null; then
+      modprobe nbd nbds_max="${nbd_max_dev:-1}" &> /dev/null \
+        && einfo "Nbd module loaded"
+      sleep 0.1
+    fi
+  else
+    einfo "Nbd module already loaded"
+  fi
+  eend "$?" "Could not find or load nbd module"
+}
+
+start() {
+  while read -r fs mount _ _ _ ; do
+    case $fs in
+      /dev/nbd*)
+        eval "mount_pre=\$${fs##*/}_mount_pre"
+        if ! mountinfo -q "$mount" &> /dev/null; then
+          einfo "Mounting ${mount}"
+
+          [ -n "$mount_pre" ] \
+            && $mount_pre &> /dev/null
+          
+          mount --mkdir "$mount" &> /dev/null \
+          || { eerror "Unable to mount ${mount}" \
+          && break ; }
+        else
+          einfo "${mount} is already mounted"
+        fi
+        ;;
+      *)
+        continue
+        ;;
+    esac
+  done < /etc/fstab
+  eend "$?" "Failed to mount"
+}
+
+stop() {
+  while read -r fs mount _ _ _ ; do
+    case $fs in
+      /dev/nbd*)
+        eval "mount_post=\$${fs##*/}_mount_post"
+        if mountinfo -q "$mount" &> /dev/null; then
+          einfo "Unmounting ${mount}"
+
+          [ -n "$mount_post" ] \
+            && $mount_post &> /dev/null
+          
+          umount "$mount" &> /dev/null \
+          || { eerror "Unable to unmount ${mount}" \
+          && break ; }
+        else
+          einfo "${mount} is already unmounted"
+        fi
+        ;;
+      *)
+        continue
+        ;;
+    esac
+  done < /etc/fstab
+  eend "$?" "Failed to unmount"
+}
+
+stop_post() {
+  if [ -d "/sys/module/nbd" ]; then
+    _timeout 10 read -r refcnt < /sys/module/nbd/refcnt
+    if [ $? -eq 0 -a "$RC_CMD" != "restart" -a "$refcnt" -eq 0 ]; then
+      modprobe -r nbd &> /dev/null \
+        && einfo "Nbd module unloaded"
+    fi
+  fi
+  eend $? "Failed to remove nbd module"
+}
