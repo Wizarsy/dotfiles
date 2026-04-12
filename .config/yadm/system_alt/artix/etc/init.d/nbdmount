@@ -35,7 +35,7 @@ start_pre() {
 }
 
 start() {
-  while read -r fs mount _ ; do
+  while read -r fs mount _; do
     case $fs in
       /dev/nbd*)
         if ! mountinfo -q "$mount" &> /dev/null; then
@@ -61,7 +61,7 @@ start() {
 }
 
 stop() {
-  while read -r fs mount _ ; do
+  while read -r fs mount _; do
     case $fs in
       /dev/nbd*)
         if mountinfo -q "$mount" &> /dev/null; then
