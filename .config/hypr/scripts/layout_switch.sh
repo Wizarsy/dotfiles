@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+case "$(hyprctl -j getoption general:layout | jq  -r .str)" in
+  dwindle)
+    hyprctl keyword general:layout master
+    ;;
+  master)
+    hyprctl keyword general:layout dwindle
+    ;;
+esac

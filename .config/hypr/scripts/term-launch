@@ -1,0 +1,4 @@
+#!/usr/bin/env -S ${SHELL}
+
+term=${TERMINAL:-"wezterm"}
+exec $term -e "$1"
