@@ -90,6 +90,10 @@ DE_post() {
   rc-update -U add wireplumber default
 }
 
+dev() {
+  return
+}
+
 configure_pre 2> /dev/null
 configure 2> /dev/null
 while read -r class; do

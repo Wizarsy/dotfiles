@@ -23,7 +23,10 @@ while read -ren 1 opt; do
   case $opt in
     0) yadm config --add local.class server;;
     1) yadm config --add local.class dev;;
-    2) yadm config --add local.class hyprland; yadm config --add local.class wl_DE; yadm config --add local.class DE;;
+    2)
+      yadm config --add local.class hyprland
+      yadm config --add local.class wl_DE
+      yadm config --add local.class DE;;
     q) break;;
     *) continue;;
   esac
