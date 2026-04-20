@@ -12,14 +12,14 @@ done
 echo "Configuring git"
 yadm gitconfig pull.rebase false
 
-echo "Choose a profile: "
-yadm config --add local.class minimal
-while read -ren 1 opt; do
-  echo -e "
+echo -e "
+Choose a profile:
   0: server
   1: dev
   2: hyprland\n
   q: finish"
+yadm config --add local.class minimal
+while read -ren 1 opt; do
   case $opt in
     0) yadm config --add local.class server;;
     1) yadm config --add local.class dev;;
@@ -39,6 +39,7 @@ esac
 
 if [[ -n $alt_files ]]; then
   for file in "${alt_files[@]}"; do
-    sudo -v cp "$file" "$(dirname "${file##*"${ID^}"}")"
+    sudo cp "$file" "$(dirname "${file##*"${ID^}"}")"
+    sudo -v
   done
 fi

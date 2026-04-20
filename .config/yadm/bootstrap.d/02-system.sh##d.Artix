@@ -6,10 +6,11 @@ SYNCC="yay -Sy"
 CLEANC="yay -Yc --noconfirm"
 
 configure() {
-  sudo -v || exit 1
-  sudo -v pacman -Sy
-  sudo -v pacman -S --noconfirm curl git base-devel ca-certificates
+  sudo || exit 1
+  sudo pacman -Sy
+  sudo pacman -S --noconfirm curl git base-devel ca-certificates
   git clone https://aur.archlinux.org/yay.git /tmp/yay
+  sudo -v
   makepkg -si -D /tmp/yay
   yay -Y --gendb
   yay -Y --devel --save
@@ -19,6 +20,7 @@ configure() {
 }
 
 minimal() {
+  sudo -v
   $INSTALLC zsh jq fastfetch bat btop fd eza zoxide fzf ripgrep-all \
     graphicsmagick pandoc poppler tesseract dust pkgfile openssh \
     ffmpeg imagemagick neovim wezterm 7zip chafa resvg yazi tldr trashy \
@@ -40,21 +42,26 @@ minimal() {
 }
 
 server() {
+  sudo -v
   $INSTALLC docker docker-buildx docker-compose lazydocker tcpdump
-  sudo -v rc-update add docker default
-  sudo -v rc-update add sshd default
+  sudo -v
+  sudo rc-update add docker default
+  sudo rc-update add sshd default
 }
 
 hyprland() {
+  sudo -v
   $INSTALLC hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-termfilechooser-hunkyburrito-git hyprpolkitagent hypridle hyprqt6engine
 
 }
 
 wl_DE() {
+  sudo -v
   $INSTALLC wl-clipboard xwaylandvideobridge
 }
 
 DE() {
+  sudo -v
   $INSTALLC obsidian brightnessctl okular firefox xdg-user-dirs noto-fonts noto-fonts-cjk \
     noto-fonts-emoji noto-fonts-extra ttf-cascadia-mono-nerd ttf-nerd-fonts-symbols \
     ttf-nerd-fonts-symbols-mono ttf-noto-nerd ttf-jetbrains-mono-nerd fontconfig \
