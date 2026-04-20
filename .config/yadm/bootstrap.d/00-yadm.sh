@@ -35,14 +35,15 @@ done
 source /etc/os-release
 
 case $ID in
-  artix) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Artix -type f)";;
-  arch) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Arch -type f)";;  
+  artix) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Artix -type f -not -path '*/.git/*')";;
+  arch) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Arch -type f -not -path '*/.git/*')";;  
   *);;
 esac
 
 if [[ -n $alt_files ]]; then
   for file in "${alt_files[@]}"; do
-    sudo -n install -v -D "$file" "$(dirname "${file##*"${ID^}"}")"
-    sudo -v
+    dest="$(dirname "${file##*"${ID^}"}")"
+    [ -d "$dest" ] || mkdir -p "$dest"
+    sudo -n cp -vsup "$(readlink -f "$file")" "${dest}/${file##*/}"
   done
 fi
