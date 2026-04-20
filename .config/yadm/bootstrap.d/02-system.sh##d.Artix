@@ -98,7 +98,7 @@ configure_pre 2> /dev/null
 configure 2> /dev/null
 while read -r class; do
   ${class}_pre 2> /dev/null
-  $class
+  $class 2> /dev/null
   ${class}_post 2> /dev/null
 done <<<"$(yadm config --get-all local.class)"
 configure_post 2> /dev/null
