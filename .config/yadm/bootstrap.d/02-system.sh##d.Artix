@@ -19,6 +19,10 @@ configure() {
   $CLEANC
 }
 
+configure_post() {
+  chsh -s "$(which zsh)"
+}
+
 minimal() {
   sudo -v
   $INSTALLC zsh jq fastfetch bat btop fd eza zoxide fzf ripgrep-all \
@@ -86,10 +90,11 @@ DE_post() {
   rc-update -U add wireplumber default
 }
 
-configure
+configure_pre &> /dev/null
+configure &> /dev/null
 while read -r class; do
   ${class}_pre &> /dev/null
   $class
   ${class}_post &> /dev/null
 done <<<"$(yadm config --get-all local.class)"
-
+configure_post &> /dev/null
