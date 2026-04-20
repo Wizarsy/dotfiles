@@ -40,10 +40,11 @@ case $ID in
   *);;
 esac
 
+sudo -v
 if [[ -n $alt_files ]]; then
   for file in "${alt_files[@]}"; do
     dest="$(dirname "${file##*"${ID^}"}")"
-    [ -d "$dest" ] || sudo -n mkdir -p "$dest"
+    sudo -n mkdir -p "$dest"
     sudo -n cp -vsup "$(readlink -f "$file")" "${dest}/${file##*/}"
   done
 fi
