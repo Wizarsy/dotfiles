@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 echo "Update origin URL? y/n"
 while read -ren 1 opt; do
   case $opt in
@@ -16,8 +15,9 @@ echo -e "
 Choose a profile:
   0: server
   1: dev
-  2: hyprland\n
+  2: hyprland
   q: finish"
+yadm config --unset-all local.class
 yadm config --add local.class minimal
 while read -ren 1 opt; do
   case $opt in
@@ -39,7 +39,7 @@ esac
 
 if [[ -n $alt_files ]]; then
   for file in "${alt_files[@]}"; do
-    sudo cp "$file" "$(dirname "${file##*"${ID^}"}")"
+    sudo -n install -v -D "$file" "$(dirname "${file##*"${ID^}"}")"
     sudo -v
   done
 fi

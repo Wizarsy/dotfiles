@@ -6,12 +6,12 @@ SYNCC="yay -Sy"
 CLEANC="yay -Yc --noconfirm"
 
 configure() {
-  sudo || exit 1
-  sudo pacman -Sy
-  sudo pacman -S --noconfirm curl git base-devel ca-certificates
+  sudo -v || exit 1
+  sudo -n pacman -Sy
+  sudo -n pacman -S --noconfirm curl git base-devel ca-certificates
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   sudo -v
-  makepkg -si -D /tmp/yay
+  makepkg --noconfirm -si -D /tmp/yay
   yay -Y --gendb
   yay -Y --devel --save
 
@@ -26,7 +26,9 @@ minimal() {
     ffmpeg imagemagick neovim wezterm 7zip chafa resvg yazi tldr trashy \
     pacman-contrib man-db less duf socat speedtest-cli lm_sensors dnsutils \
     fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc
+}
 
+minimal_post() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-completions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions"
@@ -45,14 +47,13 @@ server() {
   sudo -v
   $INSTALLC docker docker-buildx docker-compose lazydocker tcpdump
   sudo -v
-  sudo rc-update add docker default
-  sudo rc-update add sshd default
+  sudo -n rc-update add docker default
+  sudo -n rc-update add sshd default
 }
 
 hyprland() {
   sudo -v
   $INSTALLC hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-termfilechooser-hunkyburrito-git hyprpolkitagent hypridle hyprqt6engine
-
 }
 
 wl_DE() {
@@ -81,6 +82,8 @@ DE() {
 
 configure
 while read -r class; do
+  ${class}_pre &> /dev/null
   $class
+  ${class}_post &> /dev/null
 done <<<"$(yadm config --get-all local.class)"
 
