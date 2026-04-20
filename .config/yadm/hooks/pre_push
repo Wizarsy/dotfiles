@@ -2,4 +2,4 @@
 
 echo "Running Pre Push Script..."
 
-yadm commit -am "backup: $(date +'%d-%m-%Y %H:%M:%S')"
+yadm commit -am "backup: $(date +'%d-%m-%Y %H:%M:%S')" || true
