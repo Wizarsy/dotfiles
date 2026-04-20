@@ -43,7 +43,7 @@ esac
 if [[ -n $alt_files ]]; then
   for file in "${alt_files[@]}"; do
     dest="$(dirname "${file##*"${ID^}"}")"
-    [ -d "$dest" ] || mkdir -p "$dest"
+    [ -d "$dest" ] || sudo -n mkdir -p "$dest"
     sudo -n cp -vsup "$(readlink -f "$file")" "${dest}/${file##*/}"
   done
 fi
