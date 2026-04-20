@@ -31,7 +31,7 @@ minimal() {
     graphicsmagick pandoc poppler tesseract dust pkgfile openssh \
     ffmpeg imagemagick neovim wezterm 7zip chafa resvg yazi tldr trashy \
     pacman-contrib man-db less duf socat speedtest-cli lm_sensors dnsutils \
-    fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc
+    fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc witr
 }
 
 minimal_post() {
