@@ -1,0 +1,10 @@
+export XCURSOR_SIZE=24
+export XCURSOR_THEME=""
+export XCURSOR_PATH="${XCURSOR_PATH}":"${HOME}"/.local/share/icons
+export ICONTHEME="Papirus-Dark"
+export FONT="NotoSans Nerd Font Propo Regular"
+export FONTSIZE=12
+export DOCFONT="NotoSerif Nerd Font Propo Regular"
+export DOCFONTSIZE=12
+export MONOFONT="CaskaydiaMono Nerd Font Mono Regular"
+export MONOFONTSIZE=14
