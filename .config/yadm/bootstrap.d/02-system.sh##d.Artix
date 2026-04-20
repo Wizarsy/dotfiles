@@ -9,12 +9,12 @@ configure() {
   sudo -v || exit 1
   sudo -n pacman -Sy
   sudo -n pacman -S --noconfirm curl git base-devel ca-certificates
+  sudo -n rm -rf /tmp/yay
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   sudo -v
   makepkg --noconfirm -si -D /tmp/yay
   yay -Y --gendb
   yay -Y --devel --save
-
   $SYNCC
   $CLEANC
 }
@@ -29,6 +29,7 @@ minimal() {
 }
 
 minimal_post() {
+  sudo -n rm -rf "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-completions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions"
@@ -36,7 +37,6 @@ minimal_post() {
   git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting"
   git clone https://github.com/Aloxaf/fzf-tab "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-tab"
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-
   ya pkg add yazi-rs/plugins:chmod
   ya pkg add yazi-rs/plugins:git
   ya pkg add yazi-rs/plugins:mount
@@ -46,7 +46,11 @@ minimal_post() {
 server() {
   sudo -v
   $INSTALLC docker docker-buildx docker-compose lazydocker tcpdump
+}
+
+server_post() {
   sudo -v
+  sudo -n rc-update --update
   sudo -n rc-update add docker default
   sudo -n rc-update add sshd default
 }
@@ -69,10 +73,12 @@ DE() {
     power-profiles-daemon papirus-icon-theme pipewire pipewire-alsa pipewire-jack \
     pipewire-pulse gst-plugin-pipewire libpulse wireplumber pipewire-openrc \
     pipewire-pulse-openrc wireplumber-openrc
-
-  sudo curl -L https://github.com/IdreesInc/Monocraft/releases/download/v4.2.1/Monocraft-no-ligatures.ttc -o /usr/share/fonts/TTC/Monocraft.ttc \
+  sudo -n curl -L https://github.com/IdreesInc/Monocraft/releases/download/v4.2.1/Monocraft-no-ligatures.ttc -o /usr/share/fonts/TTC/Monocraft.ttc \
     && fc-cache -fv
+}
 
+DE_post() {
+  rc-update --update
   rc-update -U add ssh-agent default
   rc-update -U add dbus default
   rc-update -U add pipewire default
