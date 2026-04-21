@@ -31,7 +31,8 @@ minimal() {
     graphicsmagick pandoc poppler tesseract dust pkgfile openssh \
     ffmpeg imagemagick neovim wezterm 7zip chafa resvg yazi tldr trashy \
     pacman-contrib man-db less duf socat speedtest-cli lm_sensors dnsutils \
-    fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc witr btrbk
+    fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc witr btrbk \
+    power-profiles-daemon power-profiles-daemon-openrc 
 }
 
 minimal_post() {
@@ -77,7 +78,7 @@ DE() {
   $INSTALLC obsidian brightnessctl okular firefox xdg-user-dirs noto-fonts noto-fonts-cjk \
     noto-fonts-emoji noto-fonts-extra ttf-cascadia-mono-nerd ttf-nerd-fonts-symbols \
     ttf-nerd-fonts-symbols-mono ttf-noto-nerd ttf-jetbrains-mono-nerd fontconfig \
-    power-profiles-daemon papirus-icon-theme
+    papirus-icon-theme
   sudo -n curl -L https://github.com/IdreesInc/Monocraft/releases/download/v4.2.1/Monocraft-no-ligatures.ttc -o /usr/share/fonts/TTC/Monocraft.ttc \
     && fc-cache -fv
   xdg-user-dirs-update
