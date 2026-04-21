@@ -27,7 +27,7 @@ configure_post() {
 minimal() {
   sudo -v
   $INSTALLC pipewire pipewire-alsa pipewire-jack pipewire-pulse gst-plugin-pipewire \
-    libpulse wireplumber papirus-icon-theme pipewire-openrc pipewire-pulse-openrc wireplumber-openrc
+    libpulse wireplumber pipewire-openrc pipewire-pulse-openrc wireplumber-openrc
   $INSTALLC zsh jq fastfetch bat btop fd eza zoxide fzf ripgrep-all \
     graphicsmagick pandoc poppler tesseract dust pkgfile openssh \
     ffmpeg imagemagick neovim wezterm 7zip chafa resvg yazi tldr trashy \
@@ -78,7 +78,7 @@ DE() {
   $INSTALLC obsidian brightnessctl okular firefox xdg-user-dirs noto-fonts noto-fonts-cjk \
     noto-fonts-emoji noto-fonts-extra ttf-cascadia-mono-nerd ttf-nerd-fonts-symbols \
     ttf-nerd-fonts-symbols-mono ttf-noto-nerd ttf-jetbrains-mono-nerd fontconfig \
-    power-profiles-daemon
+    power-profiles-daemon papirus-icon-theme
   sudo -n curl -L https://github.com/IdreesInc/Monocraft/releases/download/v4.2.1/Monocraft-no-ligatures.ttc -o /usr/share/fonts/TTC/Monocraft.ttc \
     && fc-cache -fv
   xdg-user-dirs-update
