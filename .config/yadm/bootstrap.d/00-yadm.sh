@@ -35,8 +35,8 @@ done
 source /etc/os-release
 
 case $ID in
-  artix) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Artix -type f -not -path '*/.git/*')";;
-  arch) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Arch -type f -not -path '*/.git/*')";;  
+  artix) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Artix -type f -not -path '*/.git/*' -not -name '*##*')";;
+  arch) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Arch -type f -not -path '*/.git/*' -not -name '*##*')";;  
   *);;
 esac
 
