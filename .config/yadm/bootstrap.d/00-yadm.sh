@@ -45,6 +45,6 @@ if [[ -n $alt_files ]]; then
   for file in "${alt_files[@]}"; do
     dest="$(dirname "${file##*"${ID^}"}")"
     sudo -n mkdir -p "$dest"
-    sudo -n cp -vsp --update=all "$(readlink -f "$file")" "${dest}/${file##*/}"
+    sudo -n cp -vspf "$(readlink -f "$file")" "${dest}/${file##*/}"
   done
 fi
