@@ -48,6 +48,7 @@ minimal_post() {
   ya pkg add yazi-rs/plugins:git
   ya pkg add yazi-rs/plugins:mount
   ya pkg add AnirudhG07/plugins-yazi:copy-file-contents
+  bat cache --build
 }
 
 server() {
