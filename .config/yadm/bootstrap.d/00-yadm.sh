@@ -32,6 +32,8 @@ while read -ren 1 opt; do
   esac
 done
 
+yadm alt
+
 source /etc/os-release
 
 case $ID in
