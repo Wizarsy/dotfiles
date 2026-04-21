@@ -81,6 +81,7 @@ DE() {
     power-profiles-daemon
   sudo -n curl -L https://github.com/IdreesInc/Monocraft/releases/download/v4.2.1/Monocraft-no-ligatures.ttc -o /usr/share/fonts/TTC/Monocraft.ttc \
     && fc-cache -fv
+  xdg-user-dirs-update
 }
 
 DE_post() {
