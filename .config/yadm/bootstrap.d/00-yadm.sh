@@ -33,20 +33,3 @@ while read -ren 1 opt; do
 done
 
 yadm alt
-
-source /etc/os-release
-
-case $ID in
-  artix) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Artix -type f -not -path '*/.git/*' -not -name '*##*')";;
-  arch) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Arch -type f -not -path '*/.git/*' -not -name '*##*')";;  
-  *);;
-esac
-
-sudo -v
-if [[ -n $alt_files ]]; then
-  for file in "${alt_files[@]}"; do
-    dest="$(dirname "${file##*"${ID^}"}")"
-    sudo -n mkdir -p "$dest"
-    sudo -n cp -vspf "$(readlink -f "$file")" "${dest}/${file##*/}"
-  done
-fi
