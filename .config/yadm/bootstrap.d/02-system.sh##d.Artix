@@ -1,18 +1,17 @@
 #!/usr/bin/env bash
 
-INSTALLC="yay -S --noconfirm"
+INSTALLC="yay -S --noconfirm --needed"
 SYNCC="yay -Sy"
-# UPC="yay -Syu --noconfirm"
 CLEANC="yay -Yc --noconfirm"
 
 configure() {
   sudo -v || exit 1
   sudo -n pacman -Sy
-  sudo -n pacman -S --noconfirm curl git base-devel ca-certificates
+  sudo -n pacman -S --noconfirm --needed curl git base-devel ca-certificates
   sudo -n rm -rf /tmp/yay
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   sudo -v
-  makepkg --noconfirm -si -D /tmp/yay
+  makepkg --noconfirm --needed -si -D /tmp/yay
   yay -Y --gendb
   yay -Y --devel --save
   $SYNCC
@@ -91,6 +90,11 @@ DE_post() {
   rc-update -U add pipewire default
   rc-update -U add pipewire-pulse default
   rc-update -U add wireplumber default
+  
+  rc-service --ifstopped -U dbus start
+  rc-service --ifstopped -U pipewire start
+  rc-service --ifstopped -U pipewire-pulse start
+  rc-service --ifstopped -U wireplumber start
 }
 
 dev() {
