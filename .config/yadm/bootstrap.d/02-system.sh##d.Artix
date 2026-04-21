@@ -31,10 +31,12 @@ minimal() {
     graphicsmagick pandoc poppler tesseract dust pkgfile openssh \
     ffmpeg imagemagick neovim wezterm 7zip chafa resvg yazi tldr trashy \
     pacman-contrib man-db less duf socat speedtest-cli lm_sensors dnsutils \
-    fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc witr btrbk
+    fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc witr btrbk \
+    power-profiles-daemon power-profiles-daemon-openrc python-gobject
 }
 
 minimal_post() {
+  sudo -v
   sudo -n rm -rf "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/}"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
@@ -48,6 +50,9 @@ minimal_post() {
   ya pkg add yazi-rs/plugins:mount
   ya pkg add AnirudhG07/plugins-yazi:copy-file-contents
   bat cache --build
+  sudo -n rc-update --update
+  sudo -n rc-update add power-profiles-daemon default
+  sudo -n rc-service --ifstopped power-profiles-daemon start
 }
 
 server() {
@@ -77,7 +82,7 @@ DE() {
   $INSTALLC obsidian brightnessctl okular firefox xdg-user-dirs noto-fonts noto-fonts-cjk \
     noto-fonts-emoji noto-fonts-extra ttf-cascadia-mono-nerd ttf-nerd-fonts-symbols \
     ttf-nerd-fonts-symbols-mono ttf-noto-nerd ttf-jetbrains-mono-nerd fontconfig \
-    power-profiles-daemon papirus-icon-theme
+    papirus-icon-theme
   sudo -n curl -L https://github.com/IdreesInc/Monocraft/releases/download/v4.2.1/Monocraft-no-ligatures.ttc -o /usr/share/fonts/TTC/Monocraft.ttc \
     && fc-cache -fv
   xdg-user-dirs-update
