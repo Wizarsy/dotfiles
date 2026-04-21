@@ -67,7 +67,7 @@ hyprland() {
   $INSTALLC hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-termfilechooser-hunkyburrito-git hyprpolkitagent hypridle hyprqt6engine
 }
 
-wl_DE() {
+wayland() {
   sudo -v
   $INSTALLC wl-clipboard xwaylandvideobridge
 }
@@ -98,7 +98,8 @@ DE_post() {
 }
 
 dev() {
-  return
+  sudo -v
+  $INSTALLC visual-studio-code-bin
 }
 
 configure_pre 2> /dev/null
