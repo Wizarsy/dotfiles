@@ -17,8 +17,10 @@ Choose a profile:
   1: dev
   2: hyprland
   q: finish"
+
 yadm config --unset-all local.class
 yadm config --add local.class minimal
+
 while read -ren 1 opt; do
   case $opt in
     0) yadm config --add local.class server;;
@@ -31,5 +33,13 @@ while read -ren 1 opt; do
     *) continue;;
   esac
 done
+
+case $(readlink -f /sbin/init) in
+  *systemd*) yadm config --add local.class systemd;;
+  *openrc*) yadm config --add local.class openrc;;
+  *);;
+esac
+
+! command find /sys/class/power_supply/BAT* -quit &> /dev/null || yadm config --add local.class mobile
 
 yadm alt
