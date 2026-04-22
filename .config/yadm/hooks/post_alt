@@ -2,6 +2,7 @@
 
 echo "Running Post Alt Script..."
 echo $YADM_HOOK_DATA
+echo $YADM_HOOK_DIR
 
 
 # source /etc/os-release
