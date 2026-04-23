@@ -1,19 +1,8 @@
 #!/usr/bin/env bash
 
 echo "Running Post Alt Script..."
-echo $YADM_HOOK_DATA
-echo $YADM_HOOK_DIR
 
-
-# source /etc/os-release
-
-# case $ID in
-#   artix) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Artix -type f -not -path '*/.git/*' -not -name '*##*')";;
-#   arch) read -d '\n' -ra alt_files <<<"$(command find -L ~/.config/yadm/system_alt/Arch -type f -not -path '*/.git/*' -not -name '*##*')";;  
-#   *);;
-# esac
-
-# command find -L ~/.config/teste* -type f -not -path '*/.git/*' -not -path '*/*##*/*' -not -name '*##*'
+read -d '\n' -ra alt_files <<<"$(command find -L "${YADM_HOOK_DIR}/system_alt" -type f -not -path '*/.git/*' -not -path '*/*##*/*' -not -name '*##*')"
 
 # sudo -v
 # if [[ -n $alt_files ]]; then

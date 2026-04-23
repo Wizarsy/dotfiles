@@ -41,5 +41,6 @@ case $(readlink -f /sbin/init) in
 esac
 
 ! command find /sys/class/power_supply/BAT* -quit &> /dev/null || yadm config --add local.class mobile
+! command pacman -V &> /dev/null || yadm config --add local.class pacman
 
 yadm alt
