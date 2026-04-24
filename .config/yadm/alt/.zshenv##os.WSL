@@ -1,5 +1,5 @@
 export PATH="${HOME}/.bin:${HOME}/.local/.bin:/opt:${PATH}"
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}ssh-agent.socket"
+export SSH_AUTH_SOCK="$(command find "${XDG_RUNTIME_DIR}" -name 'ssh-agent.*' -print0 -quit)"
 export EDITOR="nvim"
 export GOPATH="${HOME}/.go"
 export XDG_CURRENT_DESKTOP="Weston"
