@@ -9,4 +9,6 @@ export DOCFONT="NotoSerif Nerd Font Propo Regular"
 export DOCFONTSIZE=12
 export MONOFONT="CaskaydiaMono Nerd Font Mono Regular"
 export MONOFONTSIZE=14
-export WLR_RENDERER=vulkan
+
+export WLR_RENDERER="vulkan"
+export ELECTRON_FORCE_WINDOW_MENU_BAR=1
