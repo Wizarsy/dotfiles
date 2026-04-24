@@ -97,6 +97,8 @@ export CLUTTER_BACKEND="wayland"
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+export DBUS_SESSION_BUS_ADDRESS="unix:path=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/bus"
+
 [ -e "${HOME}/.config/wl/env" ] && . "${HOME}/.config/wl/env"
 [ -e "${HOME}/.config/wl/${_ENV}-env" ] && . "${HOME}/.config/wl/${_ENV}-env"
 
