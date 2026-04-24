@@ -72,7 +72,7 @@ server_post() {
 
 hyprland() {
   sudo -v
-  $INSTALLC hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-termfilechooser-hunkyburrito-git hyprpolkitagent hypridle hyprqt6engine
+  $INSTALLC hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-luminous xdg-desktop-portal-termfilechooser-hunkyburrito-git hyprpolkitagent hypridle hyprqt6engine
 }
 
 wayland() {
