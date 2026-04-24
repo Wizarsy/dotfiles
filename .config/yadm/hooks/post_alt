@@ -9,6 +9,6 @@ if [[ -n $alt_files ]]; then
   for file in "${alt_files[@]}"; do
     dest="$(dirname "${file##*system_alt}")"
     sudo -n mkdir -p "$dest"
-    sudo -n cp -vfu --preserve=mode,timestamps --reflink=never "$(readlink -f "$file")" "${dest}/${file##*/}"
+    sudo -n cp -vu --preserve=mode,timestamps --reflink=never "$(readlink -f "$file")" "${dest}/${file##*/}"
   done
 fi
