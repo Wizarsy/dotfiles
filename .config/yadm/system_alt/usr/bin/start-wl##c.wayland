@@ -19,6 +19,7 @@ esac
 
 case "$(lspci -kd ::03xx | grep -Po "Kernel driver in use: \K.+")" in
   nouveau)
+    export GALLIUM_DRIVER="nouveau"
     export LIBVA_DRIVER_NAME="nouveau"
     export VDPAU_DRIVER="va_gl"
     export __GLX_VENDOR_LIBRARY_NAME="mesa"
@@ -34,10 +35,14 @@ case "$(lspci -kd ::03xx | grep -Po "Kernel driver in use: \K.+")" in
     export __EGL_VENDOR_LIBRARY_FILENAMES="/usr/share/glvnd/egl_vendor.d/10_nvidia.json"
     ;;
   dxgkrnl)
+    export GALLIUM_DRIVER="d3d12"
+    export LIBVA_DRIVER_NAME="d3d12"
+    export VDPAU_DRIVER="va_gl"
     export __GLX_VENDOR_LIBRARY_NAME="mesa"
     export __EGL_VENDOR_LIBRARY_FILENAMES="/usr/share/glvnd/egl_vendor.d/50_mesa.json"
     ;;
   i915)
+    export GALLIUM_DRIVER="i915"
     export LIBVA_DRIVER_NAME="i965"
     export VDPAU_DRIVER="va_gl"
     export ANV_DEBUG="video-decode,video-encode"
@@ -45,6 +50,7 @@ case "$(lspci -kd ::03xx | grep -Po "Kernel driver in use: \K.+")" in
     export __EGL_VENDOR_LIBRARY_FILENAMES="/usr/share/glvnd/egl_vendor.d/50_mesa.json"
     ;;
   xe)
+    export GALLIUM_DRIVER="iris"
     export LIBVA_DRIVER_NAME="iHD"
     export VDPAU_DRIVER="va_gl"
     export ANV_DEBUG="video-decode,video-encode"
@@ -52,6 +58,7 @@ case "$(lspci -kd ::03xx | grep -Po "Kernel driver in use: \K.+")" in
     export __EGL_VENDOR_LIBRARY_FILENAMES="/usr/share/glvnd/egl_vendor.d/50_mesa.json"
     ;;
   amdgpu)
+    export GALLIUM_DRIVER="radeonsi"
     export LIBVA_DRIVER_NAME="radeonsi"
     export VDPAU_DRIVER="va_gl"
     export RADV_PERFTEST="video_decode,video_encode"
