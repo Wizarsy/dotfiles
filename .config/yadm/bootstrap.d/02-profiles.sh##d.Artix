@@ -9,7 +9,7 @@ configure() {
   sudo -n pacman -Sy
   sudo -n pacman -S --noconfirm --needed curl git base-devel ca-certificates
   ! command yay -V &> /dev/null || return 0
-  sudo -n rm -rf /tmp/yay
+  sudo -n rm -rf /tmp/yay &> /dev/null
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   sudo -v
   makepkg --noconfirm --needed -si -D /tmp/yay
