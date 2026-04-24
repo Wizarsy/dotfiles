@@ -4,11 +4,11 @@ echo "Running Post Alt Script..."
 
 read -d '\n' -ra alt_files <<<"$(command find -L "${YADM_HOOK_DIR}/system_alt" -type f -not -path '*/.git/*' -not -path '*/*##*/*' -not -name '*##*')"
 
-# sudo -v
-# if [[ -n $alt_files ]]; then
-#   for file in "${alt_files[@]}"; do
-#     dest="$(dirname "${file##*"${ID^}"}")"
-#     sudo -n mkdir -p "$dest"
-#     sudo -n cp -vspf "$(readlink -f "$file")" "${dest}/${file##*/}"
-#   done
-# fi
+sudo -v
+if [[ -n $alt_files ]]; then
+  for file in "${alt_files[@]}"; do
+    dest="$(dirname "${file##*"${ID^}"}")"
+    sudo -n mkdir -p "$dest"
+    sudo -n cp -vspf "$(readlink -f "$file")" "${dest}/${file##*/}"
+  done
+fi
