@@ -8,6 +8,7 @@ configure() {
   sudo -v || exit 1
   sudo -n pacman -Sy
   sudo -n pacman -S --noconfirm --needed curl git base-devel ca-certificates
+  ! command yay -V &> /dev/null || return 0
   sudo -n rm -rf /tmp/yay
   git clone https://aur.archlinux.org/yay.git /tmp/yay
   sudo -v
