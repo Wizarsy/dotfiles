@@ -33,6 +33,7 @@ minimal() {
     pacman-contrib man-db less duf socat speedtest-cli lm_sensors dnsutils \
     fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc witr btrbk \
     power-profiles-daemon power-profiles-daemon-openrc python-gobject
+  sudo -n curl https://codeberg.org/gentoo/gentoo/raw/branch/master/net-misc/openssh/files/ssh-agent.initd -o /etc/init.d/ssh-agent
 }
 
 minimal_post() {
