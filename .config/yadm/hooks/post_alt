@@ -7,7 +7,7 @@ read -d '\n' -ra alt_files <<<"$(command find -L "${YADM_HOOK_DIR}/system_alt" -
 sudo -v
 if [[ -n $alt_files ]]; then
   for file in "${alt_files[@]}"; do
-    dest="$(dirname "${file##*"${ID^}"}")"
+    dest="$(dirname "${file##*system_alt}")"
     sudo -n mkdir -p "$dest"
     sudo -n cp -vspf "$(readlink -f "$file")" "${dest}/${file##*/}"
   done
