@@ -1,4 +1,4 @@
 export PATH="${HOME}/.bin:${HOME}/.local/.bin:/opt:${PATH}"
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}ssh-agent.socket"
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.sock"
 export EDITOR="nvim"
 export GOPATH="${HOME}/.go"
