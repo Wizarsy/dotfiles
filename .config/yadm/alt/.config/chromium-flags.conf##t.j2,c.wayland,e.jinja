@@ -1,4 +1,4 @@
---enable-features=UseOzonePlatform,WaylandWindowDecorations,AllowQt,{% if "nvidia" in YADM_CLASSES %}AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks{% else %}VaapiVideoDecoder,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE{% endif %}
+--enable-features=UseOzonePlatform,WaylandWindowDecorations,AllowQt,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks{% if "nvidia" in YADM_CLASSES %}VaapiOnNvidiaGPUs{% else %}VaapiVideoDecoder{% endif %}
 --disable-features=UseSkiaRenderer
 --gtk-version=4
 --ozone-platform=wayland
@@ -7,7 +7,7 @@
 --enable-parallel-downloading
 --enable-experimental-web-platform-features
 --use-gl=angle
---use-angle={% if "nvidia" in YADM_CLASSES %}gl{% else %}vulkan{% endif %}
+--use-angle=gl
 --ignore-gpu-blocklist
 --enable-zero-copy
 --enable-gpu-rasterization
