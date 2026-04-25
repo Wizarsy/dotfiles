@@ -1,0 +1,13 @@
+--enable-features=UseOzonePlatform,WaylandWindowDecorations,AllowQt,{% if "nvidia" in YADM_CLASSES %}AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,VaapiOnNvidiaGPUs,VaapiIgnoreDriverChecks{% else %}VaapiVideoDecoder,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE{% endif %}
+--disable-features=UseSkiaRenderer
+--gtk-version=4
+--ozone-platform=wayland
+--password-store=gnome-libsecret
+--disk-cache-dir={{ XDG_RUNTIME_DIR }}/electron
+--use-gl=angle
+--use-angle={% if "nvidia" in YADM_CLASSES %}gl{% else %}vulkan{% endif %}
+--ignore-gpu-blocklist
+--enable-zero-copy
+--enable-gpu-rasterization
+--disable-gpu-driver-bug-workaround
+--use-cmd-decoder=passthrough
