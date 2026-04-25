@@ -20,7 +20,7 @@ configure() {
 }
 
 configure_post() {
-  [[ "${SHELL##*/}" != "zsh"]] && chsh -s "$(which zsh)"
+  [ "${SHELL##*/}" != "zsh"] && chsh -s "$(which zsh)"
   $CLEANC
 }
 
