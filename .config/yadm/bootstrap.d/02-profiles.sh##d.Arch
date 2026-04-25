@@ -20,7 +20,7 @@ configure() {
 }
 
 configure_post() {
-  chsh -s "$(which zsh)"
+  [[ "${SHELL##*/}" != "zsh" ]] && chsh -s "$(which zsh)"
   $CLEANC
 }
 
@@ -30,12 +30,10 @@ minimal() {
     libpulse wireplumber
   $INSTALLC zsh jq fastfetch bat btop fd eza zoxide fzf ripgrep-all \
     graphicsmagick pandoc poppler tesseract dust pkgfile openssh \
-    ffmpeg imagemagick neovim wezterm-git 7zip chafa resvg yazi tldr trash-d \
+    ffmpeg imagemagick neovim wezterm-nightly-bin 7zip chafa resvg yazi tldr trash-d \
     pacman-contrib man-db less duf socat speedtest-cli lm_sensors dnsutils \
     fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw witr btrbk \
     power-profiles-daemon python-gobject
-  sudo -n curl https://codeberg.org/gentoo/gentoo/raw/branch/master/net-misc/openssh/files/ssh-agent.initd -o /etc/user/init.d/ssh-agent
-  sudo -n chmod +x /etc/user/init.d/ssh-agent
 }
 
 minimal_post() {
