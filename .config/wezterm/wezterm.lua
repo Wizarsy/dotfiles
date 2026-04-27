@@ -21,7 +21,7 @@ elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
   for _, gpu in ipairs(gpus) do
     if gpu.backend == "Vulkan" and gpu.device_type ~= "Cpu" then
       config.webgpu_preferred_adapter = gpu
-      config.front_end = "WebGpu"
+      config.front_end = "OpenGL"
       break
     end
   end

@@ -48,6 +48,7 @@ y() {
 	rm -f -- "$tmp"
 }
 
+export PYTHONWARNINGS=ignore
 # Aliases
 alias up="yay --noconfirm;yay -Yc --noconfirm; sudo pkgfile -u"
 alias cat="bat"
@@ -55,4 +56,4 @@ alias find="fd"
 alias grep="rg"
 alias du="dust"
 alias rm="trash"
-alias yadm="PYTHONWARNINGS=ignore yadm"
+# alias yadm="PYTHONWARNINGS=ignore yadm"
