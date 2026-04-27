@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = openrc
+
+[Action]
+When = PostTransaction
+Exec = /usr/bin/bash -c "for i in {2..6}; do rc-update del agetty.tty${i} default; done"
