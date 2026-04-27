@@ -1,6 +1,6 @@
 root = /mnt/data-ssd/Users/Filipe/AppData/Roaming/Mozilla/Firefox
 root = /home/wizarsy/.config/mozilla/firefox
-ignore = Name {*.sqlite-shm,*.sqlite-wal,*.ini,user.js,lock}
+ignore = Name {*.sqlite-*,*.ini,user.js,lock}
 
 log = true
 repeat = watch+1800
