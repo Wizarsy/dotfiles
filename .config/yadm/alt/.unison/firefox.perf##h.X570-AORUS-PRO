@@ -1,0 +1,7 @@
+root = /mnt/data-ssd/Users/Filipe/AppData/Roaming/Mozilla
+root = /home/wizarsy/.config/Mozilla
+ignore = Name {*.ini, user.js}
+
+log = true
+repeat = watch+1800
+prefer = newer
