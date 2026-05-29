@@ -106,6 +106,10 @@ Include = /etc/pacman.d/mirrorlist
 [lib32]
 Include = /etc/pacman.d/mirrorlist
 
+[auris]
+SigLevel = Required
+Server = https://auris.artixlinux.org/api/packages/auris/arch/$repo/$arch
+
 [extra]
 Include = /etc/pacman.d/mirrorlist-arch
 
