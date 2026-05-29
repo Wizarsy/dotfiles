@@ -1,0 +1,3 @@
+[tools]
+conan = "latest"
+uv = "latest"

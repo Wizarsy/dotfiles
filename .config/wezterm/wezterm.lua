@@ -4,35 +4,34 @@ local gpus = wezterm.gui.enumerate_gpus()
 local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-  config.default_prog = { "pwsh.exe", "-NoProfileLoadTime", "-NoLogo" }
-  config.window_decorations = "RESIZE" -- "RESIZE|INTEGRATED_BUTTONS"
-  for _, gpu in ipairs(gpus) do
-    if gpu.backend == "Dx12" and gpu.device_type == "DiscreteGpu" then
-      config.webgpu_preferred_adapter = gpu
-      config.front_end = "WebGpu"
-      break
-    end
-  end
+	config.default_prog = { "pwsh.exe", "-NoProfileLoadTime", "-NoLogo" }
+	config.window_decorations = "RESIZE" -- "RESIZE|INTEGRATED_BUTTONS"
+	for _, gpu in ipairs(gpus) do
+		if gpu.backend == "Dx12" and gpu.device_type == "DiscreteGpu" then
+			config.webgpu_preferred_adapter = gpu
+			config.front_end = "OpenGL"
+			break
+		end
+	end
 elseif wezterm.target_triple == "x86_64-unknown-linux-gnu" then
-  config.default_gui_startup_args = { 'connect', 'unix' }
-  config.default_prog = { "/usr/bin/zsh", "-l"}
-  config.window_decorations = "NONE"
-  config.enable_wayland = true
-  for _, gpu in ipairs(gpus) do
-    if gpu.backend == "Vulkan" and gpu.device_type ~= "Cpu" then
-      config.webgpu_preferred_adapter = gpu
-      config.front_end = "OpenGL"
-      break
-    end
-  end
+	config.default_gui_startup_args = { "connect", "unix" }
+	config.default_prog = { "/usr/bin/zsh", "-l" }
+	config.window_decorations = "NONE"
+	config.enable_wayland = true
+	for _, gpu in ipairs(gpus) do
+		if gpu.backend == "Vulkan" and gpu.device_type ~= "Cpu" then
+			config.webgpu_preferred_adapter = gpu
+			config.front_end = "OpenGL"
+			break
+		end
+	end
 end
 
 config.unix_domains = {
-  {
-    name = "unix"
-  }
+	{
+		name = "unix"
+	}
 }
-
 
 config.default_workspace = "master"
 
@@ -52,8 +51,8 @@ config.cursor_blink_rate = 500
 config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
-config.font_dirs = {"fonts"}
-config.font = wezterm.font_with_fallback{"Monocraft", "Symbols Nerd Font Mono", "DepartureMono Nerd Font Mono"}
+config.font_dirs = { "fonts" }
+config.font = wezterm.font_with_fallback({ "Monocraft", "Symbols Nerd Font Mono", "DepartureMono Nerd Font Mono" })
 config.font_size = 14
 config.line_height = 1.2
 config.cell_width = 1.0

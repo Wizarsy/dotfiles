@@ -7,7 +7,7 @@ fi
 # Env
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(fzf eza zoxide fzf-tab asdf docker command-not-found colored-man-pages ohmyzsh-full-autoupdate zsh-autosuggestions fast-syntax-highlighting) 
+plugins=(fzf eza zoxide fzf-tab docker mise command-not-found colored-man-pages ohmyzsh-full-autoupdate zsh-autosuggestions fast-syntax-highlighting) 
 
 export ZOXIDE_CMD_OVERRIDE=cd
 
@@ -35,8 +35,8 @@ autoload -U compinit && compinit
 source "$ZSH/oh-my-zsh.sh"
 [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
 
-# ASDF
-[[ ! -d $HOME/.asdf ]] || fd -t f "zsh$|^env$" "$HOME/.asdf/plugins" | while read -r script; do; source "$script"; done
+# Usage
+# source <(usage g completion-init zsh)
 
 ## Yazi
 y() {
