@@ -22,7 +22,7 @@ HoldPkg     = pacman glibc
 Architecture = x86_64 x86_64_v3
 
 # Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
-IgnorePkg   = cachyos-keyring cachyos-v3-mirrorlist
+# IgnorePkg   =
 #IgnoreGroup =
 
 #NoUpgrade   =
@@ -94,6 +94,9 @@ LocalFileSigLevel = Optional
 #SigLevel = Optional TrustAll
 #Server = file:///home/custompkgs
 
+[cachyos-v3]
+Include = /etc/pacman.d/cachyos-v3-mirrorlist
+
 [system]
 Include = /etc/pacman.d/mirrorlist
 
@@ -110,11 +113,17 @@ Include = /etc/pacman.d/mirrorlist
 SigLevel = Required
 Server = https://auris.artixlinux.org/api/packages/auris/arch/$repo/$arch
 
+[cachyos-core-v3]
+Include = /etc/pacman.d/cachyos-v3-mirrorlist
+
+[cachyos-extra-v3]
+Include = /etc/pacman.d/cachyos-v3-mirrorlist
+
+[cachyos]
+Include = /etc/pacman.d/cachyos-mirrorlist
+
 [extra]
 Include = /etc/pacman.d/mirrorlist-arch
 
 [multilib]
 Include = /etc/pacman.d/mirrorlist-arch
-
-[cachyos-v3]
-Include = /etc/pacman.d/cachyos-v3-mirrorlist
