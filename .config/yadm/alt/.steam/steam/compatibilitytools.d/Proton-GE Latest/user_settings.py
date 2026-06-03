@@ -3,7 +3,8 @@ user_settings = {
 
   "PROTON_USE_NTSYNC": "1",
   "PROTON_ENABLE_WAYLAND": "1",
-
+  "PROTON_NO_WM_DECORATION": "1",
+  
   "PROTON_PREFER_SDL": "1",
 
   "PROTON_ENABLE_NVAPI": "1",
