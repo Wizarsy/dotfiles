@@ -5,8 +5,10 @@ user_settings = {
   "PROTON_ENABLE_WAYLAND": "1",
   "PROTON_NO_WM_DECORATION": "1",
 
-  "PROTON_PREFER_SDL": "1",
+  "PROTON_USE_SDL": "1",
   "PROTON_LOCAL_SHADER_CACHE": "1",
+  
+  "PROTON_ENABLE_NVAPI": "1",
 
   "PROTON_NVIDIA_LIBS": "1",
   "PROTON_DXVK_LOWLATENCY": "1",
@@ -21,6 +23,8 @@ user_settings = {
   "DXVK_NVAPI_DRS_NGX_DLSS_RR_OVERRIDE_RENDER_PRESET_SELECTION": "render_preset_latest",
 
   "VKD3D_SWAPCHAIN_PRESENT_MODE": "IMMEDIATE",
+  "PROTON_VKD3D_HEAP": "1",
+  "VKD3D_CONFIG": "enable_experimental_features,descriptor_heap",
 
   "DXVK_NVAPI_VKREFLEX": "1"
 }
