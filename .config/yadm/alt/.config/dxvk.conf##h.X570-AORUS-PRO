@@ -1,0 +1,22 @@
+dxgi.enableHDR = False
+
+d3d9.maxFrameRate = 158
+dxgi.maxFrameRate = 158
+
+dxvk.latencySleep = Auto
+
+dxgi.syncInterval = 1
+d3d9.presentInterval = 1
+
+dxvk.tearFree = False
+
+d3d11.samplerAnisotropy = 16
+d3d9.samplerAnisotropy = 16
+
+d3d11.clampNegativeLodBias = False
+d3d9.clampNegativeLodBias = False
+
+[bioshock.exe]
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
