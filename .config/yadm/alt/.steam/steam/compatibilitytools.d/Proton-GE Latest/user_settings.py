@@ -1,19 +1,22 @@
 user_settings = {
-  "__GL_SYNC_TO_VBLANK": "1",
-
-  "PROTON_USE_NTSYNC": "1",
+   # General
   "PROTON_ENABLE_WAYLAND": "1",
   "PROTON_NO_WM_DECORATION": "1",
-
-  "PROTON_USE_SDL": "1",
   "PROTON_LOCAL_SHADER_CACHE": "1",
-  
+  "PROTON_USE_NTSYNC": "1",
+  "PROTON_USE_SDL": "1",
+
+  # Nvidia
+  "__GL_SYNC_TO_VBLANK": "1",
   "PROTON_ENABLE_NVAPI": "1",
-
   "PROTON_NVIDIA_LIBS": "1",
-  "PROTON_DXVK_LOWLATENCY": "1",
-  "DXVK_FRAME_PACE": "low-latency-vrr-158",
+  "DXVK_NVAPI_VKREFLEX": "1", # Reflex support
 
+  ## dxvk-low-latency
+#  "PROTON_DXVK_LOWLATENCY": "1", 
+#  "DXVK_FRAME_PACE": "low-latency-vrr-158",
+
+  ## Nvidia DLSS
   "PROTON_DLSS_UPGRADE": "1",
   "DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE": "on",
   "DXVK_NVAPI_DRS_NGX_DLSS_FG_OVERRIDE": "on",
@@ -22,9 +25,8 @@ user_settings = {
   "DXVK_NVAPI_DRS_NGX_DLSS_FG_OVERRIDE_RENDER_PRESET_SELECTION": "render_preset_latest",
   "DXVK_NVAPI_DRS_NGX_DLSS_RR_OVERRIDE_RENDER_PRESET_SELECTION": "render_preset_latest",
 
-  "VKD3D_SWAPCHAIN_PRESENT_MODE": "IMMEDIATE",
+  # DX12
   "PROTON_VKD3D_HEAP": "1",
-  "VKD3D_CONFIG": "enable_experimental_features,descriptor_heap",
-
-  "DXVK_NVAPI_VKREFLEX": "1"
+  "VKD3D_SWAPCHAIN_PRESENT_MODE": "IMMEDIATE",
+  "VKD3D_CONFIG": "enable_experimental_features,descriptor_heap"
 }
