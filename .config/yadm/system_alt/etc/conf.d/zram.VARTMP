@@ -1,0 +1,6 @@
+zram_size="50%"
+zram_type="btrfs"
+zram_comp_algo="zstd"
+zram_algo_params="level=1"
+
+zram_storage_mountpoint="/var/tmp"
