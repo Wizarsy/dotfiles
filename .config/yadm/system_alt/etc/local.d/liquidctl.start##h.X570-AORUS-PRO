@@ -1,0 +1,14 @@
+#!/bin/bash
+
+/usr/bin/liquidctl --match "kraken" initialize \
+&& /usr/bin/liquidctl --match "kraken" set pump speed 100 \
+&& /usr/bin/liquidctl --match "kraken" set fan speed 0 \
+&& /usr/bin/liquidctl --match "kraken" set lcd screen brightness 30 \
+&& /usr/bin/liquidctl --match "kraken" set lcd screen orientation 270 \
+&& /usr/bin/liquidctl --match "kraken" set lcd screen gif /etc/liquidctl/kraken.gif \
+&& /usr/bin/liquidctl --match "smart device" initialize \
+&& /usr/bin/liquidctl --match "smart device" set sync color fading 180025 260049 4D0018 110233 --speed normal \
+&& /usr/bin/liquidctl --match "smart device" set fan1 speed 35 \
+&& /usr/bin/liquidctl --match "smart device" set fan2 speed 30 \
+&& /usr/bin/liquidctl --match "smart device" set fan3 speed 30 
+
