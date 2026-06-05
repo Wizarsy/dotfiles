@@ -1,0 +1,6 @@
+hl.env("XCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "catppuccin-mocha-dark-cursors")
+hl.env("XCURSOR_PATH", os.getenv("XCURSOR_PATH")..":"..os.getenv("HOME").."/.local/share/icons")
+hl.env("HYPRCURSOR_SIZE", os.getenv("XCURSOR_SIZE"))
+hl.env("HYPRCURSOR_THEME", os.getenv("XCURSOR_THEME"))
+hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
