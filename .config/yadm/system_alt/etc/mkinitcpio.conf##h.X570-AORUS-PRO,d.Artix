@@ -3,8 +3,9 @@
 # The following modules are loaded before any boot hooks are
 # run.  Advanced users may wish to specify all system modules
 # in this array.  For instance:
-#     MODULES=(usbhid xhci_hcdbtrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm nzxt-kraken3 nzxt-smart2)
-MODULES=(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm nzxt-kraken3 nzxt-smart2)
+#     MODULES=(usbhid xhci_hcdbtrfs)
+#MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm nzxt-kraken3 nzxt-smart2)
+MODULES=()
 
 # BINARIES
 # This setting includes any additional binaries a given user may
