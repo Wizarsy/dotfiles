@@ -2,6 +2,7 @@ options nvidia NVreg_UseKernelSuspendNotifiers=1
 options nvidia NVreg_TemporaryFilePath="/var/tmp"
 options nvidia NVreg_UsePageAttributeTable=1
 options nvidia NVreg_RegistryDwords="PerfLevelSrc=0x2222"
+options nvidia NVreg_EnableResizableBar=1
 
 options nvidia-drm modeset=1
 options nvidia-drm fbdev=1
