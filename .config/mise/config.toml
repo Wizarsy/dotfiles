@@ -1,4 +1,4 @@
 [tools]
 conan = "latest"
 uv = "latest"
-lua = "latest"
+
