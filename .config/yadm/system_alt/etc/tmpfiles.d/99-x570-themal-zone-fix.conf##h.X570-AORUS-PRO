@@ -1,0 +1,2 @@
+#    Path                  Mode UID  GID  Age Argument
+w /sys/class/thermal/thermal_zone0/mode - - - - disabled

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-echo disabled > /sys/class/thermal/thermal_zone0/mode 
