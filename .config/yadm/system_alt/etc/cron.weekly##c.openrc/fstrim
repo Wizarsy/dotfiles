@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-/usr/bin/fstrim --listed-in /etc/fstab:/proc/self/mountinfo --verbose --quiet-unsupported 2>&1 | /usr/bin/logger -i
-
