@@ -322,3 +322,5 @@ rc_timeout_stopsec="10"
 # If this is set to no, we do not send sigkill to all processes in the
 # cgroup.
 rc_send_sigkill="YES"
+
+RC_CACHEDIR="/usr/lib/openrc/cache"
