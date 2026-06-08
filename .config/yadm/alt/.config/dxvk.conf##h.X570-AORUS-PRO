@@ -26,3 +26,10 @@ dxvk.latencySleep = True
 dxgi.maxFrameLatency = 1
 d3d9.maxFrameLatency = 1
 
+[eldenring.exe]
+d3d9.maxFrameRate = 60
+dxgi.maxFrameRate = 60
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+
