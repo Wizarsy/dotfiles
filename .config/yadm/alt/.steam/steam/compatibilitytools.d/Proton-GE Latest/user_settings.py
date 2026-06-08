@@ -5,13 +5,16 @@ user_settings = {
   "PROTON_LOCAL_SHADER_CACHE": "1",
   "PROTON_USE_NTSYNC": "1",
   "PROTON_USE_SDL": "0",
+  "PROTON_DISCORD_BRIDGE": "1",
 
   # Nvidia
   "__GL_SYNC_TO_VBLANK": "1",
   "PROTON_ENABLE_NVAPI": "1",
   "PROTON_NVIDIA_LIBS": "1",
+  "PROTON_VKREFLEX": "1",
   "DXVK_NVAPI_VKREFLEX": "1", # Reflex support
-
+  "DXVK_STATE_CACHE": "1",
+  
   ## dxvk-low-latency
 #  "PROTON_DXVK_LOWLATENCY": "1", 
 #  "DXVK_FRAME_PACE": "low-latency-vrr-158",

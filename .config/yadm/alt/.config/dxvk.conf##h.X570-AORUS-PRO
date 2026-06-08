@@ -26,6 +26,10 @@ dxvk.latencySleep = True
 dxgi.maxFrameLatency = 1
 d3d9.maxFrameLatency = 1
 
+[dyinglightgame.exe]
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+
 [eldenring.exe]
 dxgi.maxFrameRate = 60
 dxvk.latencySleep = True
@@ -36,6 +40,7 @@ dxvk.latencySleep = True
 dxgi.maxFrameLatency = 1
 
 [nioh2.exe]
+dxgi.maxFrameRate = 120
 dxvk.latencySleep = True
 dxgi.maxFrameLatency = 1
 
