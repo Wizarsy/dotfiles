@@ -4,7 +4,7 @@ user_settings = {
   "PROTON_NO_WM_DECORATION": "1",
   "PROTON_LOCAL_SHADER_CACHE": "1",
   "PROTON_USE_NTSYNC": "1",
-  "PROTON_USE_SDL": "1",
+  "PROTON_USE_SDL": "0",
 
   # Nvidia
   "__GL_SYNC_TO_VBLANK": "1",
