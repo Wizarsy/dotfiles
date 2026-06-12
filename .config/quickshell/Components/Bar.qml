@@ -66,27 +66,8 @@ PanelWindow { // qmllint disable uncreatable-type
                     layoutDirection: Qt.RightToLeft
                     spacing: 12
 
-                    SysTray {
-                        window: root
-                    }
+                    SysTray {}
                 }
-                // ListView {
-                //     anchors.fill: parent
-                //     spacing: 10
-                //     orientation: Qt.Horizontal
-                //     layoutDirection: Qt.RightToLeft
-                //     anchors.right: rightZone.right
-                //     anchors.rightMargin: 5
-
-                //     model: SystemTray.items
-                //     delegate: IconImage {
-                //     required property var modelData
-                //         id: icon
-                //         implicitSize: 16
-                //         source: modelData.icon
-                //         anchors.verticalCenter: parent.verticalCenter
-                //     }
-                // }
             }
         }
     }

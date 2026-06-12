@@ -9,7 +9,6 @@ import Quickshell.Services.SystemTray
 Rectangle {
     id: root
     property int iconSize: 16
-    property var window
     implicitWidth: iconSize * 6
     implicitHeight: parent.height - 8
     color: "gray"
@@ -50,14 +49,14 @@ Rectangle {
                 id: loader
                 active: false
                 PopupWindow {
-                    id: pop
+                    id: menu
                     anchor.item: icon
                     anchor.rect.y: icon.height
                     implicitWidth: 120
-                    implicitHeight: 12 + popList.count
+                    implicitHeight: 12 + menuItems.height
                     visible: true
                     ListView {
-                        id: popList
+                        id: menuItems
                         anchors.fill: parent
                         model: opener.children
                         delegate: Text {
