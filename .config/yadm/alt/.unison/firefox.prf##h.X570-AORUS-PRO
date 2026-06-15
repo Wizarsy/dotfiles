@@ -1,4 +1,4 @@
-root = /mnt/data-ssd/Users/Filipe/AppData/Roaming/Mozilla/Firefox
+root = /mnt/windows/Users/Filipe/AppData/Roaming/Mozilla/Firefox
 root = /home/wizarsy/.config/mozilla/firefox
 ignore = Name {*.corrupt,*.sqlite-*,*.ini,user.js,lock}
 
