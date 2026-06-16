@@ -16,6 +16,62 @@ d3d9.samplerAnisotropy = 16
 d3d11.clampNegativeLodBias = False
 d3d9.clampNegativeLodBias = False
 
+[AssassinsCreed_Dx9.exe]
+d3d9.maxFrameRate = 60
+dxgi.maxFrameRate = 60
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+
+[AssassinsCreed_Dx10.exe]
+d3d9.maxFrameRate = 60
+dxgi.maxFrameRate = 60
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+
+[AssassinsCreed_Game.exe]
+d3d9.maxFrameRate = 60
+dxgi.maxFrameRate = 60
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+
+[AssassinsCreedII.exe]
+d3d9.maxFrameRate = 60
+dxgi.maxFrameRate = 60
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+
+[AssassinsCreedIIGame.exe]
+d3d9.maxFrameRate = 60
+dxgi.maxFrameRate = 60
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+
+[ACBSP.exe]
+d3d9.maxFrameRate = 60
+dxgi.maxFrameRate = 60
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+
+[ACRSP.exe]
+d3d9.maxFrameRate = 60
+dxgi.maxFrameRate = 60
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+
+[AC3SP.exe]
+d3d9.maxFrameRate = 60
+dxgi.maxFrameRate = 60
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+
 [bioshock.exe]
 dxvk.latencySleep = True
 dxgi.maxFrameLatency = 1

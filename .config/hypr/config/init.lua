@@ -55,7 +55,7 @@ hl.window_rule({
   no_blur = true,
   render_unfocused = true,
   immediate = true,
-  confine_pointer = true
+--  confine_pointer = true
 })
 hl.window_rule({ match = { class = "^(dyinglightgame_x64_rwdi.exe|hl2_linux)$" }, immediate = false })
 
