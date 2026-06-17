@@ -1,7 +1,7 @@
 zram_size="50%"
-zram_type="btrfs"
+zram_type="xfs"
 zram_comp_algo="zstd"
 zram_algo_params="level=1"
 
 zram_storage_mountpoint="/var/tmp"
-zram_storage_extra_mount_options="nodatacow"
+zram_storage_mkfs_options="-L @label@"
