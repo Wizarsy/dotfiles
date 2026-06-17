@@ -8,6 +8,10 @@ hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
 hl.env("ELECTRON_FORCE_WINDOW_MENU_BAR", "1")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("MOZ_DISABLE_RDD_SANDBOX", "1")
+
+hl.env("TERMINAL", "wezterm start --always-new-process --")
+hl.env("DESKTOP_SESSION", "gnome")
+
 -- hl.env("WLR_RENDERER", "vulkan")
 
 -- hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
@@ -159,7 +163,8 @@ local terminal    = "wezterm -e --always-new-process"
 local fileManager = "wezterm -e --always-new-process -- yazi"
 local menu        = "hyprlauncher"
 
-hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+-- hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mod .. " + SHIFT + Escape", hl.dsp.exit())
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + T", hl.dsp.exec_cmd(terminal))
@@ -235,6 +240,7 @@ hl.on("hyprland.start", function()
   -- hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme $gtkTheme")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface toolbar-icons-size 'small'")
   hl.exec_cmd("gsettings set org.gnome.desktop.interface toolbar-style 'icons'")
+  hl.exec_cmd("dbus-update-activation-environment --all")
 end)
 
 hl.on("window.title", function(w)
