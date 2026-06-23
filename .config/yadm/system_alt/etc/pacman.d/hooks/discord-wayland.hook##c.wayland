@@ -1,0 +1,18 @@
+[Trigger]
+Operation = Install
+Type = Package
+Target = discord
+
+[Action]
+When = PostTransaction
+Exec = /bin/sh -c '
+case "$(lspci -kd ::03xx | grep -Po "Kernel driver in use: \K.+")" in
+  nvidia)
+    ARGS="--enable-features=UseOzonePlatform,WaylandWindowDecorations,AllowQt,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks,VaapiOnNvidiaGPUs --disable-features=UseSkiaRenderer --gtk-version=4 --ozone-platform=wayland --password-store=gnome-libsecret --disk-cache-dir=/tmp/electron --use-gl=angle --use-angle=gl --ignore-gpu-blocklist --enable-zero-copy --enable-gpu-rasterization --disable-gpu-driver-bug-workaround --use-cmd-decoder=passthrough"
+    ;;
+  *)
+    ARGS="--enable-features=UseOzonePlatform,WaylandWindowDecorations,AllowQt,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks,VaapiVideoDecoder --disable-features=UseSkiaRenderer --gtk-version=4 --ozone-platform=wayland --password-store=gnome-libsecret --disk-cache-dir=/tmp/electron --use-gl=angle --use-angle=gl --ignore-gpu-blocklist --enable-zero-copy --enable-gpu-rasterization --disable-gpu-driver-bug-workaround --use-cmd-decoder=passthrough"
+    ;;
+esac
+sed -i "/Exec/s|discord|discord $ARGS|" /usr/share/applications/discord.desktop
+'

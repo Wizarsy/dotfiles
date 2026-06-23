@@ -56,7 +56,9 @@ hl.config({
   input = {
     kb_model = "",
     kb_layout = "us",
-    kb_variant = "intl"
+    kb_variant = "intl",
+    scroll_factor = 0.7,
+    emulate_discrete_scroll = 1
   }
 })
 

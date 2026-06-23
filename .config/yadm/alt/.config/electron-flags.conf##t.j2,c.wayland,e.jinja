@@ -1,4 +1,4 @@
---enable-features=UseOzonePlatform,WaylandWindowDecorations,AllowQt,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks{% if "nvidia" in YADM_CLASSES %}VaapiOnNvidiaGPUs{% else %}VaapiVideoDecoder{% endif %}
+--enable-features=UseOzonePlatform,WaylandWindowDecorations,AllowQt,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder,VaapiIgnoreDriverChecks,{% if "nvidia" in YADM_CLASSES %}VaapiOnNvidiaGPUs{% else %}VaapiVideoDecoder{% endif %}
 --disable-features=UseSkiaRenderer
 --gtk-version=4
 --ozone-platform=wayland

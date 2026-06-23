@@ -1,5 +1,8 @@
 user_settings = {
-   # General
+  # Misc
+  "MANGOHUD": "1",
+  
+  # General
   "PROTON_ENABLE_WAYLAND": "1",
   "PROTON_NO_WM_DECORATION": "1",
   "PROTON_LOCAL_SHADER_CACHE": "1",
@@ -11,6 +14,7 @@ user_settings = {
 
   # Nvidia
   "__GL_SYNC_TO_VBLANK": "1",
+  "__GL_MaxFramesAllowed": "1",
   "PROTON_ENABLE_NVAPI": "1",
   "PROTON_NVIDIA_LIBS": "1",
   "PROTON_VKREFLEX": "1",

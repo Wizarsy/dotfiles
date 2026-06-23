@@ -1,0 +1,8 @@
+[Trigger]
+Operation = Install
+Type = Package
+Target = spotify
+
+[Action]
+When = PostTransaction
+Exec = /bin/sh -c 'sed -i "/Exec=/s/=/=env -u DISPLAY /" /usr/share/applications/spotify.desktop'

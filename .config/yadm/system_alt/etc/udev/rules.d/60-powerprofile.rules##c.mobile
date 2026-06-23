@@ -1,0 +1,2 @@
+ACTION=="add|change", SUBSYSTEM=="power_supply", ATTRS{online}=="1", RUN+="/usr/bin/powerprofilesctl set performance"
+ACTION=="add|change", SUBSYSTEM=="power_supply", ATTRS{online}=="0", RUN+="/usr/bin/powerprofilesctl set balanced"
