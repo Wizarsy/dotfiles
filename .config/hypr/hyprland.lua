@@ -1,4 +1,3 @@
-
 hl.env("ICONTHEME", "Papirus-Dark")
 hl.env("FONT", "NotoSans Nerd Font Propo Regular")
 hl.env("FONTSIZE", "12")
@@ -6,6 +5,28 @@ hl.env("DOCFONT", "NotoSerif Nerd Font Propo Regular")
 hl.env("DOCFONTSIZE", "12")
 hl.env("MONOFONT", "CaskaydiaMono Nerd Font Mono Regular")
 hl.env("MONOFONTSIZE", "14")
+hl.env("XCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "catppuccin-mocha-dark-cursors")
+hl.env("HYPRCURSOR_SIZE", os.getenv("XCURSOR_SIZE"))
+hl.env("HYPRCURSOR_THEME", os.getenv("XCURSOR_THEME"))
+
+-- hl.env("QT_SCALE_FACTOR_ROUNDING_POLICY", "RoundPreferFloor")
+
+hl.env("DXVK_CONFIG_FILE", "/home/wizarsy/.config/dxvk.conf")
+hl.env("__GL_VRR_ALLOWED", "1")
+hl.env("__GL_GSYNC_ALLOWED", "1")
+hl.env("__GL_LOG_MAX_ANISO", "4")
+hl.env("__GL_THREADED_OPTIMIZATIONS", "1")
+hl.env("__GL_SHADER_DISK_CACHE", "1")
+hl.env("__GL_SHADER_DISK_CACHE_SKIP_CLEANUP", "1")
+hl.env("__GL_SHADER_DISK_CACHE_SIZE", "6000000000")
+hl.env("CUDA_DISABLE_PERF_BOOST", "1")
+
+-- hl.env("", "")
+-- hl.env("SSH_AUTH_SOCK", "")
+hl.env("EDITOR", "nvim")
+hl.env("GOPATH", "/tmp/go")
+hl.env("CARGO_HOME", "/tmp/cargo")
 
 hl.monitor({ output = "DP-1", mode = "preferred", position = "0x0", scale = 1 })
 hl.monitor({ output = "DP-2", mode = "preferred", position = "auto-right", scale = 1 })
@@ -69,3 +90,4 @@ require("config")
 hl.on("hyprland.start", function()
   hl.exec_cmd("openrc -U graphical")
 end)
+

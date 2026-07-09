@@ -1,15 +1,11 @@
-hl.env("XCURSOR_SIZE", "24")
-hl.env("XCURSOR_THEME", "catppuccin-mocha-dark-cursors")
-hl.env("XCURSOR_PATH", os.getenv("XCURSOR_PATH") .. ":" .. os.getenv("HOME") .. "/.local/share/icons")
-hl.env("HYPRCURSOR_SIZE", os.getenv("XCURSOR_SIZE"))
-hl.env("HYPRCURSOR_THEME", os.getenv("XCURSOR_THEME"))
-
 hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
 hl.env("ELECTRON_FORCE_WINDOW_MENU_BAR", "1")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("MOZ_DISABLE_RDD_SANDBOX", "1")
 
 -- hl.env("TERMINAL", "wezterm start --always-new-process --")
+
+hl.env("XCURSOR_PATH", (os.getenv("XCURSOR_PATH") or "") .. ":" .. os.getenv("HOME") .. "/.local/share/icons")
 hl.env("DESKTOP_SESSION", "gnome")
 
 hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
@@ -59,7 +55,15 @@ hl.window_rule({
 })
 hl.window_rule({ match = { class = "^(dyinglightgame_x64_rwdi.exe|hl2_linux)$" }, immediate = false })
 
-hl.workspace_rule({ workspace = "9", monitor = hl.get_config("cursor.default_monitor") or hl.get_monitors()[1].name, no_rounding = true, decorate = false, persistent = true, default_name = "gaming" })
+hl.workspace_rule({
+  workspace = "9",
+  monitor = hl.get_config("cursor.default_monitor") or hl.get_monitors()[1].name,
+  no_rounding = true,
+  decorate = false,
+  persistent = true,
+  default_name =
+  "gaming"
+})
 
 hl.window_rule({ match = { content = 3 }, workspace = "name:gaming" })
 

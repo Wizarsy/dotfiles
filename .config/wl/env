@@ -1,22 +1,2 @@
-export XCURSOR_SIZE=24
-export XCURSOR_THEME=""
-# export XCURSOR_THEME="catppuccin-mocha-dark-cursors"
-export XCURSOR_PATH="${XCURSOR_PATH}":"${HOME}"/.local/share/icons
-export ICONTHEME="Papirus-Dark"
-export FONT="NotoSans Nerd Font Propo Regular"
-export FONTSIZE=12
-export DOCFONT="NotoSerif Nerd Font Propo Regular"
-export DOCFONTSIZE=12
-export MONOFONT="CaskaydiaMono Nerd Font Mono Regular"
-export MONOFONTSIZE=14
-
-# export WLR_RENDERER="vulkan"
-export ELECTRON_FORCE_WINDOW_MENU_BAR=1
-
-export MOZ_DISABLE_RDD_SANDBOX=1
-
 export PATH="${HOME}/.bin:${HOME}/.local/.bin:/opt:${PATH}"
 export SSH_AUTH_SOCK="$(command find "${XDG_RUNTIME_DIR}" -name 'ssh-agent.*' -print0 -quit)"
-export EDITOR="nvim"
-export GOPATH="/tmp/go"
-export CARGO_HOME="/tmp/cargo"
