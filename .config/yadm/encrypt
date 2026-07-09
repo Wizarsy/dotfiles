@@ -1,3 +1,4 @@
 .gitconfig.local
 .ssh/config
 .ssh/*.key
+.config/yadm/system_alt/etc/makepkg.conf

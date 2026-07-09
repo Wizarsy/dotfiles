@@ -26,7 +26,7 @@ user_settings = {
 #  "DXVK_FRAME_PACE": "low-latency-vrr-158",
 
   ## Nvidia DLSS
-  "PROTON_DLSS_UPGRADE": "1",
+  "PROTON_DLSS_UPGRADE": "0",
   "DXVK_NVAPI_DRS_NGX_DLSS_SR_OVERRIDE": "on",
   "DXVK_NVAPI_DRS_NGX_DLSS_FG_OVERRIDE": "on",
   "DXVK_NVAPI_DRS_NGX_DLSS_RR_OVERRIDE": "on",

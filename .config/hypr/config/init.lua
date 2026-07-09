@@ -9,7 +9,7 @@ hl.env("ELECTRON_FORCE_WINDOW_MENU_BAR", "1")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("MOZ_DISABLE_RDD_SANDBOX", "1")
 
-hl.env("TERMINAL", "wezterm start --always-new-process --")
+-- hl.env("TERMINAL", "wezterm start --always-new-process --")
 hl.env("DESKTOP_SESSION", "gnome")
 
 hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
@@ -44,6 +44,7 @@ hl.window_rule({
 
 hl.window_rule({ match = { title = "^([Mm]inecraft [0-9].*)$" }, content = "game" })
 hl.window_rule({ match = { class = "^(steam_app.*|hl2_linux)$" }, content = "game" })
+hl.window_rule({ match = { xdg_tag = "^(proton-game)$" }, content = "game" })
 hl.window_rule({
   name = "games",
   match = { content = 3 },
@@ -58,8 +59,15 @@ hl.window_rule({
 })
 hl.window_rule({ match = { class = "^(dyinglightgame_x64_rwdi.exe|hl2_linux)$" }, immediate = false })
 
+hl.workspace_rule({ workspace = "9", monitor = hl.get_config("cursor.default_monitor") or hl.get_monitors()[1].name, no_rounding = true, decorate = false, persistent = true, default_name = "gaming" })
+
+hl.window_rule({ match = { content = 3 }, workspace = "name:gaming" })
+
 hl.config({
   general = {
+    border_size = 2,
+    gaps_in = 8,
+    gaps_out = 10,
     layout = "dwindle",
     resize_on_border = true,
     extend_border_grab_area = 10,
@@ -70,6 +78,14 @@ hl.config({
       monitor_gap = 20,
       respect_gaps = true
     }
+  },
+  decoration = {
+    rounding = 15,
+    rounding_power = 2.0,
+    dim_modal = false,
+    shadow = {
+      enabled = false
+    },
   },
   input = {
     numlock_by_default = true,
@@ -111,13 +127,13 @@ hl.config({
     direct_scanout = 2,
   },
   cursor = {
-    no_hardware_cursors = 2
+    no_hardware_cursors = 0
   },
   ecosystem = {
     enforce_permissions = true
   },
   quirks = {
-    skip_non_kms_dmabuf_formats = 1
+    skip_non_kms_dmabuf_formats = true
   }
 })
 
@@ -212,11 +228,11 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
-hl.gesture({
-  fingers = 3,
-  direction = "horizontal",
-  action = "workspace"
-})
+-- hl.gesture({
+--   fingers = 3,
+--   direction = "horizontal",
+--   action = "workspace"
+-- })
 
 
 hl.on("hyprland.start", function()
@@ -242,20 +258,6 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("gsettings set org.gnome.desktop.interface toolbar-style 'icons'")
   -- hl.exec_cmd("dbus-update-activation-environment --all")
 end)
-
---[[
-hl.on("window.title", function(w)
-  local patterns = { "^Extension.*" }
-  if w.class == "code"then return end
-  if w.floating then return end
-  for _, v in ipairs(patterns) do
-    if string.match(w.title, v) then
-      hl.dispatch(hl.dsp.window.float({ action = "on", window = w }))
-      return
-    end
-  end
-end)
---]]
 
 hl.on("monitor.added", function(m)
   local monitor = hl.get_monitors()

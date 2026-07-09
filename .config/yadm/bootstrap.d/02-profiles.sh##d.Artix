@@ -4,6 +4,11 @@ INSTALLC="yay -S --noconfirm --needed"
 SYNCC="yay -Sy"
 CLEANC="yay -Yc --noconfirm"
 
+
+
+
+
+
 configure() {
   sudo -v || exit 1
   sudo -n pacman -Sy
@@ -28,11 +33,12 @@ minimal() {
   sudo -v
   $INSTALLC pipewire pipewire-alsa pipewire-jack pipewire-pulse gst-plugin-pipewire \
     libpulse wireplumber pipewire-openrc pipewire-pulse-openrc wireplumber-openrc
+
   $INSTALLC zsh jq fastfetch bat btop fd eza zoxide fzf ripgrep-all \
     graphicsmagick pandoc poppler tesseract dust pkgfile openssh \
     ffmpeg imagemagick neovim wezterm-nightly-bin 7zip chafa resvg yazi tldr trash-d \
-    pacman-contrib man-db less duf socat speedtest-cli lm_sensors dnsutils \
-    fwupd udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc witr btrbk \
+    pacman-contrib duf speedtest-cli dnsutils \
+    udisks2 udisks2-btrfs usbutils unzip zip ufw ufw-openrc witr btrbk \
     power-profiles-daemon power-profiles-daemon-openrc python-gobject
 }
 
@@ -70,7 +76,7 @@ server_post() {
 
 hyprland() {
   sudo -v
-  $INSTALLC hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-desktop-portal-luminous xdg-desktop-portal-termfilechooser-hunkyburrito-git hyprpolkitagent hypridle hyprqt6engine
+  $INSTALLC hyprland xdg-desktop-portal-hyprland xdg-desktop-portal-gtk xdg-desktop-portal-termfilechooser-hunkyburrito-git hyprpolkitagent hyprlauncher hypridle hyprqt6engine
 }
 
 wayland() {
@@ -80,7 +86,7 @@ wayland() {
 
 DE() {
   sudo -v
-  $INSTALLC obsidian brightnessctl okular firefox xdg-user-dirs noto-fonts noto-fonts-cjk \
+  $INSTALLC obsidian brightnessctl firefox xdg-user-dirs noto-fonts noto-fonts-cjk \
     noto-fonts-emoji noto-fonts-extra ttf-cascadia-mono-nerd ttf-nerd-fonts-symbols \
     ttf-nerd-fonts-symbols-mono ttf-noto-nerd ttf-jetbrains-mono-nerd fontconfig \
     papirus-icon-theme
@@ -90,12 +96,15 @@ DE() {
 }
 
 DE_post() {
-  rc-update --update
+  mkdir ~/.config/rc/runlevels/graphical
+
   rc-update -U add ssh-agent default
   rc-update -U add dbus default
-  rc-update -U add pipewire default
-  rc-update -U add pipewire-pulse default
-  rc-update -U add wireplumber default
+  
+  rc-update -U -s default graphical
+  rc-update -U add pipewire graphical
+  rc-update -U add pipewire-pulse graphical
+  rc-update -U add wireplumber graphical
   
   rc-service --ifstopped -U dbus start
   rc-service --ifstopped -U pipewire start

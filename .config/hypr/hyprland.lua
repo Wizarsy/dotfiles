@@ -36,60 +36,36 @@ local color_scheme = {
 
 hl.config({
   general = {
-    border_size = 2,
-    gaps_in = 8,
-    gaps_out = 10,
     col = {
       active_border = "rgb(565f89)",
       inactive_border = color_scheme.background,
     }
   },
-  decoration = {
-    rounding = 15,
-    rounding_power = 2.0,
-    dim_modal = false,
-    shadow = {
-      enabled = false
-    },
-
-  },
   input = {
     kb_model = "",
     kb_layout = "us",
     kb_variant = "intl",
-    scroll_factor = 0.7,
-    emulate_discrete_scroll = 1
+  },
+  cursor = {
+    default_monitor = "DP-1"
   }
 })
 
-hl.device({
-  name = "ven_04f3:00-04f3:325f-touchpad",
-  sensitivity = 0.7,
-  scroll_method = "2fg"
-})
+-- hl.device({
+--   name = "ven_04f3:00-04f3:325f-touchpad",
+--   sensitivity = 0.7,
+--   scroll_method = "2fg"
+-- })
 
-hl.device({
-  name = "at-translated-set-2-keyboard",
-  kb_model = "abnt2",
-  kb_layout = "br",
-  kb_variant = ""
-})
+-- hl.device({
+--   name = "at-translated-set-2-keyboard",
+--   kb_model = "abnt2",
+--   kb_layout = "br",
+--   kb_variant = ""
+-- })
 
 require("config")
 
--- hl.device({
---   name = "logitech-g502-x-plus-1",
---   sensitivity = -0.5
--- })
--- hl.device({
---   name = "logitech-g502-x-plus",
---   sensitivity = -0.5
--- })
-
--- hl.bind("SUPER + X", function ()
---     hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
---     hl.dispatch(hl.dsp.window.move({workspace = "+0"}))
---     hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
---     hl.dispatch(hl.dsp.window.move({workspace = "special:minimize"}))
---     hl.dispatch(hl.dsp.workspace.toggle_special("minimize"))
--- end)
+hl.on("hyprland.start", function()
+  hl.exec_cmd("openrc -U graphical")
+end)
