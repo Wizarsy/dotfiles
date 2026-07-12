@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "Running Post Decrypt Script..."
+
+# command find "${YADM_HOOK_DIR}/system_alt/etc" -type f,d -exec chmod -v 0755 {} \;
+# command find "${YADM_HOOK_DIR}/system_alt/etc" -type f -not -path '*init.d*' -not -path '*cron.*' -exec chmod -v 0644 {} \;

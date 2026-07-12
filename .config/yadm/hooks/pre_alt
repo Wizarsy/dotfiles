@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "Running Pre Alt Script..."
+
+yadm commit -am "backup: $(date +'%d-%m-%Y %H:%M:%S')" || true

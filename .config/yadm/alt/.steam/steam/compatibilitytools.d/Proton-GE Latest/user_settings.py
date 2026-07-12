@@ -8,6 +8,7 @@ user_settings = {
   "PROTON_LOCAL_SHADER_CACHE": "1",
   "PROTON_USE_NTSYNC": "1",
   "PROTON_USE_SDL": "0",
+  "PROTON_NO_STEAMINPUT": "1",
   "PROTON_DISCORD_BRIDGE": "1",
   "PROTON_PRIORITY_HIGH": "1",
   "PROTON_FORCE_LARGE_ADDRESS_AWARE": "1",
@@ -17,6 +18,7 @@ user_settings = {
   "__GL_MaxFramesAllowed": "1",
   "PROTON_ENABLE_NVAPI": "1",
   "PROTON_NVIDIA_LIBS": "1",
+  "PROTON_NVIDIA_LIBS_NO_32BIT": "0",
   "PROTON_VKREFLEX": "1",
   "DXVK_NVAPI_VKREFLEX": "1", # Reflex support
   "DXVK_STATE_CACHE": "1",
