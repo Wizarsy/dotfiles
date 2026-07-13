@@ -16,7 +16,7 @@
 	"gitbin": "git",
 	"gpgbin": "gpg",
 	"gpgflags": "",
-	"mflags": "",
+	"mflags": "--rmdeps",
 	"sortby": "popularity",
 	"searchby": "name-desc",
 	"gitflags": "",

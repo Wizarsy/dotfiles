@@ -36,7 +36,7 @@ source "$ZSH/oh-my-zsh.sh"
 [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
 
 # Usage
-# source <(usage g completion-init zsh)
+source <(usage g completion-init zsh)
 
 ## Yazi
 y() {
@@ -50,7 +50,7 @@ y() {
 
 export PYTHONWARNINGS=ignore
 # Aliases
-alias up="yay --noconfirm;yay -Yc --noconfirm; sudo pkgfile -u"
+alias up="yay;yay -Yc --noconfirm; sudo pkgfile -u"
 alias cat="bat"
 alias find="fd"
 alias grep="rg"

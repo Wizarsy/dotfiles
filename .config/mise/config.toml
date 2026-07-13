@@ -1,4 +1,5 @@
 [tools]
 conan = "latest"
+usage = "latest"
 uv = "latest"
 
