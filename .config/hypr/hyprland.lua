@@ -28,12 +28,12 @@ hl.env("EDITOR", "nvim")
 hl.env("GOPATH", "/tmp/go")
 hl.env("CARGO_HOME", "/tmp/cargo")
 
-hl.monitor({ output = "DP-1", mode = "preferred", position = "0x0", scale = 1 })
-hl.monitor({ output = "DP-2", mode = "preferred", position = "auto-right", scale = 1 })
+hl.monitor({ output = "desc:Samsung Electric Company Odyssey G5 HX5Y200481", mode = "preferred", position = "0x0", scale = 1 })
+hl.monitor({ output = "desc:Samsung Electric Company C24FG7x HTHM400319", mode = "preferred", position = "auto-right", scale = 1 })
 hl.monitor({ output = "Unknown-1", disabled = true })
 
-hl.workspace_rule({ workspace = "1", monitor = "DP-1", default = true })
-hl.workspace_rule({ workspace = "2", monitor = "DP-2", default = true })
+hl.workspace_rule({ workspace = "1", monitor = "desc:Samsung Electric Company Odyssey G5 HX5Y200481", default = true })
+hl.workspace_rule({ workspace = "2", monitor = "desc:Samsung Electric Company C24FG7x HTHM400319", default = true })
 
 local color_scheme = {
   foreground = "#a9b1d6",
@@ -68,22 +68,9 @@ hl.config({
     kb_variant = "intl",
   },
   cursor = {
-    default_monitor = "DP-1"
+    default_monitor = "desc:Samsung Electric Company Odyssey G5 HX5Y200481"
   }
 })
-
--- hl.device({
---   name = "ven_04f3:00-04f3:325f-touchpad",
---   sensitivity = 0.7,
---   scroll_method = "2fg"
--- })
-
--- hl.device({
---   name = "at-translated-set-2-keyboard",
---   kb_model = "abnt2",
---   kb_layout = "br",
---   kb_variant = ""
--- })
 
 require("config")
 

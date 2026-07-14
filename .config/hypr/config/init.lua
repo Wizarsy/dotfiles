@@ -131,7 +131,7 @@ hl.config({
     direct_scanout = 2,
   },
   cursor = {
-    no_hardware_cursors = 0
+    no_hardware_cursors = 2
   },
   ecosystem = {
     enforce_permissions = true

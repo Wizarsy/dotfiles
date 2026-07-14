@@ -50,7 +50,7 @@ y() {
 
 export PYTHONWARNINGS=ignore
 # Aliases
-alias up="yay;yay -Yc --noconfirm; sudo pkgfile -u"
+alias up="yay;yay -Yc --noconfirm; sudo pkgfile -u; yay -Fy"
 alias cat="bat"
 alias find="fd"
 alias grep="rg"
