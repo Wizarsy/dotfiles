@@ -1,0 +1,4 @@
+modules="dhclient"
+config_eth0="dhcp
+dhcpv6"
+dhclientv6_eth0="-S -e BAK_RESOLV_CONF=1"

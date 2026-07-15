@@ -1,0 +1,7 @@
+case "$reason" in
+
+  BOUND|RENEW|REBIND|REBOOT|BOUND6|RENEW6|REBIND6)
+    sed -i '$!N; /^\(.*\)\n\1$/!P; D' /etc/resolv.conf
+    ;;
+    
+esac

@@ -1,0 +1,11 @@
+case "$reason" in
+
+  BOUND|RENEW|REBIND|REBOOT|BOUND6|RENEW6|REBIND6)
+    if [ "${BAK_RESOLV_CONF}" = 1 ]; then
+      cat /etc/resolv.conf.bak /etc/resolv.conf > /etc/resolv.conf.new
+      mv -f /etc/resolv.conf.new /etc/resolv.conf
+      rm -f /etc/resolv.conf.bak
+    fi
+    ;;
+
+esac
