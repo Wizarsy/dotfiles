@@ -12,6 +12,7 @@ user_settings = {
   "PROTON_DISCORD_BRIDGE": "1",
   "PROTON_PRIORITY_HIGH": "1",
   "PROTON_FORCE_LARGE_ADDRESS_AWARE": "1",
+  "PROTON_FSR4_UPGRADE": "0",
 
   # Nvidia
   "__GL_SYNC_TO_VBLANK": "1",
