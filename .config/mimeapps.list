@@ -1,0 +1,3 @@
+[Default Applications]
+application/x-zerosize=nvim.desktop
+application/pdf=org.kde.okular.desktop

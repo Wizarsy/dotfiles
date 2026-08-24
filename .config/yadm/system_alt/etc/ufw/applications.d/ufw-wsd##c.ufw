@@ -1,0 +1,9 @@
+[wsdd]
+title=WSD Host
+description=Make host visible for device discovery
+ports=3702/udp|5357/tcp
+
+[wsd-client]
+title=WSD Client
+description=Allow discovery of WSD-supporting devices on the local network
+ports=37020/udp

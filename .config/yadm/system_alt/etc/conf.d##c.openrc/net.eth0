@@ -1,5 +1,5 @@
-# modules="dhclient"
+# modules_eth0="dhclient"
 # dhclientv6_eth0="-S -1 -e BAK_RESOLV_CONF=1"
-modules="dhcpcd"
+modules_eth0="dhcpcd"
 config_eth0="dhcp"
 dhcpcd_eth0="-b"

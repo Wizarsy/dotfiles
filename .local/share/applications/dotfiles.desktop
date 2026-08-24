@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Dotfiles
+Comment=Code Editing. Redefined.
+GenericName=Text Editor
+Exec=GIT_DIR=/home/wizarsy GIT_WORK_TREE=/home/wizarsy code --new-window /home/wizarsy/Projects/vscode_workspaces/dotfiles.code-workspace
+Icon=vscode
+Type=Application
+StartupNotify=false
+StartupWMClass=Code
+Categories=TextEditor;Development;IDE;
+MimeType=application/x-code-workspace;
+# Actions=new-empty-window;
+Keywords=vscode;

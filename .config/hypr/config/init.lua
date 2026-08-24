@@ -1,18 +1,153 @@
-hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
-hl.env("ELECTRON_FORCE_WINDOW_MENU_BAR", "1")
-hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
-hl.env("MOZ_DISABLE_RDD_SANDBOX", "1")
+local path = os.getenv("PATH")
+local home = os.getenv("HOME")
 
--- hl.env("TERMINAL", "wezterm start --always-new-process --")
+hl.on("hyprland.start", function()
+  local display_controller = io.popen("lspci -kd ::03xx", "r")
+  if display_controller then
+    local driver = string.match(display_controller:read("a"), "Kernel driver in use: (%w+)")
+    display_controller:close()
+    if driver == "nvidia" then
+      hl.env("NVD_BACKEND", "direct")
+      hl.env("GBM_BACKEND", "nvidia-drm")
+      hl.env("CUDA_DISABLE_PERF_BOOST", "1")
+      hl.env("LIBVA_DRIVER_NAME", "nvidia")
+      hl.env("VDPAU_DRIVER", "nvidia")
+      hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+      hl.env("__EGL_VENDOR_LIBRARY_FILENAMES", "/usr/share/glvnd/egl_vendor.d/10_nvidia.json")
+    elseif driver == "i915" or driver == "xe" or driver == "nouveau" or driver == "dxgkrnl" or driver == "amdgpu" then
+      hl.env("VDPAU_DRIVER", "va_gl")
+      hl.env("__GLX_VENDOR_LIBRARY_NAME", "mesa")
+      hl.env("__EGL_VENDOR_LIBRARY_FILENAMES", "/usr/share/glvnd/egl_vendor.d/50_mesa.json")
+      if driver == "i915" or driver == "xe" then
+        hl.env("ANV_DEBUG", "video-decode,video-encode")
+        if io.open("/usr/lib/dri/iHD_drv_video.so", "r") then
+          hl.env("LIBVA_DRIVER_NAME", "iHD")
+        else
+          hl.env("LIBVA_DRIVER_NAME", "i965")
+        end
+      elseif driver == "nouveau" then
+        hl.env("LIBVA_DRIVER_NAME", "nouveau")
+      elseif driver == "dxgkrnl" then
+        hl.env("GALLIUM_DRIVER", "d3d12")
+        hl.env("LIBVA_DRIVER_NAME", "d3d12")
+      elseif driver == "amdgpu" then
+        hl.env("RADV_PERFTEST", "video_decode,video_encode")
+        hl.env("LIBVA_DRIVER_NAME", "radeonsi")
+      end
+    end
+  end
 
-hl.env("XCURSOR_PATH", (os.getenv("XCURSOR_PATH") or "") .. ":" .. os.getenv("HOME") .. "/.local/share/icons")
-hl.env("DESKTOP_SESSION", "gnome")
+  hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+  hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+  hl.env("XDG_SESSION_TYPE", "wayland")
+  hl.env("DESKTOP_SESSION", "gnome")
+
+  hl.env("XDG_CONFIG_HOME", home .. "/.config")
+  hl.env("XDG_CACHE_HOME", home .. "/.cache")
+  hl.env("XDG_DATA_HOME", home .. "/.local/share")
+  hl.env("XDG_STATE_HOME", home .. "/.local/state")
+
+  hl.env("XCURSOR_PATH",
+    home .. "/.icons:" .. home .. "/.local/share/icons:" .. (os.getenv("XCURSOR_PATH") or "/usr/share/icons"))
+
+  hl.env("GDK_BACKEND", "wayland")
+  hl.env("GDK_SCALE", "1")
+  hl.env("GTK_USE_PORTAL", "1")
+
+  hl.env("QT_QPA_PLATAFORM", "wayland;xcb")
+  hl.env("QT_QPA_PLATFORMTHEME", "hyprqt6engine")
+  hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
+  hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
+  -- hl.env("QT_SCALE_FACTOR_ROUNDING_POLICY", "RoundPreferFloor")
+
+  hl.env("ELM_DISPLAY", "wl")
+  hl.env("ELM_SCALE", "1")
+
+  hl.env("MOZ_ENABLE_WAYLAND", "1")
+  hl.env("MOZ_DISABLE_RDD_SANDBOX", "1")
+
+  hl.env("SDL_VIDEODRIVER", "wayland,x11")
+
+  hl.env("CLUTTER_BACKEND", "wayland")
+
+  hl.env("_JAVA_AWT_WM_NONREPARENTING", "1")
+
+  hl.env("ELECTRON_FORCE_WINDOW_MENU_BAR", "1")
+  hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
+
+  hl.env("PATH", home .. "/.bin:" .. home .. "/.local/.bin:/opt:" .. path)
+  path = os.getenv("PATH")
+
+  hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent")
+  hl.exec_cmd("hypridle")
+  hl.exec_cmd("hyprlauncher -d")
+
+  hl.exec_cmd("gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface font-hinting 'full'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface font-rga-order 'rgb'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface text-scaling-factor 1.0")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface toolbar-icons-size 'small'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface toolbar-style 'icons'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.sounds input-feedback-sounds true")
+  hl.exec_cmd("gsettings set org.gnome.desktop.sounds event-sounds true")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
+
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface font-name " ..
+    "'" .. os.getenv("FONT") .. " " .. os.getenv("FONTSIZE") .. "'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface document-font-name " ..
+    "'" .. os.getenv("DOCFONT") .. " " .. os.getenv("DOCFONTSIZE") .. "'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface monospace-font-name " ..
+    "'" .. os.getenv("MONOFONT") .. " " .. os.getenv("MONOFONTSIZE") .. "'")
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme" .. os.getenv("ICONTHEME"))
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme" .. os.getenv("XCURSOR_THEME"))
+  hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size" .. os.getenv("XCURSOR_SIZE"))
+  -- hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme $gtkTheme")
+  -- hl.exec_cmd("dbus-update-activation-environment --all")
+end)
+
+hl.on("monitor.added", function(m)
+  local monitors = hl.get_monitors()
+  hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1, mirror = monitors[1].name })
+end)
+
+-- hl.on("window.open_early", function(w)
+--   if w ~= nil then
+-- if w.initial_class == "rpcs3" then
+-- if string.match(w.initial_title, "%[%w+%]") then
+--   hl.dispatch(hl.dsp.window.set_prop({ prop = "content", value = "game" }))
+-- end
+-- end
+--   end
+-- end)
+
+hl.on("window.open", function(w)
+  if w ~= nil then
+    if w.tags[1] == "close*" then
+      hl.dispatch(hl.dsp.window.close())
+    end
+  end
+end)
+
+hl.on("window.title", function(w)
+  if w ~= nil then
+    if w.title == "Minecraft Launcher" then
+      hl.dispatch(hl.dsp.window.move({ workspace = "emptynm" }))
+    end
+  end
+end)
+
+hl.workspace_rule({
+  workspace = "9",
+  monitor = hl.get_config("cursor.default_monitor") or hl.get_monitors()[1].name,
+  no_rounding = true,
+  decorate = false,
+  persistent = true,
+  default_name =
+  "gaming"
+})
 
 hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
-hl.window_rule({ match = { initial_title = [[\s*]] }, size = { "(monitor_w * 0.5)", "(monitor_h * 0.5)" }, center = true, float = true })
-hl.window_rule({ match = { initial_class = "steam", initial_title = "negative:Steam" }, float = true })
-hl.window_rule({ match = { class = "^(kvantummanager|qt[5-6]ct|nwg-look|filechooser)$" }, float = true })
-
 hl.window_rule({
   name     = "fix-xwayland-drags",
   match    = {
@@ -38,11 +173,23 @@ hl.window_rule({
   opacity          = "0.0"
 })
 
+hl.window_rule({ match = { initial_title = [[\s*]] }, size = { "(monitor_w * 0.5)", "(monitor_h * 0.5)" }, center = true, float = true })
+
+hl.window_rule({ match = { class = "^(kvantummanager|qt[5-6]ct|nwg-look|filechooser)$" }, float = true })
+hl.window_rule({ match = { initial_class = "org.qbittorrent.qBittorrent", initial_title = "negative:^qBittorrent.*" }, float = true })
+
 hl.window_rule({ match = { title = "^([Mm]inecraft [0-9].*)$" }, content = "game" })
 hl.window_rule({ match = { class = "^(steam_app.*|hl2_linux)$" }, content = "game" })
 hl.window_rule({ match = { xdg_tag = "^(proton-game)$" }, content = "game" })
+
+hl.window_rule({ match = { initial_class = "rpcs3", initial_title = [[(.+ \|)*.+\[\w+\]?]] }, content = "game" })
+hl.window_rule({ match = { initial_class = "steam_app.*", initial_title = [[\s*]] }, content = "none", tag = "close", no_follow_mouse = true })
+-- hl.window_rule({ match = { initial_class = "steam_app.*", float = true }, content = "none" })
+hl.window_rule({ match = { initial_title = "^(Steam|EA|Ubisoft Connect)$" }, content = "none", workspace = "emptynm" })
+hl.window_rule({ match = { initial_title = "^(EADesktop)$" }, content = "none" })
+hl.window_rule({ match = { initial_class = "steam", initial_title = "negative:Steam" }, float = true })
 hl.window_rule({
-  name = "games",
+  name = "games_rule",
   match = { content = 3 },
   dim_around = false,
   decorate = false,
@@ -52,19 +199,9 @@ hl.window_rule({
   no_blur = true,
   render_unfocused = true,
   immediate = true,
+  tag = "game"
 })
 hl.window_rule({ match = { class = "^(dyinglightgame_x64_rwdi.exe|hl2_linux)$" }, immediate = false })
-
-hl.workspace_rule({
-  workspace = "9",
-  monitor = hl.get_config("cursor.default_monitor") or hl.get_monitors()[1].name,
-  no_rounding = true,
-  decorate = false,
-  persistent = true,
-  default_name =
-  "gaming"
-})
-
 hl.window_rule({ match = { content = 3 }, workspace = "name:gaming" })
 
 hl.config({
@@ -135,16 +272,14 @@ hl.config({
   },
   ecosystem = {
     enforce_permissions = true
-  },
-  quirks = {
-    skip_non_kms_dmabuf_formats = true
   }
 })
 
 hl.permission({ binary = ".*", type = "screencopy", mode = "ask" })
 hl.permission({ binary = "/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", type = "screencopy", mode = "allow" })
 hl.permission({ binary = "/usr/(bin|local/bin)/hyprpm", type = "plugin", mode = "allow" })
-
+hl.permission({ binary = "/usr/(bin|local/bin)/teamspeak", type = "screencopy", mode = "allow" })
+hl.permission({ binary = "/usr/(bin|local/bin)/discord", type = "screencopy", mode = "allow" })
 
 -- hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
 -- hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
@@ -172,7 +307,6 @@ hl.permission({ binary = "/usr/(bin|local/bin)/hyprpm", type = "plugin", mode = 
 -- hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
 -- hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
-
 local mod         = "SUPER"
 local terminal    = "wezterm -e --always-new-process"
 local fileManager = "wezterm -e --always-new-process -- yazi"
@@ -191,7 +325,6 @@ hl.bind(mod .. " + Z", hl.dsp.window.float({ action = "toggle" }))
 -- hl.bind(mod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
-
 hl.bind(mod .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(mod .. " + right", hl.dsp.focus({ direction = "right" }))
 hl.bind(mod .. " + up", hl.dsp.focus({ direction = "up" }))
@@ -206,8 +339,8 @@ end
 hl.bind(mod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
-hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "r+1" }))
-hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "r-1" }))
+hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "r-1" }))
+hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "r+1" }))
 
 hl.bind(mod .. " + SHIFT + left", hl.dsp.window.move({ workspace = "e+1" }))
 hl.bind(mod .. " + SHIFT + right", hl.dsp.window.move({ workspace = "e-1" }))
@@ -227,43 +360,13 @@ hl.bind(mod .. "+ M", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ tog
   { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"), { locked = true })
 
 -- hl.gesture({
 --   fingers = 3,
 --   direction = "horizontal",
 --   action = "workspace"
 -- })
-
-
-hl.on("hyprland.start", function()
-  hl.exec_cmd("/usr/lib/hyprpolkitagent/hyprpolkitagent")
-  hl.exec_cmd("hypridle")
-  hl.exec_cmd("hyprlauncher -d")
-  hl.exec_cmd("gsettings set org.gnome.desktop.wm.preferences button-layout 'appmenu'")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface font-name $FONT")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface document-font-name $DOCFONT")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface monospace-font-name $MONOFONT")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface font-hinting 'full'")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface font-antialiasing 'rgba'")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface font-rga-order 'rgb'")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface text-scaling-factor 1.0")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
-  hl.exec_cmd("gsettings set org.gnome.desktop.sounds event-sounds true")
-  hl.exec_cmd("gsettings set org.gnome.desktop.sounds input-feedback-sounds true")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface icon-theme $ICONTHEME")
-  -- hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-theme $XCURSOR_THEME")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface cursor-size $XCURSOR_SIZE")
-  -- hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme $gtkTheme")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface toolbar-icons-size 'small'")
-  hl.exec_cmd("gsettings set org.gnome.desktop.interface toolbar-style 'icons'")
-  -- hl.exec_cmd("dbus-update-activation-environment --all")
-end)
-
-hl.on("monitor.added", function(m)
-  local monitor = hl.get_monitors()
-  hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1, mirror = monitor[1].name })
-end)
