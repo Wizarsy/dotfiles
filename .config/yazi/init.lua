@@ -1,19 +1,18 @@
 require("git"):setup()
-require("copy-file-contents"):setup({
-	append_char = "\n",
-	notification = true,
-})
+require("term-cwd"):setup()
+require("copy-file-contents"):setup { notification = true }
+require("zoxide"):setup { update_db = true }
 
 function Linemode:size_and_mtime()
-	local time = math.floor(self._file.cha.mtime or 0)
-	if time == 0 then
-		time = ""
-	elseif os.date("%Y", time) == os.date("%Y") then
-		time = os.date("%m/%d %H:%M", time)
-	else
-		time = os.date("%m/%d  %Y", time)
-	end
-
-	local size = self._file:size()
-	return string.format("%s %s", size and ya.readable_size(size) or "-", time)
+  local mtime, date
+  mtime = math.floor(self._file.cha.mtime or 0)
+  if mtime == 0 then
+    date = ""
+  elseif os.date("%Y", mtime) == os.date("%Y") then
+    date = os.date("%m/%d %H:%M", mtime)
+  else
+    date = os.date("%m/%d  %Y", mtime)
+  end
+  local size = self._file:size()
+  return string.format("%s %s", size and ya.readable_size(size) or "-", date)
 end

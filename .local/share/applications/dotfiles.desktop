@@ -2,7 +2,7 @@
 Name=Dotfiles
 Comment=Code Editing. Redefined.
 GenericName=Text Editor
-Exec=GIT_DIR=/home/wizarsy GIT_WORK_TREE=/home/wizarsy code --new-window /home/wizarsy/Projects/vscode_workspaces/dotfiles.code-workspace
+Exec=GIT_DIR=/home/wizarsy/.local/share/yadm/repo.git GIT_WORK_TREE=/home/wizarsy code --new-window /home/wizarsy/Projects/vscode_workspaces/dotfiles.code-workspace
 Icon=vscode
 Type=Application
 StartupNotify=false

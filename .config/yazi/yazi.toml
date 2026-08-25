@@ -1,18 +1,36 @@
-# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
-# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 #:schema https://yazi-rs.github.io/schemas/yazi.json
 
 [mgr]
-ratio          = [ 1, 4, 5 ]
-sort_by        = "alphabetical"
-linemode       = "size_and_mtime"
-show_hidden    = true
-show_symlink   = true
+ratio = [1, 4, 5]
+sort_by = "natural"
+linemode = "size_and_mtime"
+show_hidden = true
+show_symlink = true
+
+[preview]
+cache_dir = "/home/wizarsy/.cache/yazi"
+
+[tasks]
+image_alloc = 1073741824
 
 [plugin]
 append_fetchers = [
   { id = "git", url = "*", run = "git", group = "git" },
-  { id = "git", url = "*/", run = "git", group = "git"},
+  { id = "git", url = "*/", run = "git", group = "git" },
+]
+prepend_preloaders = [
+  { mime = "{audio,video,image}/*", run = "mediainfo" },
+  { mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
+  { url = "*.{ai,eps,ait}", run = "mediainfo" },
+  { mime = "{image}/*", run = "mediainfo --no-metadata" },
+  { mime = "{video}/*", run = "mediainfo --no-preview" },
+]
+prepend_previewers = [
+  { mime = "{audio,video,image}/*", run = "mediainfo" },
+  { mime = "application/{subrip,postscript,illustrator,dvb.ait,vnd.adobe.illustrator,eps}", run = "mediainfo" },
+  { url = "*.{ai,eps,ait}", run = "mediainfo" },
+  { mime = "{image}/*", run = "mediainfo --no-metadata" },
+  { mime = "{video}/*", run = "mediainfo --no-preview" },
 ]
 
 [input]
