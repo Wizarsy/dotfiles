@@ -111,15 +111,15 @@ hl.on("monitor.added", function(m)
   hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1, mirror = monitors[1].name })
 end)
 
--- hl.on("window.open_early", function(w)
---   if w ~= nil then
+hl.on("window.open_early", function(w)
+  if w ~= nil then
 -- if w.initial_class == "rpcs3" then
 -- if string.match(w.initial_title, "%[%w+%]") then
 --   hl.dispatch(hl.dsp.window.set_prop({ prop = "content", value = "game" }))
 -- end
 -- end
---   end
--- end)
+  end
+end)
 
 hl.on("window.open", function(w)
   if w ~= nil then
@@ -131,9 +131,9 @@ end)
 
 hl.on("window.title", function(w)
   if w ~= nil then
-    if w.title == "Minecraft Launcher" then
-      hl.dispatch(hl.dsp.window.move({ workspace = "emptynm" }))
-    end
+--    if w.title == "Minecraft Launcher" then
+--      hl.dispatch(hl.dsp.window.move({ workspace = "emptynm" }))
+--    end
   end
 end)
 
@@ -185,7 +185,7 @@ hl.window_rule({ match = { xdg_tag = "^(proton-game)$" }, content = "game" })
 hl.window_rule({ match = { initial_class = "rpcs3", initial_title = [[(.+ \|)*.+\[\w+\]?]] }, content = "game" })
 hl.window_rule({ match = { initial_class = "steam_app.*", initial_title = [[\s*]] }, content = "none", tag = "close", no_follow_mouse = true })
 -- hl.window_rule({ match = { initial_class = "steam_app.*", float = true }, content = "none" })
-hl.window_rule({ match = { initial_title = "^(Steam|EA|Ubisoft Connect)$" }, content = "none", workspace = "emptynm" })
+hl.window_rule({ match = { initial_title = "^(Steam|EA|Ubisoft Connect)$" }, content = "none" })
 hl.window_rule({ match = { initial_title = "^(EADesktop)$" }, content = "none" })
 hl.window_rule({ match = { initial_class = "steam", initial_title = "negative:Steam" }, float = true })
 hl.window_rule({
@@ -239,7 +239,6 @@ hl.config({
     }
   },
   misc = {
-    disable_hyprland_logo = false,
     vrr = 3,
     render_unfocused_fps = 30
   },

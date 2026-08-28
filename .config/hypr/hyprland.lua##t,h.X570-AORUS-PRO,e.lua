@@ -59,7 +59,8 @@ hl.on("hyprland.start", function()
   hl.env("EDITOR", "nvim")
   hl.env("GOPATH", "/tmp/go")
   hl.env("CARGO_HOME", "/tmp/cargo")
-
+  
+  hl.exec_cmd("hyprpaper")
   hl.exec_cmd("openrc -U graphical")
   if io.popen("command -v lact", "r") then
     hl.exec_cmd("lact cli profile set Default")
@@ -126,6 +127,9 @@ hl.config({
     kb_model = "",
     kb_layout = "us",
     kb_variant = "intl",
+  },
+  misc = {
+    disable_hyprland_logo = true
   },
   cursor = {
     default_monitor = "desc:Samsung Electric Company Odyssey G5 HX5Y200481"

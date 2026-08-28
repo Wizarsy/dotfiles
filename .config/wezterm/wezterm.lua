@@ -1,4 +1,5 @@
 local wezterm = require("wezterm") ---@type WezTerm
+local act = wezterm.action
 local config = wezterm.config_builder() or {} ---@type Config
 
 local gpus = wezterm.gui.enumerate_gpus()
@@ -59,25 +60,21 @@ config.line_height = 1.2
 config.cell_width = 1.0
 -- config.freetype_load_flags = "FORCE_AUTOHINT"
 
--- config.keys = {
---   {
---     key = "c",
---     mods = "CTRL",
---   }
--- }
-
--- config.keys = {
--- {
---  key = 'LeftArrow',
---  mods = 'CTRL|SHIFT',
---  action = wezterm.action.DisableDefaultAssignment,
--- },
--- {
---  key = 'RightArrow',
---  mods = 'CTRL|SHIFT',
---  action = wezterm.action.DisableDefaultAssignment,
--- }
--- }
+config.keys = {
+  {
+    key = 'c',
+    mods = 'CTRL',
+    action = wezterm.action_callback(function(window, pane)
+      local has_selection = window:get_selection_text_for_pane(pane) ~= ''
+      if has_selection then
+        window:perform_action(act.CopyTo 'ClipboardAndPrimarySelection', pane)
+        window:perform_action(act.ClearSelection, pane)
+      else
+        window:perform_action(act.SendKey { key = 'c', mods = 'CTRL' }, pane)
+      end
+    end),
+  },
+}
 
 bar.apply_to_config(config)
 

@@ -12,7 +12,7 @@ prepend_keymap = [
   { on = "<F2>", run = "tasks:show", desc = "Show task manager" },
   { on = "o", run = "open --interactive", desc = "Open selected files interactively" },
   { on = "O", run = "open", desc = "Open selected files" },
-  { on = "M", run = "plugin lsblk-mount", desc = "Open the drive mount manager" },
+  { on = "M", run = "plugin mount", desc = "Open the drive mount manager" },
   { on = [ "c", "m" ], run = "plugin chmod", desc = "Chmod on selected files" },
 ]
 

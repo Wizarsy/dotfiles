@@ -1,0 +1,42 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "c591a36"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "c591a36"
+hash = "5bb0bfab901d3601c370eafdd66edd31"
+
+[[plugin.deps]]
+use = "AnirudhG07/plugins-yazi:copy-file-contents"
+rev = "3f4f1a3"
+hash = "421263a8558fbd2fdb07a75f074cc6e3"
+
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "73a3658"
+hash = "fa787a8ef785f2976ea2861f62b8c6c4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "c591a36"
+hash = "d6f7351ea25a43c9b5f4315fa1e23935"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:term-cwd"
+rev = "c591a36"
+hash = "ea4d7108bc2c02738ab652064095905f"
+
+[[plugin.deps]]
+use = "PHONE1X/lsblk-mount"
+rev = "73e863f"
+hash = "69e36cdc69855863e0c1b176e19838cd"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:types"
+rev = "c591a36"
+hash = "ff056b5acd05d915dc3a3936cb0cfd3e"
+
+[flavor]
+deps = []
