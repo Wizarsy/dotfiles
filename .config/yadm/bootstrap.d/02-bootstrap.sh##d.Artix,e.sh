@@ -2,7 +2,7 @@
 
 # shellcheck disable=SC2016
 
-INSTALL="yay -S --noconfirm --needed --builddir ${HOME}/.cache/yay"
+INSTALL="yay -S --noconfirm --needed --norebuild --builddir ${HOME}/.cache/yay"
 UPDATE="yay -Sy"
 CLEAN="yay -Yc --noconfirm"
 # read -r HOST < /etc/hostname
