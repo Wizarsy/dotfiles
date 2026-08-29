@@ -21,10 +21,10 @@ prepare-bootstrap() {
   sudo -n pacman-key --add /tmp/auris.key
   sudo -n pacman-key --lsign-key 74E5750C4A3C00F037070EF2357B525A97500B9F
 
-  sudo -n cp -v -a -L --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/makepkg.conf.d/." /etc/makepkg.conf.d
-  sudo -n cp -v -a -L --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/makepkg.conf" /etc/makepkg.conf
-  sudo -n cp -v -a -L --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/pacman.conf" /etc/pacman.conf
-  sudo -n /usr/bin/find "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/pacman.d" -type l -exec bash -c 'file={}; dest="$(dirname "${file##*system_alt}")"; mkdir -p "$dest"; cp -v -a -L --reflink=never "$file" "${dest}/${file##*/}"' \;
+  sudo -n cp -v -a -L --no-preserve=owership --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/makepkg.conf.d/." /etc/makepkg.conf.d
+  sudo -n cp -v -a -L --no-preserve=owership --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/makepkg.conf" /etc/makepkg.conf
+  sudo -n cp -v -a -L --no-preserve=owership --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/pacman.conf" /etc/pacman.conf
+  sudo -n /usr/bin/find "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/pacman.d" -type l -exec bash -c 'file={}; dest="$(dirname "${file##*system_alt}")"; mkdir -p "$dest"; cp -v -a -L --no-preserve=owership --reflink=never "$file" "${dest}/${file##*/}"' \;
 
   if [[ ! -x "$(command -v yay)" ]]; then
     sudo -n pacman -Sy --noconfirm --needed yay
@@ -45,12 +45,12 @@ minimal-bootstrap() {
     chafa ffmpeg imagemagick graphicsmagick pandoc poppler mediainfo
     python-gobject resvg tesseract-data nss-mdns
   )
-  $INSTALL "${pkgs[@]}"
+  $INSTALL --builddir "${HOME}/.cache/yay" "${pkgs[@]}"
   $INSTALL --asdeps "${deps_pkgs[@]}"
   
   sudo -v
   rm -rf "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/}"
-  (sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc)
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-completions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions"
   git clone https://github.com/Pilaton/OhMyZsh-full-autoupdate.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/ohmyzsh-full-autoupdate"
@@ -159,7 +159,7 @@ ufw-bootstrap() {
   local ip_json addr_info_len addr_local addr_prefix_len
   local deps_pkgs=(ufw-extras)
   
-  sudo -n cp -v -a -L --update=older --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/ufw/." /etc/ufw
+  sudo -n cp -v -a -L --no-preserve=owership --update=older --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/ufw/." /etc/ufw
   
   sudo -n ufw reset
   sudo -n ufw default reject incoming
