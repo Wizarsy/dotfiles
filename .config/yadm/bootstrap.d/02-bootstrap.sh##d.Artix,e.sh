@@ -226,7 +226,7 @@ openrc-bootstrap() {
   makepkg --noconfirm --needed -sri -D /tmp/PKGBUILDs/bpftune-git
 
   local pkgs=(ananicy-cpp-openrc fwupd-openrc openssh-openrc power-profiles-daemon-openrc ufw-openrc scx_loader-openrc dbus-openrc ssh-agent-openrc)
-  local sys_services=(fwupd power-profiles-daemon ufw scx_loader dbus ananicy-cpp bpftune)
+  local sys_services=(fwupd power-profiles-daemon ufw scx_loader dbus ananicy-cpp bpftune net-online)
   local user_services=(ssh-agent dbus)
   if [[ -n "$(yadm config --get local.class desktop)" ]]; then
     mkdir -p "${HOME}/.config/rc/runlevels/graphical"
@@ -253,7 +253,7 @@ openrc-bootstrap() {
   fi
   if [[ -n "$(yadm config --get local.class samba)" ]]; then
     pkgs+=(samba-openrc wsdd-openrc)
-    sys_services+=(smb wsdd)
+    sys_services+=(smb wsdd avahi-daemon)
   fi
   if [[ -n "$(yadm config --get local.class server)" ]]; then
     sys_services+=(sshd.eth)
