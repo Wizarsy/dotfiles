@@ -11,6 +11,6 @@ if [[ -n "$alt_files" ]] && [[ -z "$SKIP_SYS_ALTS" ]]; then
   for file in "${alt_files[@]}"; do
     dest="$(dirname "${file##*system_alt}")"
     sudo -n mkdir -p "$dest"
-    sudo -n cp -v -a -L --no-preserve=owership --update=older --reflink=never "$file" "${dest}/${file##*/}"
+    sudo -n cp -v -a -L --no-preserve=ownership --update=older --reflink=never "$file" "${dest}/${file##*/}"
   done
 fi
