@@ -205,6 +205,7 @@ ufw-bootstrap() {
   if [[ -n "$(yadm config --get local.class docker)" ]]; then
     echo
   fi
+  sudo -n ufw --force enable
   $INSTALL "${pkgs[@]}"
   # $INSTALL --asdeps "${deps_pkgs[@]}"
 }
@@ -225,7 +226,7 @@ openrc-bootstrap() {
   makepkg --noconfirm --needed -sri -D /tmp/PKGBUILDs/bpftune-git
 
   local pkgs=(ananicy-cpp-openrc fwupd-openrc openssh-openrc power-profiles-daemon-openrc ufw-openrc scx_loader-openrc dbus-openrc ssh-agent-openrc)
-  local sys_services=(fwupd power-profiles-daemon ufw scx_loader dbus ananicy-cpp)
+  local sys_services=(fwupd power-profiles-daemon ufw scx_loader dbus ananicy-cpp bpftune)
   local user_services=(ssh-agent dbus)
   if [[ -n "$(yadm config --get local.class desktop)" ]]; then
     mkdir -p "${HOME}/.config/rc/runlevels/graphical"
@@ -274,10 +275,7 @@ prepare-bootstrap
 for class in $(yadm config --get-all local.class); do
   sudo -v
   "${class}"-bootstrap
-  # wait
 done
-# while read -r class; do
-# done <<< "$(yadm config --get-all local.class)"
 [[ "${SHELL##*/}" != "zsh" ]] && chsh -s "$(which zsh)"
 $CLEAN
 command rm -rf "$BUILDDIR" "$CARGO_HOME" "$GOPATH" "$AURDEST"
