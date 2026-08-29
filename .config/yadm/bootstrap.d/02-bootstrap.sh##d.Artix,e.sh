@@ -2,10 +2,16 @@
 
 # shellcheck disable=SC2016
 
-INSTALL="yay -S --noconfirm --needed"
+INSTALL="yay -S --noconfirm --needed --builddir ${HOME}/.cache/yay"
 UPDATE="yay -Sy"
 CLEAN="yay -Yc --noconfirm"
 # read -r HOST < /etc/hostname
+
+BUILDDIR=${HOME}/.cache/makepkg
+CARGO_HOME=${HOME}/.cache/cargo
+GOPATH=${HOME}/.cache//go
+
+export BUILDDIR CARGO_HOME GOPATH
 
 prepare-bootstrap() {
   local pkgs=(curl git base-devel mold axel)
@@ -45,7 +51,7 @@ minimal-bootstrap() {
     chafa ffmpeg imagemagick graphicsmagick pandoc poppler mediainfo
     python-gobject resvg tesseract-data nss-mdns
   )
-  $INSTALL --builddir "${HOME}/.cache/yay" "${pkgs[@]}"
+  $INSTALL "${pkgs[@]}"
   $INSTALL --asdeps "${deps_pkgs[@]}"
   
   sudo -v
