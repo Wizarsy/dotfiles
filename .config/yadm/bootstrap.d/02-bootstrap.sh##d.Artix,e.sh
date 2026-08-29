@@ -269,12 +269,13 @@ openrc-bootstrap() {
 
 sudo -v
 prepare-bootstrap
-
-while read -r class; do
+for class in $(yadm config --get-all local.class); do
   sudo -v
   "${class}"-bootstrap
-  wait
-done <<< "$(yadm config --get-all local.class)"
+  # wait
+done
+# while read -r class; do
+# done <<< "$(yadm config --get-all local.class)"
 [[ "${SHELL##*/}" != "zsh" ]] && chsh -s "$(which zsh)"
 $CLEAN
 command rm -rf "$BUILDDIR" "$CARGO_HOME" "$GOPATH" "$AURDEST"
