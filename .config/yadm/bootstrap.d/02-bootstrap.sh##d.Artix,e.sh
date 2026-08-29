@@ -59,7 +59,7 @@ minimal-bootstrap() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
   
   ya pkg install
-  ln -s "${XDG_CONFIG_HOME:-$HOME/.config}/yazi/plugins/lsblk-mount.yazi" "${XDG_CONFIG_HOME:-$HOME/.config}/yazi/plugins/mount.yazi"
+  ln -sf "${XDG_CONFIG_HOME:-$HOME/.config}/yazi/plugins/lsblk-mount.yazi" "${XDG_CONFIG_HOME:-$HOME/.config}/yazi/plugins/mount.yazi"
   sudo -n fc-cache -fv
   fc-cache -fv
   bat cache --build
@@ -243,7 +243,7 @@ openrc-bootstrap() {
   fi
   if [[ -n "$(yadm config --get local.class server)" ]]; then
     sys_services+=(sshd.eth)
-    sudo -n ln -s /etc/init.d/sshd /etc/init.d/sshd.eth
+    sudo -n ln -sf /etc/init.d/sshd /etc/init.d/sshd.eth
     echo 'rc_need="!net net.eth*"' > /etc/conf.d/sshd.eth
   fi
   $INSTALL "${pkgs[@]}"
