@@ -174,6 +174,7 @@ ufw-bootstrap() {
   sudo -n cp -v -r -L --preserve=mode,timestamps --update=older --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/ufw/." /etc/ufw
   
   sudo -n ufw --force reset
+  sudo -n /usr/bin/find /etc/ufw -name "*.rules" -exec chmod -v 600 {} \; 
   sudo -n ufw default reject incoming
   sudo -n ufw default allow outgoing
   ip_json="$(ip -json addr)"
