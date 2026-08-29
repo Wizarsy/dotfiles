@@ -50,7 +50,7 @@ minimal-bootstrap() {
   )
   local deps_pkgs=(
     chafa ffmpeg imagemagick graphicsmagick pandoc poppler mediainfo
-    python-gobject resvg tesseract-data nss-mdns
+    python-gobject resvg tesseract-data nss-mdns cachyos-ananicy-rules
   )
   $INSTALL "${pkgs[@]}"
   $INSTALL --asdeps "${deps_pkgs[@]}"
