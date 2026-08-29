@@ -27,14 +27,11 @@ prepare-bootstrap() {
   sudo -n /usr/bin/find "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/pacman.d" -type l -exec bash -c 'file={}; dest="$(dirname "${file##*system_alt}")"; mkdir -p "$dest"; cp -v -a -L --reflink=never "$file" "${dest}/${file##*/}"' \;
 
   if [[ ! -x "$(command -v yay)" ]]; then
-    # sudo -n rm -rf /tmp/yay &> /dev/null
-    # git clone https://aur.archlinux.org/yay.git /tmp/yay
-    # sudo -v
-    # makepkg --noconfirm --needed -si -D /tmp/yay
     sudo -n pacman -Sy --noconfirm --needed yay
     yay -Y --gendb
     yay -Y --devel --save
   fi
+
   $UPDATE
 }
 
@@ -52,7 +49,7 @@ minimal-bootstrap() {
   $INSTALL --asdeps "${deps_pkgs[@]}"
   
   sudo -v
-  sudo -n rm -rf "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/}"
+  rm -rf "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/}"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-completions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions"
@@ -62,7 +59,7 @@ minimal-bootstrap() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
   
   ya pkg install
-  ln -s "${XDG_CONFIG_HOME:-$HOME/.config}/yazi/plugins/lsblk-mount.yazi" "${XDG_CONFIG_HOME:-$HOME/.config}/.config/yazi/plugins/mount.yazi"
+  ln -s "${XDG_CONFIG_HOME:-$HOME/.config}/yazi/plugins/lsblk-mount.yazi" "${XDG_CONFIG_HOME:-$HOME/.config}/yazi/plugins/mount.yazi"
   sudo -n fc-cache -fv
   fc-cache -fv
   bat cache --build
