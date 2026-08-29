@@ -1,0 +1,1 @@
+02-bootstrap.sh##d.Artix,e.sh

@@ -4,9 +4,7 @@ echo "Running Post Alt Script..."
 
 : "${SKIP_SYS_ALTS:=}"
 
-# read -d '\n' -ra alt_files <<< "$(command find -L "${YADM_HOOK_DIR}/system_alt" -type f -not -path '*/.git/*' -not -path '*/*##*/*' -not -name '*##*')"
-
-read -d '\n' -ra alt_files <<< "$(fd -L -H -p -a -c never -t file -E '*##*' -C "${YADM_HOOK_DIR}" system_alt/)"
+read -d '\n' -ra alt_files <<< "$(command find -L "${YADM_HOOK_DIR}/system_alt" -type f -not -path '*/.git/*' -not -path '*/*##*/*' -not -name '*##*')"
 
 if [[ -n "$alt_files" ]] && [[ -z "$SKIP_SYS_ALTS" ]]; then
   sudo -v || exit 1
@@ -14,8 +12,5 @@ if [[ -n "$alt_files" ]] && [[ -z "$SKIP_SYS_ALTS" ]]; then
     dest="$(dirname "${file##*system_alt}")"
     sudo -n mkdir -p "$dest"
     sudo -n cp -v -a -L --update=older --reflink=never "$file" "${dest}/${file##*/}"
-    # echo "dstdir: ${dest}"
-    # echo "src: ${file}"
-    # echo "dst: ${dest}/${file##*/}"
   done
 fi

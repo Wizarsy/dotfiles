@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-read -r _HOST < /etc/hostname
+read -r HOST < /etc/hostname
 YADM_CLASSES=()
 YADM_UPDATE_REMOTE=""
 
-case $_HOST in
+case $HOST in
   X570-AORUS-PRO)
-    YADM_CLASSES=(pacman dhcpcd ssd hdd zram btrfs xfs pacman docker nvidia gaming desktop wayland hyprland ufw openrc)
+    YADM_CLASSES=(pacman ssd hdd btrfs xfs zram dhcpcd docker nvidia gaming desktop wayland hyprland ufw openrc)
     YADM_UPDATE_REMOTE=1
     ;;
   VOSTRO-5320)
-    YADM_CLASSES=(pacman wayland ufw hyprland pacman btrfs ssd zram docker mobile openrc)
+    YADM_CLASSES=(pacman ssd hdd btrfs xfs zram networkmanager docker desktop wayland hyprland mobile ufw openrc)
     YADM_UPDATE_REMOTE=1
     ;;
   INSPIRON-N4010|LATITUDE-E6500)
-    YADM_CLASSES=(pacman ssd btrfs xfs dhcpcd docker samba server zram mobile ufw openrc)
+    YADM_CLASSES=(pacman ssd btrfs xfs zram dhcpcd docker samba server mobile ufw openrc)
     ;;
   *)
     ;;

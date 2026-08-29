@@ -2,8 +2,5 @@
 
 echo "Running Pre Alt Script..."
 
-# fd -H -p -a -t file -t dir -C "$YADM_HOOK_DIR" system_alt/ -X chmod -v 0755
-# fd -H -p -a -t file -C "$YADM_HOOK_DIR" -E '*init.d*' -E '*cron.*' -E '*local.d*' system_alt/etc/ -X chmod -v 0644
-
-command find "${YADM_HOOK_DIR}/system_alt/etc" -type f,d -exec chmod -v 0755 {} \;
+command find "${YADM_HOOK_DIR}/system_alt/" -type f,d -exec chmod -v 0755 {} \;
 command find "${YADM_HOOK_DIR}/system_alt/etc" -type f -not -path '*init.d*' -not -path '*cron.*' -not -path '*local.d*' -exec chmod -v 0644 {} \;
