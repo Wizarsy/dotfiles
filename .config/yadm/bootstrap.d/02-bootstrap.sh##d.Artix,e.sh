@@ -5,7 +5,7 @@
 INSTALL="yay -S --noconfirm --needed"
 UPDATE="yay -Sy"
 CLEAN="yay -Yc --noconfirm"
-read -r HOST < /etc/hostname
+# read -r HOST < /etc/hostname
 
 prepare-bootstrap() {
   local pkgs=(curl git base-devel mold axel)
@@ -201,7 +201,7 @@ ufw-bootstrap() {
 gaming-bootstrap() {
   local pkgs=(steam mangohud faugus-launcher minecraft-launcher protonplus)
   local deps_pkgs=(ntsync-autoload lib32-pipewire-v4l2 lib32-pipewire-jack lib32-mangohud)
-  if [[ -n "$(yadm config --get local.class DE)" ]]; then
+  if [[ -n "$(yadm config --get local.class desktop)" ]]; then
     deps_pkgs+=(lib32-nvidia-utils lib32-opencl-nvidia)
   fi
   $INSTALL "${pkgs[@]}"
@@ -260,6 +260,7 @@ openrc-bootstrap() {
   done
 }
 
+sudo -v
 prepare-bootstrap
 while read -r class; do
   sudo -v
