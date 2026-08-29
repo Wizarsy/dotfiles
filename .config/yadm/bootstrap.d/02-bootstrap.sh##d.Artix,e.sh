@@ -34,9 +34,8 @@ prepare-bootstrap() {
     sudo -n pacman -Sy --noconfirm --needed yay
     yay -Y --gendb
     yay -Y --devel --save
-    $UPDATE
-    $CLEAN
   fi
+  $UPDATE
 }
 
 minimal-bootstrap() {
