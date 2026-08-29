@@ -47,9 +47,10 @@ minimal-bootstrap() {
     7zip bat btop htop dnsutils duf dust eza fastfetch fd fontconfig fzf jq less lm_sensors man-db
     neovim pacman-contrib pkgfile ripgrep-all speedtest-cli tcpdump tldr trash-d udisks2
     usbutils wezterm-nightly-bin witr-bin xdg-user-dirs yazi zoxide zsh mise traceroute
+    mediainfo
   )
   local deps_pkgs=(
-    chafa ffmpeg imagemagick graphicsmagick pandoc poppler mediainfo
+    chafa ffmpeg imagemagick graphicsmagick pandoc poppler
     python-gobject resvg tesseract-data nss-mdns cachyos-ananicy-rules
   )
   $INSTALL "${pkgs[@]}"
@@ -253,7 +254,7 @@ openrc-bootstrap() {
   if [[ -n "$(yadm config --get local.class server)" ]]; then
     sys_services+=(sshd.eth)
     sudo -n ln -sf /etc/init.d/sshd /etc/init.d/sshd.eth
-    echo 'rc_need="!net net.eth*"' > /etc/conf.d/sshd.eth
+    echo 'rc_need="!net net.eth*"' | sudo -n tee /etc/conf.d/sshd.eth
   fi
   $INSTALL "${pkgs[@]}"
   sudo -n rc-update --update
