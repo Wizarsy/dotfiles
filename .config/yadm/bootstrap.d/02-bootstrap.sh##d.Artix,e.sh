@@ -217,10 +217,10 @@ gaming-bootstrap() {
 
 openrc-bootstrap() {
   git clone https://github.com/Wizarsy/PKGBUILDs /tmp/PKGBUILDs
-  makepkg --noconfirm --needed -sr -D /tmp/PKGBUILDs/ananicy-cpp-git
-  makepkg --noconfirm --needed -sr -D /tmp/PKGBUILDs/bpftune-git
-  yay -U --noconfirm --asdeps /tmp/PKGBUILDs/ananicy-cpp-git/*.zst
-  yay -U --noconfirm --asdeps /tmp/PKGBUILDs/bpftune-git/*.zst
+  makepkg --noconfirm --needed --asdeps -sri -D /tmp/PKGBUILDs/ananicy-cpp-git
+  makepkg --noconfirm --needed --asdeps -sri -D /tmp/PKGBUILDs/bpftune-git
+  # yay -U --noconfirm --asdeps /tmp/PKGBUILDs/ananicy-cpp-git/*.zst
+  # yay -U --noconfirm --asdeps /tmp/PKGBUILDs/bpftune-git/*.zst
 
   local pkgs=(ananicy-cpp-openrc fwupd-openrc openssh-openrc power-profiles-daemon-openrc ufw-openrc scx_loader-openrc dbus-openrc ssh-agent-openrc)
   local sys_services=(fwupd power-profiles-daemon ufw scx_loader dbus ananicy-cpp)
