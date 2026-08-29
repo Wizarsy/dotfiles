@@ -2,16 +2,17 @@
 
 # shellcheck disable=SC2016
 
-INSTALL="yay -S --noconfirm --needed --norebuild --builddir ${HOME}/.cache/yay"
+INSTALL="yay -S --noconfirm --needed --norebuild"
 UPDATE="yay -Sy"
 CLEAN="yay -Yc --noconfirm"
 # read -r HOST < /etc/hostname
 
+AURDEST="${HOME}/.cache/yay"
 BUILDDIR=${HOME}/.cache/makepkg
 CARGO_HOME=${HOME}/.cache/cargo
 GOPATH=${HOME}/.cache//go
 
-export BUILDDIR CARGO_HOME GOPATH
+export BUILDDIR CARGO_HOME GOPATH AURDEST
 
 prepare-bootstrap() {
   local pkgs=(curl git base-devel mold axel)
@@ -275,3 +276,5 @@ while read -r class; do
 done <<<"$(yadm config --get-all local.class)"
 [[ "${SHELL##*/}" != "zsh" ]] && chsh -s "$(which zsh)"
 $CLEAN
+rm -rf "$BUILDDIR" "$CARGO_HOME" "$GOPATH" "$AURDEST"
+unset BUILDDIR CARGO_HOME GOPATH AURDEST
