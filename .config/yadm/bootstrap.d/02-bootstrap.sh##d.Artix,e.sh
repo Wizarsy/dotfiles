@@ -56,7 +56,7 @@ minimal-bootstrap() {
   $INSTALL --asdeps "${deps_pkgs[@]}"
   
   sudo -v
-  rm -rf "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/}"
+  command rm -rf "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/}"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
   git clone https://github.com/zsh-users/zsh-completions.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-completions"
@@ -276,5 +276,5 @@ while read -r class; do
 done <<<"$(yadm config --get-all local.class)"
 [[ "${SHELL##*/}" != "zsh" ]] && chsh -s "$(which zsh)"
 $CLEAN
-rm -rf "$BUILDDIR" "$CARGO_HOME" "$GOPATH" "$AURDEST"
+command rm -rf "$BUILDDIR" "$CARGO_HOME" "$GOPATH" "$AURDEST"
 unset BUILDDIR CARGO_HOME GOPATH AURDEST
