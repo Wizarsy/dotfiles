@@ -8,9 +8,9 @@ CLEAN="yay -Yc --noconfirm"
 # read -r HOST < /etc/hostname
 
 AURDEST="${HOME}/.cache/yay"
-BUILDDIR=${HOME}/.cache/makepkg
-CARGO_HOME=${HOME}/.cache/cargo
-GOPATH=${HOME}/.cache//go
+BUILDDIR="${HOME}/.cache/makepkg"
+CARGO_HOME="${HOME}/.cache/cargo"
+GOPATH="${HOME}/.cache/go"
 
 export BUILDDIR CARGO_HOME GOPATH AURDEST
 
@@ -28,7 +28,7 @@ prepare-bootstrap() {
   sudo -n pacman-key --add /tmp/auris.key
   sudo -n pacman-key --lsign-key 74E5750C4A3C00F037070EF2357B525A97500B9F
 
-  sudo -n cp -v -L --preserve=mode,timestamps --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/makepkg.conf.d/." /etc/makepkg.conf.d
+  sudo -n cp -v -r -L --preserve=mode,timestamps --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/makepkg.conf.d/." /etc/makepkg.conf.d
   sudo -n cp -v -L --preserve=mode,timestamps --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/makepkg.conf" /etc/makepkg.conf
   sudo -n cp -v -L --preserve=mode,timestamps --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/pacman.conf" /etc/pacman.conf
   sudo -n /usr/bin/find "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/pacman.d" -type l -exec bash -c 'file={}; dest="$(dirname "${file##*system_alt}")"; mkdir -p "$dest"; cp -v -L --preserve=mode,timestamps --reflink=never "$file" "${dest}/${file##*/}"' \;
@@ -46,7 +46,7 @@ minimal-bootstrap() {
   local pkgs=(
     7zip bat btop htop dnsutils duf dust eza fastfetch fd fontconfig fzf jq less lm_sensors man-db
     neovim pacman-contrib pkgfile ripgrep-all speedtest-cli tcpdump tldr trash-d udisks2
-    usbutils wezterm-git witr-bin xdg-user-dirs yazi zoxide zsh mise traceroute
+    usbutils wezterm-nightly-bin witr-bin xdg-user-dirs yazi zoxide zsh mise traceroute
   )
   local deps_pkgs=(
     chafa ffmpeg imagemagick graphicsmagick pandoc poppler mediainfo
@@ -170,9 +170,9 @@ ufw-bootstrap() {
   local ip_json addr_info_len addr_local addr_prefix_len
   local deps_pkgs=(ufw-extras)
   
-  sudo -n cp -v -L --preserve=mode,timestamps --update=older --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/ufw/." /etc/ufw
+  sudo -n cp -v -r -L --preserve=mode,timestamps --update=older --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/ufw/." /etc/ufw
   
-  sudo -n ufw reset
+  sudo -n ufw --force reset
   sudo -n ufw default reject incoming
   sudo -n ufw default allow outgoing
   ip_json="$(ip -json addr)"
@@ -269,11 +269,12 @@ openrc-bootstrap() {
 
 sudo -v
 prepare-bootstrap
+
 while read -r class; do
   sudo -v
   "${class}"-bootstrap
   wait
-done <<<"$(yadm config --get-all local.class)"
+done <<< "$(yadm config --get-all local.class)"
 [[ "${SHELL##*/}" != "zsh" ]] && chsh -s "$(which zsh)"
 $CLEAN
 command rm -rf "$BUILDDIR" "$CARGO_HOME" "$GOPATH" "$AURDEST"
