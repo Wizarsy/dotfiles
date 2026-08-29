@@ -47,11 +47,11 @@ minimal-bootstrap() {
     7zip bat btop htop dnsutils duf dust eza fastfetch fd fontconfig fzf jq less lm_sensors man-db
     neovim pacman-contrib pkgfile ripgrep-all speedtest-cli tcpdump tldr trash-d udisks2
     usbutils wezterm-nightly-bin witr-bin xdg-user-dirs yazi zoxide zsh mise traceroute
-    mediainfo
+    mediainfo cachyos-ananicy-rules
   )
   local deps_pkgs=(
     chafa ffmpeg imagemagick graphicsmagick pandoc poppler
-    python-gobject resvg tesseract-data nss-mdns cachyos-ananicy-rules
+    python-gobject resvg tesseract-data nss-mdns
   )
   $INSTALL "${pkgs[@]}"
   $INSTALL --asdeps "${deps_pkgs[@]}"
@@ -169,7 +169,8 @@ mobile-bootstrap() {
 
 ufw-bootstrap() {
   local ip_json addr_info_len addr_local addr_prefix_len
-  local deps_pkgs=(ufw-extras)
+  local pkgs=(ufw-extras)
+  # local deps_pkgs=()
   
   sudo -n cp -v -r -L --preserve=mode,timestamps --update=older --reflink=never "${XDG_CONFIG_HOME:-$HOME/.config}/yadm/system_alt/etc/ufw/." /etc/ufw
   
@@ -204,7 +205,8 @@ ufw-bootstrap() {
   if [[ -n "$(yadm config --get local.class docker)" ]]; then
     echo
   fi
-  $INSTALL --asdeps "${deps_pkgs[@]}"
+  $INSTALL "${pkgs[@]}"
+  # $INSTALL --asdeps "${deps_pkgs[@]}"
 }
 
 gaming-bootstrap() {
