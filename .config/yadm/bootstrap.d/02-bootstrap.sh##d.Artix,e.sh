@@ -108,7 +108,10 @@ dhcpcd-bootstrap() {
 }
 
 samba-bootstrap() {
-  return
+  # local pkgs=()
+  local deps_pkgs=(python-dbus)
+  # $INSTALL "${pkgs[@]}"
+  $INSTALL --asdeps "${deps_pkgs[@]}"
 }
 
 server-bootstrap() {
