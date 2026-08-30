@@ -6,4 +6,5 @@ default via 192.168.0.1 dev eth0"
 
 rules_eth0="from 192.168.0.202 table 100 priority 100"
 
+dns_domain_eth0="lan"
 dns_servers_eth0="192.168.0.200 192.168.0.201"

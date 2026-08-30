@@ -8,4 +8,5 @@ default via 192.168.0.1 dev wlan0"
 
 rules_wlan0="from 192.168.0.203 table 101 priority 101"
 
-#dns_servers_wlan0="192.168.0.200 192.168.0.201"
+dns_domain_wlan0="lan"
+dns_servers_wlan0="192.168.0.200 192.168.0.201"
