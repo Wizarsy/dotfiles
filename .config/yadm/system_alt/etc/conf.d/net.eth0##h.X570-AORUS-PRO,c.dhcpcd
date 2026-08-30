@@ -1,0 +1,4 @@
+modules_eth0="dhcpcd"
+config_eth0="dhcp"
+# dhcpcd_eth0="-b"
+# dhcpcd_eth0="-w"
