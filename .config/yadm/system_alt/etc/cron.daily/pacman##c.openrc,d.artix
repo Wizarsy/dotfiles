@@ -1,3 +1,5 @@
 #!/bin/sh
 
-! [ -x /usr/bin/pacman ] || /usr/bin/pacman -Fy
+if command ping -n -c 1 google.com > /dev/null 2>&1; then
+  ! [ -x "$(command -v pacman)" ] || command pacman -Fy
+fi

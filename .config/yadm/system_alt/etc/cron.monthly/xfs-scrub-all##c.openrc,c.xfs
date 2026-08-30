@@ -1,3 +1,3 @@
 #!/bin/sh
 
-! [ -x /usr/bin/xfs_scrub_all ] || /usr/bin/xfs_scrub_all --auto-media-scan-interval 1mo >> /var/log/xfs-scub-all.log 2>&1
+! [ -x "$(command -v xfs_scrub_all)" ] || command xfs_scrub_all --auto-media-scan-interval 1mo >> /var/log/xfs-scrub-all.log 2>&1

@@ -1,3 +1,5 @@
 #!/bin/sh
 
-! [ -x /usr/bin/pkgfile ] || /usr/bin/pkgfile -u
+if command ping -n -c 1 google.com > /dev/null 2>&1; then
+  ! [ -x "$(command -v pkgfile)" ] || command pkgfile -u
+fi

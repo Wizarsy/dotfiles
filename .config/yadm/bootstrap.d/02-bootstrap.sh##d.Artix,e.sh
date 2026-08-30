@@ -226,8 +226,10 @@ openrc-bootstrap() {
   makepkg --noconfirm --needed -sri -D /tmp/PKGBUILDs/bpftune-git
 
   local pkgs=(ananicy-cpp-openrc fwupd-openrc openssh-openrc power-profiles-daemon-openrc ufw-openrc scx_loader-openrc dbus-openrc ssh-agent-openrc)
-  local sys_services=(fwupd power-profiles-daemon ufw scx_loader dbus ananicy-cpp bpftune net-online)
-  local user_services=(ssh-agent dbus)
+  local sys_boot_services=(metalog dbus)
+  local sys_default_services=(fwupd power-profiles-daemon ufw scx_loader ananicy-cpp bpftune)
+  local user_boot_services=(dbus)
+  local user_default_services=(ssh-agent)
   if [[ -n "$(yadm config --get local.class desktop)" ]]; then
     mkdir -p "${HOME}/.config/rc/runlevels/graphical"
     rc-update -U -s default graphical
@@ -237,35 +239,41 @@ openrc-bootstrap() {
   fi
   if [[ -n "$(yadm config --get local.class hyprland)" ]]; then
     pkgs+=(greetd-openrc)
-    sys_services+=(greetd)
+    sys_default_services+=(greetd)
   fi
   if [[ -n "$(yadm config --get local.class docker)" ]]; then
     pkgs+=(docker-openrc)
-    sys_services+=(docker)
+    sys_default_services+=(docker)
   fi
   if [[ -n "$(yadm config --get local.class desktop)" ]]; then
     pkgs+=(scx_loader-openrc lact-openrc)
-    sys_services+=(lact)
+    sys_default_services+=(lact)
   fi
   if [[ -n "$(yadm config --get local.class nvidia)" ]]; then
     pkgs+=(nvidia-utils-openrc)
-    sys_services+=(nvidia-persistenced)
+    sys_default_services+=(nvidia-persistenced)
   fi
   if [[ -n "$(yadm config --get local.class samba)" ]]; then
-    pkgs+=(samba-openrc wsdd-openrc)
-    sys_services+=(smb wsdd avahi-daemon)
+    pkgs+=(samba-openrc wsdd-openrc avahi-openrc)
+    sys_default_services+=(smb wsdd avahi-daemon)
   fi
   if [[ -n "$(yadm config --get local.class server)" ]]; then
-    sys_services+=(sshd.eth)
+    sys_default_services+=(sshd.eth)
     sudo -n ln -sf /etc/init.d/sshd /etc/init.d/sshd.eth
     echo 'rc_need="!net net.eth*"' | sudo -n tee /etc/conf.d/sshd.eth
   fi
   $INSTALL "${pkgs[@]}"
   sudo -n rc-update --update
-  for srvc in "${sys_services[@]}"; do
+  for srvc in "${sys_boot_services[@]}"; do
+    sudo -n rc-update add "$srvc" boot
+  done
+  for srvc in "${sys_default_services[@]}"; do
     sudo -n rc-update add "$srvc" default
   done
-  for srvc in "${user_services[@]}"; do
+  for srvc in "${user_boot_services[@]}"; do
+    rc-update -U add "$srvc" boot
+  done
+  for srvc in "${user_default_services[@]}"; do
     rc-update -U add "$srvc" default
   done
 }
