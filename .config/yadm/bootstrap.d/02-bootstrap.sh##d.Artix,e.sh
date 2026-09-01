@@ -250,8 +250,8 @@ openrc-bootstrap() {
     sys_default_services+=(docker)
   fi
   if [[ -n "$(yadm config --get local.class desktop)" ]]; then
-    pkgs+=(scx_loader-openrc lact-openrc)
-    sys_default_services+=(lact)
+    pkgs+=(lact-openrc colord-openrc)
+    sys_default_services+=(lact colord)
   fi
   if [[ -n "$(yadm config --get local.class nvidia)" ]]; then
     pkgs+=(nvidia-utils-openrc)
