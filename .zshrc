@@ -5,11 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Env
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(fzf eza zoxide fzf-tab docker mise command-not-found colored-man-pages ohmyzsh-full-autoupdate zsh-autosuggestions fast-syntax-highlighting) 
 
-export ZOXIDE_CMD_OVERRIDE=cd
+export ZOXIDE_CMD_OVERRIDE="cd"
 
 export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=fg:-1,fg+:#cfc9c2,bg:-1,bg+:#515C7E --color=hl:#9ece6a,hl+:#73DACA,info:#C0CAF5,marker:#7dcfff --color=prompt:#BB9AF7,spinner:#ff9e64,pointer:#e0af68,header:#C0CAF5 --color=gutter:#515C7E,border:#414868,separator:#414868,label:#C0CAF5 --color=query:#cfc9c2 --border='sharp' --border-label='' --preview-window='border-sharp' --padding='1' --prompt=' ' --marker=' ' --pointer=' ' --separator='-' --scrollbar='│' --info=right"
 
@@ -32,8 +32,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 autoload -U compinit && compinit
 
-source "$ZSH/oh-my-zsh.sh"
-[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
+source "${ZSH}/oh-my-zsh.sh"
+[[ ! -f "${HOME}/.p10k.zsh" ]] || source "${HOME}/.p10k.zsh"
 
 # Usage
 source <(usage g completion-init zsh)
@@ -41,7 +41,7 @@ source <(usage g completion-init zsh)
 ## Yazi
 y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  yazi "$@" --cwd-file="$tmp"
+  command yazi "$@" --cwd-file="$tmp"
   read -r cwd < "$tmp"
   if [ -d "$cwd" ] && [ "$cwd" != "$PWD" ]; then
     cd -- "$cwd"
@@ -49,7 +49,12 @@ y() {
   command rm -f -- "$tmp"
 }
 
-export PYTHONWARNINGS=ignore
+yadm() {
+  export PYTHONWARNINGS="ignore"
+  command yadm "$@"
+  unset PYTHONWARNINGS
+}
+
 # Aliases
 alias up="yay;yay -Yc --noconfirm"
 alias cat="bat"
@@ -57,4 +62,4 @@ alias find="fd"
 alias grep="rg"
 alias du="dust"
 alias rm="trash"
-# alias yadm="PYTHONWARNINGS=ignore yadm"
+

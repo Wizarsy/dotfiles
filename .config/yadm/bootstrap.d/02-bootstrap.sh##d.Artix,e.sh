@@ -73,6 +73,7 @@ minimal-bootstrap() {
   bat cache --build
   xdg-user-dirs-update
   mise i
+  tldr --update
 }
 
 pacman-bootstrap() {
