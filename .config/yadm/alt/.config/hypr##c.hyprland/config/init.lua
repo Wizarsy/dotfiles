@@ -175,7 +175,7 @@ hl.window_rule({
 
 hl.window_rule({ match = { initial_title = [[\s*]] }, size = { "(monitor_w * 0.5)", "(monitor_h * 0.5)" }, center = true, float = true })
 
-hl.window_rule({ match = { class = "^(kvantummanager|qt[5-6]ct|nwg-look|filechooser)$" }, float = true })
+hl.window_rule({ match = { initial_class = "^(kvantummanager|qt[5-6]ct|nwg-look|filechooser|minecraft-launcher)$" }, float = true })
 hl.window_rule({ match = { initial_class = "org.qbittorrent.qBittorrent", initial_title = "negative:^qBittorrent.*" }, float = true })
 
 hl.window_rule({ match = { title = "^([Mm]inecraft [0-9].*)$" }, content = "game" })

@@ -1,3 +1,4 @@
 [Default Applications]
 application/x-zerosize=nvim.desktop
 application/pdf=onlyoffice-desktopeditors.desktop
+x-scheme-handler/discord-424004941485572097=discord-424004941485572097.desktop
