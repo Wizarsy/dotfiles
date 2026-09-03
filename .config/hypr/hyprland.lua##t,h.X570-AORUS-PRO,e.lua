@@ -28,16 +28,19 @@ hl.env("HYPRCURSOR_SIZE", os.getenv("XCURSOR_SIZE"))
 hl.env("HYPRCURSOR_THEME", os.getenv("XCURSOR_THEME"))
 
 hl.on("hyprland.start", function()
-  local uid = io.popen("id -u " .. user, "r")
+  local uid, ssh_agent_sock, xdg_runtime_dir, ssh_auth_sock, dbus_session_bus_address
+  uid = io.popen("id -u " .. user, "r")
   if uid then
-    local xdg_runtime_dir = (os.getenv("XDG_RUNTIME_DIR") or ("/run/user/" .. uid:read("l")))
-    uid:close()
-    hl.env("DBUS_SESSION_BUS_ADDRESS", "unix:path=" .. xdg_runtime_dir .. "/bus")
-    local ssh_sock = io.popen("command find " .. xdg_runtime_dir .. " -maxdepth 1 -name 'ssh-agent.*' -print0 -quit")
-    if ssh_sock then
-      hl.env("SSH_AUTH_SOCK", ssh_sock:read("a"))
-      ssh_sock:close()
+    xdg_runtime_dir = (os.getenv("XDG_RUNTIME_DIR") or ("/run/user/" .. uid:read("l")))
+    dbus_session_bus_address = "unix:path=" .. xdg_runtime_dir .. "/bus"
+    ssh_agent_sock = io.popen("command find " .. xdg_runtime_dir .. " -maxdepth 1 -name 'ssh-agent.*' -print0 -quit")
+    if ssh_agent_sock then
+      ssh_auth_sock = ssh_agent_sock:read("l")
+      hl.env("SSH_AUTH_SOCK", (os.getenv("SSH_AUTH_SOCK") or ssh_auth_sock))
+      ssh_agent_sock:close()
     end
+    hl.env("DBUS_SESSION_BUS_ADDRESS", (os.getenv("DBUS_SESSION_BUS_ADDRESS") or dbus_session_bus_address))
+    uid:close()
   end
 
   hl.env("ICONTHEME", "Papirus-Dark")
@@ -59,7 +62,7 @@ hl.on("hyprland.start", function()
   hl.env("EDITOR", "nvim")
   hl.env("GOPATH", "/tmp/go")
   hl.env("CARGO_HOME", "/tmp/cargo")
-  
+
   hl.exec_cmd("hyprpaper")
   hl.exec_cmd("openrc -U graphical")
   if io.popen("command -v lact", "r") then
