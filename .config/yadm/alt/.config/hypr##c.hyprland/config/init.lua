@@ -185,7 +185,7 @@ hl.window_rule({ match = { xdg_tag = "^(proton-game)$" }, content = "game" })
 hl.window_rule({ match = { initial_class = "rpcs3", initial_title = [[(.+ \|)*.+\[\w+\]?]] }, content = "game" })
 hl.window_rule({ match = { initial_class = "steam_app.*", initial_title = [[\s*]] }, content = "none", tag = "close", no_follow_mouse = true })
 -- hl.window_rule({ match = { initial_class = "steam_app.*", float = true }, content = "none" })
-hl.window_rule({ match = { initial_title = "^(Steam|EA|Ubisoft Connect)$" }, content = "none" })
+hl.window_rule({ match = { initial_title = "^(Steam|EA|Ubisoft Connect)$" }, content = "none", center = true })
 hl.window_rule({ match = { initial_title = "^(EADesktop)$" }, content = "none" })
 hl.window_rule({ match = { initial_class = "steam", initial_title = "negative:Steam" }, float = true })
 hl.window_rule({
