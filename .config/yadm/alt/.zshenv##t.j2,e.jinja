@@ -1,17 +1,21 @@
 : "${PATH:=${HOME}/.bin:${HOME}/.local/.bin:/opt:${PATH}}"
-: "${SSH_AUTH_SOCK:=${XDG_RUNTIME_DIR}/ssh-agent.sock}"
 : "${EDITOR:=nvim}"
-{% if "server" in YADM_CLASSES %}
+{%- if "Artix" in YADM_DISTRO %}
+: "${SSH_AUTH_SOCK:=${XDG_RUNTIME_DIR}/ssh-agent.sock}"
+{%- else %}
+: "${SSH_AUTH_SOCK:=${XDG_RUNTIME_DIR}/ssh-agent.socket}"
+{%- endif %}
+{%- if "server" in YADM_CLASSES %}
 : "${AURDEST:=${HOME}/.cache/yay}"
 : "${BUILDDIR:=${HOME}/.cache/makepkg}"
 : "${CARGO_HOME:=${HOME}/.cache/cargo}"
 : "${GOPATH:=${HOME}/.cache/go}"
 export AURDEST BUILDDIR
-{% else %}
+{%- else %}
 : "${GOPATH:=/tmp/go}"
 : "${CARGO_HOME:=/tmp/cargo}"
-{% endif %}
-{% if "WSL" in YADM_OS %}
+{%- endif %}
+{%- if "WSL" in YADM_OS %}
 : "${XDG_CURRENT_DESKTOP:=Weston}"
 : "${XDG_SESSION_DESKTOP:=Weston}"
 : "${XDG_SESSION_TYPE:=wayland}"
@@ -42,5 +46,5 @@ export XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP \
   MOZ_ENABLE_WAYLAND SDL_VIDEODRIVER CLUTTER_BACKEND \
   _JAVA_AWT_WM_NONREPARENTING GALLIUM_DRIVER LIBVA_DRIVER_NAME \
   VDPAU_DRIVER
-{% endif %}
+{%- endif %}
 export CARGO_HOME EDITOR GOPATH PATH SSH_AUTH_SOCK
