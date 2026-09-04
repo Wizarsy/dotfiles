@@ -47,7 +47,7 @@ minimal-bootstrap() {
     7zip bat btop htop dnsutils duf dust eza fastfetch fd fontconfig fzf jq less lm_sensors man-db
     neovim pacman-contrib pkgfile ripgrep-all speedtest-cli tcpdump tldr trash-d udisks2
     usbutils wezterm-nightly-bin witr-bin xdg-user-dirs yazi zoxide zsh mise traceroute
-    mediainfo cachyos-ananicy-rules
+    mediainfo cachyos-ananicy-rules lsb-release
   )
   local deps_pkgs=(
     chafa ffmpeg imagemagick graphicsmagick pandoc poppler
