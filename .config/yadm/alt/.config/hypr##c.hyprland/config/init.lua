@@ -149,45 +149,44 @@ hl.workspace_rule({
 
 hl.window_rule({ match = { class = ".*" }, suppress_event = "maximize" })
 hl.window_rule({
-  name     = "fix-xwayland-drags",
-  match    = {
-    class      = "^$",
-    title      = "^$",
-    xwayland   = true,
-    float      = true,
+  name = "fix-xwayland-drags",
+  match = {
+    class = "^$",
+    title = "^$",
+    xwayland = true,
+    float = true,
     fullscreen = false,
-    pin        = false,
+    pin = false,
   },
   no_focus = true,
 })
 hl.window_rule({
-  name             = "fix-xwayland-video-bridge",
-  match            = {
+  name = "fix-xwayland-video-bridge",
+  match = {
     class = "^xwaylandvideobridge$"
   },
   no_initial_focus = true,
-  no_focus         = true,
-  no_anim          = true,
-  no_blur          = true,
-  max_size         = { 1, 1 },
-  opacity          = "0.0"
+  no_focus = true,
+  no_anim = true,
+  no_blur = true,
+  max_size = { 1, 1 },
+  opacity = "0.0"
 })
-
 hl.window_rule({ match = { initial_title = [[\s*]] }, size = { "(monitor_w * 0.5)", "(monitor_h * 0.5)" }, center = true, float = true })
 
 hl.window_rule({ match = { initial_class = "^(kvantummanager|qt[5-6]ct|nwg-look|filechooser|minecraft-launcher|org.coolercontrol.CoolerControl)$" }, float = true })
-hl.window_rule({ match = { initial_class = "org.qbittorrent.qBittorrent", initial_title = "negative:^qBittorrent.*" }, float = true })
+hl.window_rule({ match = { initial_class = "^(org.qbittorrent.qBittorrent|steam)$", initial_title = "negative:^(qBittorrent.*|Steam)$" }, float = true })
 
-hl.window_rule({ match = { title = "^([Mm]inecraft [0-9].*)$" }, content = "game" })
+hl.window_rule({ match = { title = [[^([Mm]inecraft\s?[0-9].*)$]] }, content = "game" })
 hl.window_rule({ match = { class = "^(steam_app.*|hl2_linux)$" }, content = "game" })
 hl.window_rule({ match = { xdg_tag = "^(proton-game)$" }, content = "game" })
+hl.window_rule({ match = { initial_class = "rpcs3", initial_title = [[RPCS3|(.+ \|)*.+\[\w+\]?]] }, content = "game" })
 
-hl.window_rule({ match = { initial_class = "rpcs3", initial_title = [[(.+ \|)*.+\[\w+\]?]] }, content = "game" })
 hl.window_rule({ match = { initial_class = "steam_app.*", initial_title = [[\s*]] }, content = "none", tag = "close", no_follow_mouse = true })
+hl.window_rule({ match = { initial_title = [[^(Steam|EA|EADesktop|Ubisoft\s?Connect|Browse\s?for\s?Folder)$]] }, content = "none", center = true })
 -- hl.window_rule({ match = { initial_class = "steam_app.*", float = true }, content = "none" })
-hl.window_rule({ match = { initial_title = "^(Steam|EA|Ubisoft Connect)$" }, content = "none", center = true })
-hl.window_rule({ match = { initial_title = "^(EADesktop)$" }, content = "none" })
-hl.window_rule({ match = { initial_class = "steam", initial_title = "negative:Steam" }, float = true })
+-- hl.window_rule({ match = { initial_title = "^(EADesktop)$" }, content = "none" })
+
 hl.window_rule({
   name = "games_rule",
   match = { content = 3 },
@@ -201,6 +200,7 @@ hl.window_rule({
   immediate = true,
   tag = "game"
 })
+
 hl.window_rule({ match = { class = "^(dyinglightgame_x64_rwdi.exe|hl2_linux)$" }, immediate = false })
 hl.window_rule({ match = { content = 3 }, workspace = "name:gaming" })
 
