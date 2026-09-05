@@ -5,16 +5,16 @@ d3d9.samplerAnisotropy = 16
 d3d11.clampNegativeLodBias = False
 d3d9.clampNegativeLodBias = False
 
-d3d9.maxFrameRate = 158
+dxvk.latencySleep = True
+dxgi.maxFrameLatency = 1
+d3d9.maxFrameLatency = 1
+{%- if "X570-AORUS-PRO" in YADM_HOSTNAME %}
+dxvk.tearFree = False
 dxgi.maxFrameRate = 158
-
+d3d9.maxFrameRate = 158
 dxgi.syncInterval = 0
 d3d9.presentInterval = 0
-dxvk.tearFree = False
-
-dxvk.latencySleep = True
-d3d9.maxFrameLatency = 1
-dxgi.maxFrameLatency = 1
+{%- endif %}
 
 [AssassinsCreed_Dx9.exe]
 d3d9.maxFrameRate = 60
@@ -23,8 +23,8 @@ d3d9.maxFrameRate = 60
 dxgi.maxFrameRate = 60
 
 [AssassinsCreed_Game.exe]
-d3d9.maxFrameRate = 60
 dxgi.maxFrameRate = 60
+d3d9.maxFrameRate = 60
 
 [AssassinsCreedII.exe]
 d3d9.maxFrameRate = 60
@@ -43,12 +43,12 @@ dxgi.maxFrameRate = 60
 
 # [bioshock.exe]
 
-[Borderlands2.exe]
-dxgi.customVendorId = 10de
-dxgi.hideAmdGpu = True
-dxgi.hideNvidiaGpu = False
-dxgi.customDeviceId = 2684
-dxgi.customDeviceDesc = "NVIDIA GeForce RTX 4090"
+# [Borderlands2.exe]
+# dxgi.customVendorId = 10de
+# dxgi.hideAmdGpu = True
+# dxgi.hideNvidiaGpu = False
+# dxgi.customDeviceId = 2684
+# dxgi.customDeviceDesc = "NVIDIA GeForce RTX 4090"
 
 # [Dead Space.exe]
 
@@ -67,15 +67,14 @@ dxgi.maxFrameRate = 60
 [MonsterHunterWilds.exe]
 dxgi.maxFrameLatency = 0
 
-[MonsterHunterWorld.exe]
-dxgi.customVendorId = 10de
-dxgi.hideAmdGpu = True
-dxgi.hideNvidiaGpu = False
-dxgi.customDeviceId = 2684
-dxgi.customDeviceDesc = "NVIDIA GeForce RTX 4090"
+# [MonsterHunterWorld.exe]
+# dxgi.customVendorId = 10de
+# dxgi.hideAmdGpu = True
+# dxgi.hideNvidiaGpu = False
+# dxgi.customDeviceId = 2684
+# dxgi.customDeviceDesc = "NVIDIA GeForce RTX 4090"
 
-[nioh2.exe]
-dxgi.maxFrameRate = 120
+# [nioh2.exe]
 
 [Remnant-Win64-Shipping.exe]
 dxvk.latencySleep = False

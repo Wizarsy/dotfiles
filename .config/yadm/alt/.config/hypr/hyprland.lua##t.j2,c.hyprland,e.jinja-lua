@@ -1,4 +1,5 @@
 local lact_profile = "Default"
+local scx_ext_state = "Desktop"
 local home = os.getenv("HOME")
 local user = os.getenv("USER")
 
@@ -85,10 +86,14 @@ end)
 
 hl.on("window.fullscreen", function(w)
   if w ~= nil then
-    if w.content_type == "game" and w.fullscreen == 2 and lact_profile == "Default" then
-      if io.popen("command -v lact", "r") then
+    if w.content_type == "game" and w.fullscreen == 2 then
+      if lact_profile == "Default" and io.popen("command -v lact", "r") then
         hl.exec_cmd("lact cli profile set Performance")
         lact_profile = "Performance"
+      end
+      if scx_ext_state == "Desktop" and io.popen("command -v scxctl", "r") then
+        hl.exec_cmd("scxctl switch -s lavd -m gaming")
+        scx_ext_state = "Gaming"
       end
     end
   end
@@ -102,11 +107,13 @@ end)
 hl.on("window.destroy", function(w)
   if w ~= nil then
     if hl.get_window([[tag:game\*]]) == nil then
-      if lact_profile == "Performance" then
-        if io.popen("command -v lact", "r") then
-          hl.exec_cmd("lact cli profile set Default")
-          lact_profile = "Default"
-        end
+      if lact_profile == "Performance" and io.popen("command -v lact", "r") then
+        hl.exec_cmd("lact cli profile set Default")
+        lact_profile = "Default"
+      end
+      if scx_ext_state == "Gaming" and io.popen("command -v scxctl", "r") then
+        hl.exec_cmd("scxctl restore")
+        scx_ext_state = "Desktop"
       end
     end
   end
