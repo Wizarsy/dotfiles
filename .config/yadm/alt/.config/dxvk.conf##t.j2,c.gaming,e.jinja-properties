@@ -10,10 +10,16 @@ dxgi.maxFrameLatency = 1
 d3d9.maxFrameLatency = 1
 {%- if "X570-AORUS-PRO" in YADM_HOSTNAME %}
 dxvk.tearFree = False
-dxgi.maxFrameRate = 158
-d3d9.maxFrameRate = 158
+dxgi.maxFrameRate = 160
+d3d9.maxFrameRate = 160
 dxgi.syncInterval = 0
 d3d9.presentInterval = 0
+{%- else %}
+dxvk.tearFree = True
+dxgi.maxFrameRate = 60
+d3d9.maxFrameRate = 60
+dxgi.syncInterval = 1
+d3d9.presentInterval = 1
 {%- endif %}
 
 [AssassinsCreed_Dx9.exe]
