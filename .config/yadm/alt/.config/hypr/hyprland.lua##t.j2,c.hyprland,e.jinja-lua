@@ -73,17 +73,10 @@ end)
 
 -- hl.on("window.open", function(w)
 --   if w ~= nil then
---     if w.content_type == "game" then
---       if lact_profile == "Default" then
---         if io.popen("command -v lact", "r") then
---           hl.exec_cmd("lact cli profile set Performance")
---           lact_profile = "Performance"
---         end
---       end
---     end
 --   end
 -- end)
 
+---@param w HL.Window
 hl.on("window.fullscreen", function(w)
   if w ~= nil then
     if w.content_type == "game" and w.fullscreen == 2 then
@@ -104,6 +97,7 @@ end)
 --   end
 -- end)
 
+---@param w HL.Window
 hl.on("window.destroy", function(w)
   if w ~= nil then
     if hl.get_window([[tag:game\*]]) == nil then

@@ -4,7 +4,7 @@ user_settings = {
   
 # Proton
   "PROTON_ENABLE_WAYLAND": "1",
-  "PROTON_NO_WM_DECORATION": "1",
+  "PROTON_NO_WM_DECORATION": "0",
   "PROTON_USE_PIPEWIRE": "1",
   "PROTON_USE_NTSYNC": "1",
   "PROTON_LOCAL_SHADER_CACHE": "1",

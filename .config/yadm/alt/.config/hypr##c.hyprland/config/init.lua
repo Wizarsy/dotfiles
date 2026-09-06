@@ -106,36 +106,35 @@ hl.on("hyprland.start", function()
   -- hl.exec_cmd("dbus-update-activation-environment --all")
 end)
 
+---@param m HL.Monitor
 hl.on("monitor.added", function(m)
   local monitors = hl.get_monitors()
   hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1, mirror = monitors[1].name })
 end)
 
-hl.on("window.open_early", function(w)
-  if w ~= nil then
--- if w.initial_class == "rpcs3" then
--- if string.match(w.initial_title, "%[%w+%]") then
---   hl.dispatch(hl.dsp.window.set_prop({ prop = "content", value = "game" }))
--- end
--- end
-  end
-end)
+-- hl.on("window.open_early", function(w)
+--   if w ~= nil then
+--   end
+-- end)
 
+---@param w HL.Window
 hl.on("window.open", function(w)
   if w ~= nil then
     if w.tags[1] == "close*" then
-      hl.dispatch(hl.dsp.window.close())
+      hl.dispatch(hl.dsp.window.close({ window = w }))
     end
   end
 end)
 
-hl.on("window.title", function(w)
-  if w ~= nil then
---    if w.title == "Minecraft Launcher" then
---      hl.dispatch(hl.dsp.window.move({ workspace = "emptynm" }))
---    end
-  end
-end)
+-- hl.on("window.title", function(w)
+--   if w ~= nil then
+--   end
+-- end)
+
+-- hl.on("window.fullscreen", function(w)
+--   if w ~= nil then
+--   end
+-- end)
 
 hl.workspace_rule({
   workspace = "9",
@@ -174,12 +173,11 @@ hl.window_rule({
 })
 hl.window_rule({ match = { initial_title = [[\s*]] }, size = { "(monitor_w * 0.5)", "(monitor_h * 0.5)" }, center = true, float = true })
 
-hl.window_rule({ match = { initial_class = "^(kvantummanager|qt[5-6]ct|nwg-look|filechooser|minecraft-launcher|org.coolercontrol.CoolerControl)$" }, float = true })
+hl.window_rule({ match = { initial_class = "^(kvantummanager|qt[5-6]ct|nwg-look|filechooser|minecraft-launcher)$" }, float = true })
 hl.window_rule({ match = { initial_class = "^(org.qbittorrent.qBittorrent|steam)$", initial_title = "negative:^(qBittorrent.*|Steam)$" }, float = true })
 
-hl.window_rule({ match = { title = [[^([Mm]inecraft\s?[0-9].*)$]] }, content = "game" })
-hl.window_rule({ match = { class = "^(steam_app.*|hl2_linux)$" }, content = "game" })
 hl.window_rule({ match = { xdg_tag = "^(proton-game)$" }, content = "game" })
+hl.window_rule({ match = { initial_class = [[^([Mm]inecraft\s?[0-9].*|steam_app.*|hl2_linux)$]] }, content = "game" })
 hl.window_rule({ match = { initial_class = "rpcs3", initial_title = [[RPCS3|(.+ \|)*.+\[\w+\]?]] }, content = "game" })
 
 hl.window_rule({ match = { initial_class = "steam_app.*", initial_title = [[\s*]] }, content = "none", tag = "close", no_follow_mouse = true })
@@ -201,7 +199,7 @@ hl.window_rule({
   tag = "game"
 })
 
-hl.window_rule({ match = { class = "^(dyinglightgame_x64_rwdi.exe|hl2_linux)$" }, immediate = false })
+-- hl.window_rule({ match = { class = [[^(dyinglightgame_x64_rwdi.exe)$]] }, immediate = false })
 hl.window_rule({ match = { content = 3 }, workspace = "name:gaming" })
 
 hl.config({
@@ -275,10 +273,9 @@ hl.config({
 })
 
 hl.permission({ binary = ".*", type = "screencopy", mode = "ask" })
-hl.permission({ binary = "/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", type = "screencopy", mode = "allow" })
+hl.permission({ binary = "/usr/(lib|libexec|lib64)/xdg-desktop-portal-(hyprland|gtk|termfilechooser)", type = "screencopy", mode = "allow" })
+hl.permission({ binary = "/usr/(lib|libexec|lib64)/xdg-desktop-portal", type = "screencopy", mode = "allow" })
 hl.permission({ binary = "/usr/(bin|local/bin)/hyprpm", type = "plugin", mode = "allow" })
-hl.permission({ binary = "/usr/(bin|local/bin)/teamspeak", type = "screencopy", mode = "allow" })
-hl.permission({ binary = "/usr/(bin|local/bin)/discord", type = "screencopy", mode = "allow" })
 
 -- hl.curve("easeOutQuint",   { type = "bezier", points = { {0.23, 1},    {0.32, 1}    } })
 -- hl.curve("easeInOutCubic", { type = "bezier", points = { {0.65, 0.05}, {0.36, 1}    } })
@@ -306,10 +303,10 @@ hl.permission({ binary = "/usr/(bin|local/bin)/discord", type = "screencopy", mo
 -- hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
 -- hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
-local mod         = "SUPER"
-local terminal    = "wezterm -e --always-new-process"
+local mod = "SUPER"
+local terminal = "wezterm -e --always-new-process"
 local fileManager = "wezterm -e --always-new-process -- yazi"
-local menu        = "hyprlauncher"
+local menu = "hyprlauncher"
 
 -- hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
@@ -320,6 +317,13 @@ hl.bind(mod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mod .. " + E", hl.dsp.exec_cmd(fileManager, { float = true }))
 hl.bind(mod .. " + L", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind(mod .. " + Z", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mod .. " + F11", function()
+  local w = hl.get_active_window()
+  if w then
+    hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 2, client = 2, window = w }))
+    hl.notification.create({ text = "Synchronized fullscreen states on window: " .. w.title, timeout = 5000, icon = "ok" })
+  end
+end)
 
 -- hl.bind(mod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
