@@ -1,2 +1,2 @@
 default_sched = "scx_rusty"
-default_mode = "Server"
+default_mode = "Auto"
